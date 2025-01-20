@@ -1,0 +1,119 @@
+1))))   Let’s begin with the basics. What is Ansible?
+Ansible is an open-source platform that facilitates configuration management, task automation, or application deployment. 
+It is a valuable DevOps tool. It was written in Python and powered by Red Hat
+
+
+
+2))))   Describe how Ansible works?
+This is one of the most frequently asked ansible interview questions where the interviewer wants to know 
+whether you actually know the tool in and out or not.
+You can start this way - ansible is broken down into two types of servers: controlling machines and nodes. 
+Ansible is installed on the controlling computer, and the controlling machines manage the nodes via SSH. 
+The controlling machine contains an inventory file that holds the node system’s location. 
+Ansible runs the playbook on the controlling machine to deploy the modules and the packages on the node systems. 
+Since Ansible is agentless, there’s no need for a third-party tool to connect the nodes.
+
+
+
+3))))  Explain what a “playbook” is?
+A playbook is a YAML-based file that sends commands to remote computers for confiduration via scripts.
+Devops engineers can configure entire environments by passing a script to the required systems rather
+than using individual commands to configure computers from the command line remotely.
+
+
+- name: Configure web servers
+  hosts: webservers
+  vars:
+    http_port: 80
+  tasks:
+    - name: Install Nginx
+      ansible.builtin.package:
+        name: nginx
+        state: present
+    - name: Start Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: started
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+
+                
+
+
+4))))  What is “idempotency”?
+idempotency is an important Ansible feature. It prevents unnecessary changes in the managed hosts. 
+With idempotency, you can execute one or more tasks on a server as many times as you can, 
+but it won’t change anything that’s already been modified and it will give same output. 
+
+
+
+
+
+5)))) What are roles in ansible?
+In ansible roles are ways to arganize and structure your playbooks in a more reusable manner,
+Roles simplify complex playbooks by grouping tasks, variables, files, templates, and handlers 
+into a defined directory structure, that can easily shared and reused across different playbooks
+
+  roles/
+  <role_name>/
+    tasks/
+      main.yml          # Defines the list of tasks for the role
+    handlers/
+      main.yml          # Contains handlers triggered by tasks
+    files/              
+      # Static files to be copied to managed nodes
+    templates/          
+      # Jinja2 templates for dynamic file generation
+    vars/
+      main.yml          # Role-specific variables
+    defaults/
+      main.yml          # Default variables (overridable)
+    meta/
+      main.yml          # Role metadata (dependencies, etc.)
+    tests/
+      test.yml          # Test playbook for the role
+    README.md           # Documentation for the role
+
+
+
+
+
+6))))What are Handlers in Ansible?
+In Ansible, handlers are special tasks that are executed only when they are explicitly "notified" by other tasks. 
+They are primarily used to perform actions that should happen only after a change is made, 
+such as restarting a service after modifying its configuration file.
+
+                - name: Configure Apache
+                  hosts: webservers
+                  tasks:
+                    - name: Install Apache
+                      apt:
+                        name: apache2
+                        state: present
+                
+                    - name: Update Apache configuration
+                      copy:
+                        src: /path/to/httpd.conf
+                        dest: /etc/apache2/httpd.conf
+                      notify: Restart Apache
+                
+                  handlers:
+                    - name: Restart Apache
+                      service:
+                        name: apache2
+                        state: restarted
+
+
+                  
+
+
+
+
+
+
+
+
+
