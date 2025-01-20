@@ -107,6 +107,91 @@ such as restarting a service after modifying its configuration file.
                         state: restarted
 
 
+7)))) Define registers in ansible?
+In Ansible, registers are used to capture and store the result of a task in a variable. 
+These variables can then be used in subsequent tasks, or debugging purposes. 
+Registers are a crucial feature of Ansible that allow dynamic interaction with the environment being automated.
+
+                - name: Check if a file exists
+                  stat:
+                    path: /path/to/file
+                  register: file_status
+                
+                - name: Perform an action if the file exists
+                  debug:
+                    msg: "File exists!"
+                  when: file_status.stat.exists
+
+
+
+
+8)))) explain about setup module?
+
+In Ansible, the setup module is a core module used to gather and retrieve detailed information about the target system. 
+This information, often referred to as facts, includes system properties like IP addresses, operating system details, 
+CPU architecture, memory, disk usage, and much more. 
+These facts are stored as variables and can be used in subsequent tasks within the playbook.
+
+
+
+
+9))))ansible_facts:::  ansible_facts is variable will stores the all the gathered information 
+                        taken by ansible.builtin.setup module from remote server
+
+
+1. System Information
+  Fact Name	                    Description	                            ExampleValues
+  ansible_hostname	            The hostname of the target system.	    webserver1
+  ansible_domain	              Domain name of the target system.	      example.com
+  ansible_fqdn	                Fully qualified domain name.	          webserver1.example.com
+  ansible_machine	              System architecture.	                  x86_64,armv7l
+  ansible_os_family	            Operating system family.	              Debian, RedHat, Windows
+  ansible_distribution	          Name of the operating system.	          Ubuntu, CentOS, Windows
+  ansible_distribution_version	  OS version.	                            22.04, 7, 10
+
+
+
+2. Network Information
+Fact Name	                        Description	                                ExampleValues
+ansible_default_ipv4.address	    Default IPv4 address of the system.	        192.168.1.10
+ansible_default_ipv6.address	    Default IPv6 address of the system.	        fe80::1
+ansible_interfaces	              List of network interfaces.	                [ 'eth0', 'lo', 'wlan0']
+ansible_all_ipv4_addresses	      All IPv4 addresses assigned to the system.	['192.168.1.10', '10.0.0.1']
+ansible_all_ipv6_addresses	      All IPv6 addresses assigned to the system.	['fe80::1', '::1']
+
+
+
+3. Hardware Information
+Fact                                     Name	Description	                      ExampleValues
+ansible_processor	                       List of CPU model(s).	                ['Intel(R) Xeon(R) CPU', ...]
+ansible_processor_count	                 Number of physical processors.	        2
+ansible_processor_cores	                 Number of cores per processor.	        4
+ansible_memtotal_mb	                     Total memory in MB.	                  8192
+ansible_memfree_mb	                     Free memory in MB.	                    4096
+ansible_virtualization_type	             Virtualization technology (if any).	  kvm, docker, none
+ansible_architecture	                  System architecture.	                  x86_64, arm64
+
+
+4. Disk and Filesystem
+Fact Name	              Description	                          ExampleValues
+ansible_mounts	        List of mounted filesystems.	        [{'device': '/dev/sda1', ...}]
+ansible_disk	          Information about disk devices.	      {'sda': {'size_total': ...}}
+ansible_devices	        List of disk devices.	                ['sda', 'sdb']
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
                   
 
 
