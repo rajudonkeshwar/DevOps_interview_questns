@@ -29,6 +29,129 @@ OPTIONS:::
                Ass
 
 
+echo "hello world" | cut -c 1-5
+hello
+
+echo "name,age,city" | cut -f 2 -d ','
+age
+
+
+echo "name,age,city" | cut -d ',' --complement -f 2
+name,city  ( here 2nd field age is excluding )
+
+
+echo "name,age,city" | cut -d ',' -f 1,3 --output-delimiter="|"
+name|city
+
+
+2))))) FIND COMMAND
+The find command in Linux/Unix is a powerful utility used to search for files and directories in a directory hierarchy. 
+It allowing users to locate files 
+based on various criteria like name, type, size, permissions, and modification time.
+
+Examples:
+find /path/to/search -iname "filename.txt"
+
+find /home/user -type d
+
+find /home/user -type d/f -size +100M
+
+find /path/to/search -type d/f -size +100M -mtime -7
+
+find /path/to/search -type d/f -size +100M -mtime -7 -perm 777 -name ".log"
+
+
+
+3)))) SED COMMAND
+The sed command, short for stream editor, is a tool used in Linux/Unix to quickly find and modify text in files or data streams.
+Replace one word with another
+Delete unwanted lines (e.g., remove all empty lines).
+Add or insert text in specific places (e.g., add "Hello" before every line containing "World").
+
+sed 's/cat/dog/g' file.txt
+Replace all occurrences of cat with dog:
+
+sed 's/cat/dog/gi' file.txt
+Replace cat with dog, case-insensitively:
+
+sed '3d' file.txt
+deleting the third line
+
+sed '/error/d' file.txt
+deleting the lines containing word with error
+
+sed '2,5d' file.txt
+deleting the lines from second to fifth
+
+sed -n '/hello/p' file.txt
+Print lines containing hello
+
+sed -n '5p' file.txt
+prints the 5th line
+
+sed '/world/i Hello' file.txt
+Insert Hello before lines containing world
+
+sed '2,4s/foo/bar/' file.txt
+Replace foo with bar between the 2nd and 4th lines:
+
+
+
+4>>>> AWK COMMAND ===>
+The awk command is like a text editor tool for quickly working with text or data in files. 
+It reads text line by line, splits each line into columns (called "fields"),
+
+Print specific columns (like getting names or ages from a table).
+Search for lines that match certain words or patterns.
+Perform calculations, like adding up numbers in a column.
+
+awk '{ print $0 }' file.txt
+prints entire file
+
+awk '{ print $1, $3 }' file.txt
+(Prints the 1st and 3rd fields of each line.)
+
+awk '/error/ { print $0 }' file.txt
+(print lines containing error)
+
+$cat > employee.txt 
+ajay manager account 45000
+sunil clerk account 25000
+
+$ awk '{print}' employee.txt
+ajay manager account 45000
+sunil clerk account 25000
+
+$ awk '/manager/ {print}' employee.txt 
+ajay manager account 45000
+varun manager sales 50000
+
+$ awk '{print $1,$4}' employee.txt 
+ajay 45000
+sunil 25000
+
+$ awk '{print $1,$NF}' employee.txt 
+ajay 45000
+sunil 25000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
