@@ -135,6 +135,35 @@ ajay 45000
 sunil 25000
 
 
+5>>>>  what is linux and how is it different from unix ?
+linux and unix are both strong operating systems,
+Linux is a free open source widely used in personal computers to servers, even smart phones
+It is constantly improved by a large community of developers which means fast updates and bug fixes
+
+UNIX in the other hand proprietary system, mainly used in enterprises like large servers and workstations
+because it is not a open source and you need a license to use it, updates tend to be slower 
+
+
+6>>>> What is linux kernel? why is it important?
+The linux kernel like a brain of the linux o/s, it is the core part that connects your hardware and software
+managing key sources like  a cpu, memory devices, to keep everythig and running smoothly.
+it handles important tasks like handling multiple programs at once, organizing files and storages
+managing network communication, kernel is the medium between hardware and software.
+
+
+7>>> What is a SHELL in linux and how is it different from BASH?
+In linux shell is basically a command-line-interface that lets you interact with o/s,
+It is like a bridge between you and system kernel, it takes commands you typed, interprets them, executes them
+shell gives some features like scripting, command history, which help you automate tasks manage proceses more efficiently.
+
+BASH>> It is one of the most used shell
+
+
+
+
+
+
+
 
 
 
