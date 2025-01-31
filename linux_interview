@@ -161,23 +161,32 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
 
 
 8>>> What are the basic components of a linux OS?
-The linux ha mainly five components
-1. Kernel
-The core of the Linux OS that manages hardware resources (CPU, memory, devices).
-Handles process scheduling, file systems, networking, and inter-process communication.
+      The linux ha mainly five components
+      1. Kernel
+      The core of the Linux OS that manages hardware resources (CPU, memory, devices), software resources.
+      Handles process scheduling, file systems, networking, and inter-process communication.
+      
+      2. System libraries
+      System libraries, also known as shared libraries, are pre-written code that allows 
+      applications to access the Linux operating system's features. 
+      They act as a bridge between the kernel and applications. 
+      
+      3. System Utilities
+      System utilities are programs that help manage and maintain a computer's performance. 
+      They are a type of system software that work with the operating system to optimize a computer's functionalityExamples:
+      Process Management: ps, top, kill
+      File Management: ls, cp, mv, rm, find
+      Network Management: ping, ifconfig, netstat, ssh
+      User Management: passwd, adduser, whoami, groups
 
-9. System libraries
-System libraries, also known as shared libraries, are pre-written code that allows 
-applications to access the Linux operating system's features. 
-They act as a bridge between the kernel and applications. 
+      4.File system
+      A Linux file system is a way to organize and manage files on a Linux operating system. 
+      It defines how data is stored, accessed, and retrieved on a disk.
+      Common file systems: ext4, XFS, Btrfs, ZFS
 
-10. System Utilities
-Essential tools and services that manage the system.
-Examples:
-Process Management: ps, top, kill
-File Management: ls, cp, mv, rm, find
-Network Management: ping, ifconfig, netstat, ssh
-User Management: passwd, adduser, whoami, groups
+
+      5.Bootloader:
+      The bootloader is a program that is responsible for loading the operating system kernel into memory.
 
 
 
