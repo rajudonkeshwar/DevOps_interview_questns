@@ -156,8 +156,28 @@ In linux shell is basically a command-line-interface that lets you interact with
 It is like a bridge between you and system kernel, it takes commands you typed, interprets them, executes them
 shell gives some features like scripting, command history, which help you automate tasks manage proceses more efficiently.
 
-BASH>> It is one of the most used shell
+BASH>> It is one of the most commanly used shell, and comes with better scripting tools, command line editing
+    if you are looking for something  powerfull and user friendly scripting and command line tasks bash is the great choice
 
+
+8>>> What are the basic components of a linux OS?
+The linux ha mainly five components
+1. Kernel
+The core of the Linux OS that manages hardware resources (CPU, memory, devices).
+Handles process scheduling, file systems, networking, and inter-process communication.
+
+9. System libraries
+System libraries, also known as shared libraries, are pre-written code that allows 
+applications to access the Linux operating system's features. 
+They act as a bridge between the kernel and applications. 
+
+10. System Utilities
+Essential tools and services that manage the system.
+Examples:
+Process Management: ps, top, kill
+File Management: ls, cp, mv, rm, find
+Network Management: ping, ifconfig, netstat, ssh
+User Management: passwd, adduser, whoami, groups
 
 
 
