@@ -231,6 +231,8 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       ln <target-file> <hard-link-name>
       ln original.txt hardlink.tx
 
+      Use the ls -li command to verify wheter two files linked or not, the main indication is files Inode number
+
 
       
 
