@@ -244,7 +244,44 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       This command will show the total size of the specified directory and its contents.
       du -sh /path/to/directory
 
-14>>>
+
+14>>> How can you determine which process is using a specific port on a Linux system?
+      The netstat -lntp command is used to list listening TCP ports along with the process (PID) that opened them.
+      
+      netstat -lntp | grep ":80"
+      Finds processes listening on port 80 (e.g., Nginx, Apache).
+      netstat -lntp | grep ":8080"
+      Shows which process is using port 8080, so you can stop or reconfigure it.
+      ss -lntp
+      << Alternativly we can use this command >>
+
+
+
+15>>> What is the purpose of the chmod command, and how do you use it?
+      The chmod command is used to change the file system permissions of files and directories. 
+      Permissions are defined for the owner, group, and others, and they determine the read (r), write (w), and execute (x) access.
+
+      chmod u+rwx,g+rx,o+r file.tx                                        
+      u: User (owner).                           r: Read permission.                         
+      g: Group.                                  w: Write permission.
+      o: Others.                                 x: Execute permission.
+      +: Adds the specified permissions.
+      chmod 755 file.txt
+
+
+16>>> What is an Inode?
+      An inode (Index Node) is a data structure used by Linux and UNIX file systems to store metadata 
+      about a file or directory. Every file and directory in a Linux file system is assigned a unique inode number.
+      Inodes do not store the file name or data; they store only metadata and pointers to the actual data blocks.
+      The inode points to data blocks where the file content is stored.
+
+      You can check the inode number of a file using the ls -i command:
+      ls -i file.txt
+
+      
+
+
+      
 
 
       
