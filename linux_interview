@@ -3,7 +3,6 @@
 cut OPTION... [FILE]...
 
 OPTIONS:::
-
   A>>>>  -b, –bytes=LIST      Selects only the bytes specified in LIST (e.g., -b 1-3,7).
 
   $ cat state.txt
