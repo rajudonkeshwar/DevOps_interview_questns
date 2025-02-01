@@ -278,6 +278,21 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       You can check the inode number of a file using the ls -i command:
       ls -i file.txt
 
+
+17>>> what is file-system in linux?
+      File systems are a crucial part of any operating system, providing a structured way 
+      to store, organize, and manage data on storage devices such as hard drives, SSDs, and USB drives. 
+      Essentially, a file system acts as a bridge between the operating system and the physical storage hardware, 
+      allowing users and applications to create, read, update, and delete files in an organized and efficient manner.
+
+      lsblk--command
+      To check available disk and partitions
+
+      mkfs.ext4 /dev/sdb1
+      Format a partition with a file system:
+
+
+
       
 
 
