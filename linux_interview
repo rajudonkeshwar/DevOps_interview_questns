@@ -189,6 +189,41 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       The bootloader is a program that is responsible for loading the operating system kernel into memory.
 
 
+9>>> What is Init process?
+      The init (short for "initialization") process is the first process that runs when a Linux system boots. 
+      It is responsible for initializing the system, setting up the user environment, and managing system processes.
+      init is started by the kernel once it loads into memory.
+      It runs with Process ID (PID) 1, making it the parent of all other processes.
+      It remains running throughout the system's uptime and is responsible for starting, monitoring, and stopping system processes.
+
+      Its main job is to setup the system and manages everything that runs after booting
+
+
+10>>> what is soft link?
+      A soft link, also known as a symbolic link (symlink), is a special type of file in Linux 
+      that acts as a pointer to another file or directory. 
+      It does not contain the actual data of the target file but instead stores the path to it.
+
+      Key Characteristics of Soft Links
+      ✅ Soft links can point to files or directories.
+      ✅ Can span across different file systems or partitions.
+      ✅ The file size of a soft link is small (only stores the path).
+      ✅ If the original file is deleted, the soft link stops working (broken link).
+
+      ex:: ln -s <target-file> <soft-link-name>
+      l rwx rwx rwx 1 user user 10 Feb 1 10:00 link.txt -> original.txt
+      l at the begining indicates softlink
+      unlink link.txt  =======> removing of softLink
+
+
+11>>> what is hard link (detailed explanation)
+      A hard link is a direct reference to the data blocks of an existing file on disk. 
+      Unlike a soft link (symbolic link), a hard link acts as another name for the same file. 
+      If the original file is deleted, the hard link still retains the data because both share the same inode number.
+      
+
+
+
 
 
 
