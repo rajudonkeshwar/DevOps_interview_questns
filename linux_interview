@@ -223,7 +223,7 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
 
       When you create a hard link, a new directory entry (filename) is created, 
       but it points to the same inode (data location) as the original file.
-      Both the original file and the hard link share the same data.
+      Both the original file du -sh /path/to/directoryand the hard link share the same data.
       Modifying one modifies the other because they point to the same physical storage blocks.
       Deleting one does not delete the other because the inode and data remain intact until all hard links are removed.
 
@@ -232,6 +232,19 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       ln original.txt hardlink.tx
 
       Use the ls -li command to verify wheter two files linked or not, the main indication is files Inode number
+
+
+12>>> How do you check your IP address in Linux?
+      ip a ; ifconfig, hostname -i
+      To check external IP you can use
+      curl -s https://checkip.amazonaws.com
+
+
+13>>> How would you check the disk usage of a specific directory in Linux?
+      This command will show the total size of the specified directory and its contents.
+      du -sh /path/to/directory
+
+14>>>
 
 
       
