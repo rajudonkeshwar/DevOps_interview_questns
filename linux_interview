@@ -220,6 +220,22 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       A hard link is a direct reference to the data blocks of an existing file on disk. 
       Unlike a soft link (symbolic link), a hard link acts as another name for the same file. 
       If the original file is deleted, the hard link still retains the data because both share the same inode number.
+
+      When you create a hard link, a new directory entry (filename) is created, 
+      but it points to the same inode (data location) as the original file.
+      Both the original file and the hard link share the same data.
+      Modifying one modifies the other because they point to the same physical storage blocks.
+      Deleting one does not delete the other because the inode and data remain intact until all hard links are removed.
+
+      example:::
+      ln <target-file> <hard-link-name>
+      ln original.txt hardlink.tx
+
+
+      
+
+
+      
       
 
 
