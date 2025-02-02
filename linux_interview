@@ -305,14 +305,45 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
 
 
 
+19>>> Explanation about du -sh, df -h, and free -h Commands in Linux?
+      du -sh>>>
+      The du (Disk Usage) command estimates the space used by files and directories. The options -sh modify its behavior.
+
+      df -h>>>
+      The df (Disk Filesystem) command shows available and used disk space for mounted filesystems.
+
+      free -h>>>
+      The free command shows system memory usage, including RAM and swap space.
+
+                        Command	Purpose
+      du -sh	    Shows the total disk space used by a specific directory.
+      df -h	      Displays the disk space usage of mounted filesystems.
+      free -h	    Shows memory (RAM and swap) usage.
 
 
 
-      lsblk--command
-      To check available disk and partitions
 
-      mkfs.ext4 /dev/sdb1
-      Format a partition with a file system:
+20>>> Difference between lsblk and df -h command?
+
+      1. df -h (Disk Filesystem Usage)
+        The df (Disk Filesystem) command reports the disk space usage of mounted filesystems. 
+        df -h
+        Shows disk usage of mounted partitions only.
+        Displays filesystem size, used space, available space, and mount points.
+        Does not show unmounted partitions or detailed device hierarchy.
+
+      2. lsblk (List Block Devices)
+        The lsblk command lists all storage devices (block devices) in a tree format, 
+        including unmounted partitions.
+        lsblk
+        Shows all block devices, including unmounted partitions.
+        Displays device names (sda, sdb), partition names (sda1, sda2), sizes, and types.
+        Does not show filesystem usage (used/free space).
+        Shows disk hierarchy (e.g., which partitions belong to which disks).
+
+
+21>>>  
+    
 
 
 
