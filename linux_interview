@@ -283,6 +283,30 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       to store, organize, and manage data on storage devices such as hard drives, SSDs, and USB drives. 
       Essentially, a file system acts as a bridge between the operating system and the physical storage hardware, 
       allowing users and applications to create, read, update, and delete files in an organized and efficient manner.
+      Ex.. NTFS, EXT4, FAT
+
+
+18>>> How can we attach volume to the instance in aws, and what process should we follow after we did it?
+      First take any device such as sdf, sdg, sdh, it may renamed as xvdf, xvdg, xvdh
+      Than attach it to ec2 instance, and check whether it is attached or not using 
+                          *lsblk* or fdisk -l
+      Check if it’s formatted: if the output is data it needs to be formatted( formatting nothing but whether it has file system or not)
+                          sudo file -s /dev/xvdf
+      Format as ext4:
+                          sudo mkfs -t ext4 /dev/xvdf
+      Mounting the Volume
+      Create a mount point:
+                          sudo mkdir /opt/mount_myvolume
+      Mount the disk:
+                          sudo mount /dev/xvdf /opt/mount_myvolume
+      verify:
+                          df -h
+
+
+
+
+
+
 
       lsblk--command
       To check available disk and partitions
