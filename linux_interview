@@ -279,7 +279,7 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
 
 
 17>>> what is file-system in linux?
-      File systems are a crucial part of any operating system, providing a structured way 
+      File systems are a crucial part of any operating system, provides a structured way 
       to store, organize, and manage data on storage devices such as hard drives, SSDs, and USB drives. 
       Essentially, a file system acts as a bridge between the operating system and the physical storage hardware, 
       allowing users and applications to create, read, update, and delete files in an organized and efficient manner.
@@ -342,7 +342,20 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
         Shows disk hierarchy (e.g., which partitions belong to which disks).
 
 
-21>>>  
+
+21>>>  Explain about nslookup command?
+
+        It is a command line used to query DNS servers, for domain name and ip-address mapping
+        whether domain name is mapped properly or not.
+
+
+
+22>>> Define DNS records?
+
+        Theses are the entries in the dns database that maps domain names to specific resources
+            A        ====== maps domain, sub domain to ipv4 address
+            AAAA     ====== maps domain(sub domain) to ipv6 address
+            CNAME    ====== points domain or subdomain to another domain name
     
 
 
