@@ -180,6 +180,50 @@ These facts are stored as variables and can be used in subsequent tasks within t
 
 
 
+12)))) Difference Between command and shell Modules in Ansible
+
+      Ansible provides two similar modules for running commands on remote machines:
+      command module
+      shell module
+      Both modules are used to execute system commands, but they have important differences 
+      in how they handle commands, especially regarding shell features like pipes (|), 
+      redirections (>, <), and variables ($HOME, $(command), &&, ||).
+
+      =====command Module========
+      The command module is safer because it executes commands directly without invoking a shell (/bin/sh or /bin/bash).
+      ✅ Key Features of command Module
+      ✔️ More secure – does not allow shell operators (like |, &&, ;)
+      ✔️ Faster – since it avoids loading a full shell environment
+      ✔️ Works well for running simple system commands
+      example:
+          - name: List files in /tmp directory
+            ansible.builtin.command: ls /tmp
+
+
+      =======shell Module========
+      The shell module executes commands through a shell (/bin/sh or /bin/bash), 
+      allowing shell features like pipes, redirections, and variables.
+      ✅ Key Features of shell Module
+      ✔️ Supports pipes (|), redirections (>, <), and command chaining (&&, ||)
+      ✔️ Supports environment variable expansion ($HOME, $(command))
+      ✔️ Can execute scripts or inline shell commands
+      examples:
+          - name: Count files in /tmp using shell
+            ansible.builtin.shell: ls /tmp | wc -l
+
+      Key Takeaway
+      Use command whenever possible for better security and performance.
+      Use shell only if you need shell features like pipes, redirection, or variable expansion.
+
+
+
+
+
+
+      
+
+
+
 
 
 
