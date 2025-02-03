@@ -1,5 +1,6 @@
 1))))   Let’s begin with the basics. What is Ansible?
-Ansible is an open-source platform that facilitates configuration management, task automation, or application deployment. 
+Ansible is an open-source platform that facilitates configuration management, 
+task automation, or application deployment. 
 It is a valuable DevOps tool. It was written in Python and powered by Red Hat
 
 
