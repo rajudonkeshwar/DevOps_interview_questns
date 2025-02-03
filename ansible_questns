@@ -15,7 +15,7 @@ Since Ansible is agentless, there’s no need for a third-party tool to connect 
 
 
 3))))  Explain what a “playbook” is?
-A playbook is a YAML-based file that sends commands to remote computers for confiduration via scripts.
+A playbook is a YAML-based file that sends commands to remote computers for configuration via scripts.
 Devops engineers can configure entire environments by passing a script to the required systems rather
 than using individual commands to configure computers from the command line remotely.
 
@@ -108,7 +108,7 @@ such as restarting a service after modifying its configuration file.
 
 7)))) Define registers in ansible?
 In Ansible, registers are used to capture and store the result of a task in a variable. 
-These variables can then be used in subsequent tasks, or debugging purposes. 
+These variables can be used in subsequent tasks, or debugging purposes. 
 Registers are a crucial feature of Ansible that allow dynamic interaction with the environment being automated.
 
                 - name: Check if a file exists
