@@ -216,8 +216,16 @@ These facts are stored as variables and can be used in subsequent tasks within t
       Use shell only if you need shell features like pipes, redirection, or variable expansion.
 
 
-13)))
-
+13)))  How do you use loops in Ansible?
+       Loops allow you to run a task multiple times for different input
+       - name: Install multiple packages
+         apt:
+            name: "{{ item }}"
+            state: present
+         loop:
+            - nginx
+            - git
+            - curl
 
 
 
