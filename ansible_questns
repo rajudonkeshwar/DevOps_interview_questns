@@ -6,10 +6,8 @@ It is a valuable DevOps tool. It was written in Python and powered by Red Hat
 
 
 2))))   Describe how Ansible works?
-This is one of the most frequently asked ansible interview questions where the interviewer wants to know 
-whether you actually know the tool in and out or not.
 You can start this way - ansible is broken down into two types of servers: controlling machines and nodes. 
-Ansible is installed on the controlling computer, and the controlling machines manage the nodes via SSH. 
+Ansible is installed on the controlling machines, and the controlling machines manage the nodes via SSH. 
 The controlling machine contains an inventory file that holds the node system’s location. 
 Ansible runs the playbook on the controlling machine to deploy the modules and the packages on the node systems. 
 Since Ansible is agentless, there’s no need for a third-party tool to connect the nodes.
