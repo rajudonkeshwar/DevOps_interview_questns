@@ -138,44 +138,48 @@ These facts are stored as variables and can be used in subsequent tasks within t
                         taken by ansible.builtin.setup module from remote server
 
 
-1. System Information
-  Fact Name	                    Description	                            ExampleValues
-  ansible_hostname	            The hostname of the target system.	    webserver1
-  ansible_domain	              Domain name of the target system.	      example.com
-  ansible_fqdn	                Fully qualified domain name.	          webserver1.example.com
-  ansible_machine	              System architecture.	                  x86_64,armv7l
-  ansible_os_family	            Operating system family.	              Debian, RedHat, Windows
-  ansible_distribution	          Name of the operating system.	          Ubuntu, CentOS, Windows
-  ansible_distribution_version	  OS version.	                            22.04, 7, 10
+10))) What are the components of Ansible?
+      Answer:
+      Inventory – Defines hosts and groups of servers.
+      Modules – Predefined scripts for performing tasks (e.g., yum, apt, copy).
+      Playbooks – YAML files defining automation workflows.
+      Roles – Reusable playbooks with tasks, handlers, and templates.
+      Facts – System information collected from managed nodes.
+      Handlers – Special tasks triggered by changes.
+
+
+11))) What is Ansible Vault?
+  Ansible Vault is a security feature in Ansible that allows you to encript and protect sensitive information 
+  like passwords, API keys, SSH keys, and confidential configuration files. 
+  This ensures that secret data is not exposed in playbooks, Git repositories, or while sharing files with a team.
+  
+  1. Creating a New Encrypted File
+         **ansible-vault encrypt secrets.yml**
+     You’ll be asked to enter a password.
+     The file will open in an editor (e.g., Vim or Nano).
+     Add sensitive data inside and save it.
+     The file is now encrypted and can only be accessed with the correct password.
+  
+  2. Decrypting a File
+  If you need to convert an encrypted file back to plaintext:
+          **ansible-vault decrypt secret.yml**
+  
+  3. Edit an encrypted file:
+          **ansible-vault edit secrets.yml**
+
+  4. use vault file in a playbook
+              vars_files:
+              - secrets.yml
+
+  5. If a playbook references an encrypted file, Ansible will ask 
+     for the vault password when running:
+          **ansible-playbook playbook.yml --ask-vault-pass**
+
+    You can do configuration in configuration file by addind as **ask_vault_pass = True**
+        so that it will ask for password when you are entering the command
 
 
 
-2. Network Information
-Fact Name	                        Description	                                ExampleValues
-ansible_default_ipv4.address	    Default IPv4 address of the system.	        192.168.1.10
-ansible_default_ipv6.address	    Default IPv6 address of the system.	        fe80::1
-ansible_interfaces	              List of network interfaces.	                [ 'eth0', 'lo', 'wlan0']
-ansible_all_ipv4_addresses	      All IPv4 addresses assigned to the system.	['192.168.1.10', '10.0.0.1']
-ansible_all_ipv6_addresses	      All IPv6 addresses assigned to the system.	['fe80::1', '::1']
-
-
-
-3. Hardware Information
-Fact                                     Name	Description	                      ExampleValues
-ansible_processor	                       List of CPU model(s).	                ['Intel(R) Xeon(R) CPU', ...]
-ansible_processor_count	                 Number of physical processors.	        2
-ansible_processor_cores	                 Number of cores per processor.	        4
-ansible_memtotal_mb	                     Total memory in MB.	                  8192
-ansible_memfree_mb	                     Free memory in MB.	                    4096
-ansible_virtualization_type	             Virtualization technology (if any).	  kvm, docker, none
-ansible_architecture	                  System architecture.	                  x86_64, arm64
-
-
-4. Disk and Filesystem
-Fact Name	              Description	                          ExampleValues
-ansible_mounts	        List of mounted filesystems.	        [{'device': '/dev/sda1', ...}]
-ansible_disk	          Information about disk devices.	      {'sda': {'size_total': ...}}
-ansible_devices	        List of disk devices.	                ['sda', 'sdb']
 
 
 
