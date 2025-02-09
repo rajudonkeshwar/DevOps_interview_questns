@@ -1,0 +1,31 @@
+1. What is Terraform, and why do DevOps engineers use it?
+      ans>>>>> Imagine you're managing a huge cloud infrastructure manually—launching instances, setting up networking, 
+      and configuring security groups. That would be a nightmare, right? Terraform solves this by using Infrastructure as Code (IaC),
+      where you define your infrastructure in configuration files and let Terraform manage it for you.
+      
+      Why is Terraform awesome?
+      ✅ Consistency: Your infrastructure is always created in the same way.
+          Describes the desired state of infrastructure.
+      ✅ Automation: No more clicking around in the AWS console!
+      ✅ Multi-cloud: Works with AWS, Azure, GCP, and even on-prem.
+      ✅ State Management: Keeps track of what’s deployed, at any time
+
+
+2. What is the Terraform state file, and why is it important?
+       Answer:The Terraform state file (terraform.tfstate) is Terraform’s way of remembering what it has deployed. 
+        Think of it like a map of your infrastructure.
+        
+        When you run terraform apply, Terraform:
+        
+        Reads the state file to see what already exists.
+        Compares it with your current configuration.
+        Creates, updates, or deletes resources to match your configuration.
+        Why is the state file important?
+        ✅ Helps Terraform track resources it created.
+        ✅ Enables incremental changes instead of recreating everything.
+        ✅ Prevents drift (unexpected changes in infrastructure).
+        
+        ⚠️ Important:
+        
+        Never manually edit terraform.tfstate.
+        Store it in a remote backend (like S3 + DynamoDB) for team collaboration
