@@ -29,3 +29,56 @@
         
         Never manually edit terraform.tfstate.
         Store it in a remote backend (like S3 + DynamoDB) for team collaboration
+
+
+
+3.. The explanation of load balancer and target group working?
+
+    ans:
+      A Load Balancer distributes incoming traffic across multiple targets (such as EC2 instances, containers, or IP addresses) to ensure high availability and reliability of applications. It works in conjunction with Target Groups and Auto Scaling Groups in the following way:
+
+1. Load Balancer (LB)
+Acts as an entry point for traffic.
+Distributes traffic across multiple backend servers.
+Improves fault tolerance and performance.
+🔹 Types of Load Balancers in AWS:
+
+Application Load Balancer (ALB): Works at Layer 7 (HTTP/HTTPS)
+Network Load Balancer (NLB): Works at Layer 4 (TCP/UDP)
+Classic Load Balancer (CLB): Older version with Layer 4 and 7 support
+2. Target Groups
+A Target Group is a set of resources (EC2 instances, IP addresses, Lambda functions) that receive traffic from the Load Balancer.
+
+🔹 Key Features:
+
+Defines health check settings for registered targets.
+Supports multiple protocols (HTTP, HTTPS, TCP).
+Can route requests to different applications using host-based or path-based routing.
+🔹 Connection with Load Balancer:
+
+The Load Balancer forwards incoming requests to the Target Group.
+The Target Group checks the health of its registered targets.
+If a target is unhealthy, the Load Balancer stops sending traffic to it.
+3. Auto Scaling Group (ASG)
+An Auto Scaling Group (ASG) is responsible for dynamically scaling the number of instances based on demand.
+
+🔹 How It Works:
+
+ASG launches or terminates instances based on scaling policies (CPU usage, request rate, etc.).
+ASG registers new instances with the Target Group.
+The Target Group ensures that the new instances receive traffic from the Load Balancer.
+🔹 Connection with Load Balancer and Target Group:
+
+ASG launches instances and automatically registers them to the Target Group.
+The Target Group ensures that the Load Balancer forwards traffic only to healthy instances.
+Flow of Traffic:
+User Requests → Load Balancer receives traffic.
+Load Balancer Routes → Forwards the request to the appropriate Target Group.
+Target Group Selects → Sends traffic to a healthy instance.
+Auto Scaling Group Monitors → Adjusts the number of instances based on demand.
+📌 Example Use Case:
+
+A website experiences high traffic → ASG scales up instances.
+Some instances fail health checks → Load Balancer routes traffic away from them.
+Traffic decreases → ASG scales down to optimize costs.
+Would you like a Terraform example to implement this setup? 🚀
