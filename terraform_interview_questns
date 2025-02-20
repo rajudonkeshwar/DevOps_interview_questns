@@ -82,3 +82,41 @@ A website experiences high traffic → ASG scales up instances.
 Some instances fail health checks → Load Balancer routes traffic away from them.
 Traffic decreases → ASG scales down to optimize costs.
 Would you like a Terraform example to implement this setup? 🚀
+
+
+
+4)))  Definition of Listener and Route in Load Balancer?
+
+      1. Listener
+      A Listener is a process that checks for incoming client requests on a specific port and protocol. It determines how the Load Balancer should handle the traffic by forwarding it to the appropriate target group.
+      
+      🔹 Key Features:
+      
+      Listens on a specified port (e.g., 80 for HTTP, 443 for HTTPS).
+      Supports different protocols (HTTP, HTTPS, TCP, TLS, UDP).
+      Evaluates listener rules to determine how to route traffic.
+      🔹 Example:
+      
+      A listener on port 443 (HTTPS) receives all incoming HTTPS requests and decides where to send them.
+
+
+
+      2. Route (Listener Rule)
+      A Route (Listener Rule) defines the logic for forwarding traffic to different target groups based on conditions such as URL path, hostname, or HTTP headers.
+      
+      🔹 Key Features:
+      
+      Uses conditions like host-based routing (api.example.com → API servers) or path-based routing (example.com/login → Login servers).
+      Determines which target group should receive the request.
+      Can perform redirects or fixed responses if needed.
+      🔹 Example:
+      
+      If a request is for example.com/images, the rule forwards it to an Image Server Target Group.
+      If a request is for example.com/api, the rule forwards it to an API Server Target Group.
+
+
+      How They Work Together
+      Listener → Listens for incoming traffic on a specific port (e.g., port 443).
+      Route (Listener Rule) → Decides where to send the request based on conditions.
+      Target Group → Receives and processes the request using backend servers.
+
