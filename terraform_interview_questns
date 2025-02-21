@@ -120,3 +120,28 @@ Would you like a Terraform example to implement this setup? 🚀
       Route (Listener Rule) → Decides where to send the request based on conditions.
       Target Group → Receives and processes the request using backend servers.
 
+
+5))   Error: Error locking state: Error acquiring the state lock: ConditionalCheckFailedException: The conditional request failed
+      Lock Info:
+      ID:        9db590f1-b6fe-c5f2-2678-8804f089deba
+      Path:      ...
+      Operation: OperationTypePlan
+      Who:       ...
+      Version:   0.12.25
+      Created:   2020-05-29 12:52:25.690864752 +0000 UTC
+      Info:      
+      Terraform acquires a state lock to protect the state from being written
+      by multiple users at the same time. Please resolve the issue above and try
+      again. For most commands, you can disable locking with the "-lock=false"
+      flag, but this is not recommended.
+
+
+      ANS....  Cause of Error
+            This error usually appears when one process fails running terraform plan or terraform apply. 
+            For example if your network connection interrupts or the process is terminated before finishing. 
+            Then Terraform "thinks" that this process is still working on the infrastructure and blocks other processes 
+            from working with the same infrastructure and state at the same time in order to avoid conflicts.
+            As stated in the error message, you should make sure that there is really 
+            no other process still running (e.g. from another developer or from some build-automation). 
+            If you force-unlock in such a situation you might screw up your terraform state, making it hard to recover.
+
