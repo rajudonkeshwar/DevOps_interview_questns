@@ -173,7 +173,8 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       
       3. System Utilities
       System utilities are programs that help manage and maintain a computer's performance. 
-      They are a type of system software that work with the operating system to optimize a computer's functionalityExamples:
+      They are a type of system software that work with the operating system to optimize 
+      a computer's functionalityExamples:
       Process Management: ps, top, kill
       File Management: ls, cp, mv, rm, find
       Network Management: ping, ifconfig, netstat, ssh
