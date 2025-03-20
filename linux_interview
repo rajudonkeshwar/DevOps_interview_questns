@@ -169,6 +169,7 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       System libraries, also known as shared libraries, are pre-written code that allows 
       applications to access the Linux operating system's features. 
       They act as a bridge between the kernel and applications. 
+        examples:  libc, libm, libthread
       
       3. System Utilities
       System utilities are programs that help manage and maintain a computer's performance. 
