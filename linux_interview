@@ -51,7 +51,7 @@ based on various criteria like name, type, size, permissions, and modification t
 Examples:
 find /path/to/search -iname "filename.txt"
 
-find /home/user -type d
+find /home/user -type d -name ""
 
 find /home/user -type d/f -size +100M
 
@@ -145,7 +145,7 @@ because it is not a open source and you need a license to use it, updates tend t
 
 6>>>> What is linux kernel? why is it important?
 The linux kernel like a brain of the linux o/s, it is the core part that connects your hardware and software
-managing key sources like  a cpu, memory devices, to keep everythig and running smoothly.
+managing key sources like  a cpu, memory devices, to keep everythig running smoothly.
 it handles important tasks like handling multiple programs at once, organizing files and storages
 managing network communication, kernel is the medium between hardware and software.
 
@@ -345,10 +345,14 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
 
 
 
-21>>>  Explain about nslookup command?
+21>>>  Explain about nslookup command?1
 
         It is a command line used to query DNS servers, for domain name and ip-address mapping
         whether domain name is mapped properly or not.
+
+        Nslookup (stands for “Name Server Lookup”) is a useful command for getting information from the DNS server. 
+        It is a network administration tool for querying the Domain Name System (DNS) to obtain domain name or IP address mapping or any other specific DNS record. 
+        It is also used to troubleshoot DNS-related problems.
 
 
 
