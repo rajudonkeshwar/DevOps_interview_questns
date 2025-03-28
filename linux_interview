@@ -263,9 +263,9 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       Permissions are defined for the owner, group, and others, and they determine the read (r), write (w), and execute (x) access.
 
       chmod u+rwx,g+rx,o+r file.tx                                        
-      u: User (owner).                           r: Read permission.                         
-      g: Group.                                  w: Write permission.
-      o: Others.                                 x: Execute permission.
+      u: User (owner).                           r: Read permission.(4)                     
+      g: Group.                                  w: Write permission.(2)
+      o: Others.                                 x: Execute permission.(1)
       +: Adds the specified permissions.
       chmod 755 file.txt
 
