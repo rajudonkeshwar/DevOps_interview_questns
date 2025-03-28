@@ -31,7 +31,7 @@ OPTIONS:::
 echo "hello world" | cut -c 1-5
 hello
 
-echo "name,age,city" | cut -f 2 -d ','
+echo "name,age,city" | cut -d ',' -2f
 age
 
 
