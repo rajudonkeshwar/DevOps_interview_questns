@@ -1,0 +1,34 @@
+1. What scripting languages are you familiar with?
+2. What are artifacts in GitLab CI?
+3. What is a private module registry in Terraform?
+4. If you delete the local Terraform state file and it's not stored in S3 or DynamoDB, how can you recover it?
+5. How do you import resources into Terraform?
+6. What is a dynamic block in Terraform?
+7. How can you create EC2 instances in two different AWS accounts simultaneously using Terraform?
+8. How do you handle an error stating that the resource already exists when creating resources with Terraform?
+9. How does Terraform refresh work?
+10. How would you upgrade Terraform plugins?
+11. What are the different types of Kubernetes volumes?
+12. If a pod is in a crash loop, what might be the reasons, and how can you recover it?
+13. What is the difference between StatefulSet and DaemonSet?
+14. What is a sidecar container in Kubernetes, and what are its use cases?
+15. If pods fail to start during a rolling update, what strategy would you use to identify the issue and rollback?
+16. How can we enable communication between 500 AWS accounts internally?
+17. How to configure a solution where a Lambda function triggers on an S3 upload and updates DynamoDB?
+18. What is the standard port for RDP?
+19. How do you configure a Windows EC2 instance to join an Active Directory domain?
+20. How can you copy files from a Linux server to an S3 bucket?
+21. What permissions do you need to grant for that S3 bucket?
+22. What are the different types of VPC endpoints and when do you use them?
+23. How to resolve an image pullback error when using an Alpine image pushed to ECR in a pipeline?
+24. What is the maximum size of an S3 object?
+25. What encryption options do we have in S3?
+26. Can you explain IAM user, IAM role, and IAM group in AWS?
+27. What is the difference between an IAM role and an IAM policy document?
+28. What are inline policies and managed policies?
+29. How can we add a load balancer to Route 53?
+30. What are A records and CNAME records?
+31. What is the use of a target group in a load balancer?
+32. If a target group is unhealthy, what might be the reasons?
+33. Can you share your screen and write a Jenkins pipeline?
+34. How do you write parallel jobs in a Jenkins pipeline?
