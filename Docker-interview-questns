@@ -1,1 +1,4 @@
+1) What is Docker File?
+  Docker file is a file it has docker instructions to create our own images, this file declarative in nature means what we writes we will get it
+
 
