@@ -1,1 +1,4 @@
-
+1) Why do we need kubernetes when you have docker already?
+    Horizontal scaling: Scale your application up and down with a simple command, with a UI, or automatically based on CPU usage.
+    Self-healing: Kubernetes restarts containers that fail, replaces containers, kills containers that don't respond to your user-defined health check.
+    
