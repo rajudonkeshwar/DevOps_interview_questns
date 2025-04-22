@@ -1,4 +1,154 @@
 1) Why do we need kubernetes when you have docker already?
     Horizontal scaling: Scale your application up and down with a simple command, with a UI, or automatically based on CPU usage.
-    Self-healing: Kubernetes restarts containers that fail, replaces containers, kills containers that don't respond to your user-defined health check.
+    Self-healing: Kubernetes restarts containers that fail, replaces containers, kills containers that don't respond to 
+    your user-defined health check.
+
+
+
+2) Can you give me an explanation about pv and pvs and sorcue code?
+
+    PV: PV is the wrapper object in kubernetes, to reprsent the physical volume, A PV is the actual storage 
+        — like a hard drive in the cloud. It could be an EBS volume (good for one app at a time) or EFS 
+        (good for sharing files between many apps), it exists in the cluster independently of Pods.
+
+    PVC: A PVC is a user request for storage — like saying “I need 5Gi of storage, with ReadWriteOnce access.”
+        Kubernetes will match the PVC to a suitable PV.
+        If dynamic provisioning is set up (via StorageClass), a new PV will be created automatically.
+
+    STORAGECLASS: When you want to create ebs, efs dynamically then you can go for SC, here it can creat pv and physical volume
+        in the cloud automatically, whether it is for ebs or efs, same functionality is there
+
+    SC for EBS
+
+            apiVersion: storage.k8s.io/v1
+            kind: StorageClass
+            metadata:
+              name: ebs-sc
+            provisioner: ebs.csi.aws.com
+            parameters:
+              type: gp3
+              fsType: ext4
+            reclaimPolicy: Delete
+            volumeBindingMode: WaitForFirstConsumer
+
+    SC for EFS
+
+            apiVersion: storage.k8s.io/v1
+            kind: StorageClass
+            metadata:
+              name: efs-sc
+            provisioner: efs.csi.aws.com
+            parameters:
+              provisioningMode: efs-ap
+              fileSystemId: fs-12345678  # <-- Replace with your actual EFS File System ID
+              directoryPerms: "700"
+              gidRangeStart: "1000"
+              gidRangeEnd: "2000"
+              basePath: "/dynamic_provisioning"
+
+
+    PVC
+            apiVersion: v1
+            kind: PersistentVolumeClaim
+            metadata:
+              name: efs-pvc
+            spec:
+              accessModes:
+                - ReadWriteMany
+              resources:
+                requests:
+                  storage: 5Gi
+              storageClassName: efs-sc
+
+    PV
+
+            apiVersion: v1
+            kind: PersistentVolume
+            metadata:
+              name: my-pv
+            spec:
+              capacity:
+                storage: 5Gi
+              accessModes:
+                - ReadWriteOnce
+              persistentVolumeReclaimPolicy: Retain
+              storageClassName: manual
+              hostPath:
+                path: /mnt/data
+
+
+3) Can you tell me when should we use EBS, when should we use EFS, tell me the differences?
+        1. EBS should be in same AZ as in EC2, EFS can be anywhere in n/w
+        2. EBS is speed compare to EFS
+        3. EBS is used OS disk and databases, EFS can be used for file storages
+        4. EBS size is fixed. EFS will be scaled automatically
+        5. EFS is based on NFS protocol. 2049 port
+        6. EBS and EFS should be mounted to any instance.
+        7. You can have any filesystem attached to EBS, but EFS use NFS, we can't change.
+
+
+4) Tell me the steps to create EBS, EFS
+
+    EBS:
+        1. install drivers
+        2. give permissions to worker nodes
+        3. create volume
+        4. create PV, PVC and cliam through pod
+        5. EC2 and EBS should be in same az incase of EBS provisioning
+
+    EFS:
+
+        1. install drivers
+        kubectl apply -k \
+        "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-2.1"
+        2. give permissions
+        3. create EFS
+        4. open port no 2049 on EFS to allow traffic from EC2 worker nodes
+        5. create PV, PVC and POD
+
+
+5) Can you tell me the difeerences between statefullset and deployment?
+
+    Deployment vs Statefulset
+    ============================
+    1. Deployment is for stateless applications like frontend, backend, etc. Statefulset is for DB related applications like MySQL, ELK, Prometheus, Queue apps, etc.
+    2. Statefulset requires headless service and normal service to be attached. Deployment will not have stateless service
+    3. PV and PVC are mandatory to statefulset, they create individual storages for each pod. PV and PVC for deployment creates single storage
+    4. Statefulset pods will be created in orderly manner. Deployment pods will be created parellely
+    5. Deployment pods names are choosen random. Statefulset pods keep the same identity. like statefulset-name-0, -1, etc.
+
+
+
+6) What is headless service?
+
+    Headless service have no cluster IP, It will be attached to statefulset, we use headless service in statefullset, because
+    basically each and every node in statefull applications should be synchronized, so that if some changes happen in one node
+    automatically reflects to other node, to attain this one node has to connect to other node by using IP addresses, these IP
+    addresses will known to the node by using this headless service only.
+
+
+
+7) Define me horizental and vertical autoscaling in kubernetes?    
     
+    "Yeah, so in Kubernetes, autoscaling helps your app handle more traffic automatically 
+     by adding more resources when needed. There are two main types: horizontal and vertical autoscaling.
+
+    🔄 Horizontal Pod Autoscaler (HPA) is the most common. It works by adding or removing Pods 
+    based on CPU, memory, or custom metrics. So if traffic increases, 
+    Kubernetes will spin up more Pods to handle the load. And if traffic goes down, it scales back down.
+    
+    For example, if your web app gets a traffic spike, HPA can scale from 2 Pods to 6 Pods 
+    without you doing anything manually.
+    
+    📏 Vertical Pod Autoscaler (VPA) works differently. Instead of adding more Pods, 
+    it adjusts the CPU and memory requests/limits of existing Pods. So it gives a Pod more power if it needs it.
+            
+
+        
+
+
+            
+
+
+
+
