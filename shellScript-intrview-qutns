@@ -18,13 +18,32 @@ ans:  $1, $2, $3 ( these are used as aruguments for functions, when you send dat
       number of variables: $#
       script name: $0
       present working directory: $PWD
-      home directory of current user: $HOME222222222222222222222222222222222222222222222222222222222222
+      home directory of current user: $HOME
       which user is running this script: $USER
       process id of current script: $$
       process id of last command in background: $!
 
+
 How can you check previous command is success or not in shell script?
-ans: by checking the exit status, if exit status is 0 it is success, otherwise it is failure
+ans: By checking the exit status, if exit status is 0 it is success, otherwise it is failure
       to check exit status we should use "$?"
+
+
+How do we check in shellScript that whether are we running in sudo access or not?
+ans: When $(id -u) returns zero then we are running with sudo access, we can able to install commands
+      if it returns 1 we are not running it with sudo access, make sure that we are running with sudo access, then run commands
+      check if the user running the script is root user or not
+      if root user
+      	allow him
+      else
+      	show the error properly and exit the script
+      run install command
+      check installation is success
+      if success, our task is done
+      if not success, throw the error message
+
+
+
+
 
 
