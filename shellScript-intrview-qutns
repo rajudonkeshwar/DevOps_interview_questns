@@ -1,1 +1,3 @@
-
+#!/bin/bash explain about it in huma understandable format?
+ans:  Shebang --> It should be the first line of shell script. 
+      It is the interpreter to execute the commands  and syntax inside shell script
