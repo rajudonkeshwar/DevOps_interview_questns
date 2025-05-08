@@ -1,1 +1,22 @@
+1) How do we expalin about our DevOps project in interview?
+Ans: I am working in amazon where i support multiple development teams some of them are payments, transcactions,
+     their applications have written in java so i support them as a devops engineer helping them in creating the cicd
+     pipelines, deploying their application on to the eks cluster through CICD pipeline, creating resources for them in aws using terraform
+     managing the configurations of their virtual machines usig ansible.
 
+2) Tell me day to day activities of you as a devops engineer?
+Ans:   Lets say there is a amazon called organization, with in the organization usually there will be multiple projects
+    like payment, transcactions, xyz.., and for each this there will be a dedicated development team, they will manage
+    their assigned project, but when you comes to devops teams, devops team are usually centralized, that means one or 
+    couple of devops teams who can manage multiple projects, that is the reason why devops teams receving a lot of requests
+    on daily bases, beacuse you are not working for a single project, you are working for a multiple projects
+    How does multiple projects create requets to the devops team this is might our question
+      The real answer is starts from here
+
+    lets say there is payment project payment development team needs a kubernetes cluster, so what do they do is, they will approach
+    the devops team they will asks the devops team that can you create a kubernetes cluster, transcaction team might need help of you
+    for creating some infrastructure on aws using terraform, other team create request for you create github, webhook, so these are some
+    examples, but how do they create requestso what happens is in organization usually there will be some project management tools such
+    as zera, or serrviceNow, these development teams goes to the zera dash board, they will naviagte to the project zera of devops team
+    and they will create a request for kubernetes cluster or creating some resources using terraform, once the devops engineer logs to the
+    zera dash board he will see the list of zera tickets, that they have to work on 
