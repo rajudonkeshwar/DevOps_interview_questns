@@ -19,4 +19,4 @@ Ans:   Lets say there is a amazon called organization, with in the organization 
     examples, but how do they create requestso what happens is in organization usually there will be some project management tools such
     as zera, or serrviceNow, these development teams goes to the zera dash board, they will naviagte to the project zera of devops team
     and they will create a request for kubernetes cluster or creating some resources using terraform, once the devops engineer logs to the
-    zera dash board he will see the list of zera tickets, that they have to work on 
+    zera dash board they will see the list of zera tickets, that they have to work on 
