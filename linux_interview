@@ -271,6 +271,10 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
 
 
 16>>> What is an Inode?
+
+      inode stores the file type(file or folder), permissions, ownership, file size, timestamp, 
+      disk location(memory location)
+
       An inode (Index Node) is a data structure used by Linux and UNIX file systems to store metadata 
       about a file or directory. Every file and directory in a Linux file system is assigned a unique inode number.
       Inodes do not store the file name or data; they store only metadata and pointers to the actual data blocks.
