@@ -43,6 +43,29 @@ ans: When $(id -u) returns zero then we are running with sudo access, we can abl
       if not success, throw the error message
 
 
+What is the difference Psudo and root?
+ans: 1. What is root?
+      Root is the superuser account in Unix/Linux systems.
+      It has unrestricted access to all files, commands, and system configurations.
+      The username is literally root, and its User ID (UID) is always 0.
+      It can delete critical files, install software, change permissions, manage users, and more — essentially do anything.
+      ⚠️ Risks of Using Root:
+      Logging in directly as root is dangerous because a single mistake (like deleting /) can break the whole system.
+      That's why many modern systems discourage or disable direct root login.
+
+
+      2. What is sudo?
+      sudo stands for "superuser do".
+      It allows authorized users (non-root users) to execute commands as the root user (or another user), temporarily.
+      It's a safer way to perform administrative tasks without logging in as root.
+      🔧 How it works:
+      Users need to be listed in the /etc/sudoers file (or in a group like sudo or wheel).
+      <user-name>  ALL=(ALL:ALL) ALL
+
+
+      
+
+
 
 
 
