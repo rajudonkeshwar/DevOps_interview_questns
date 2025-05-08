@@ -63,6 +63,19 @@ ans: 1. What is root?
       <user-name>  ALL=(ALL:ALL) ALL
 
 
+What are the redirectors in shell scripting?
+ans: Basically redirectors are used stores output of the commands called it as standrd output(stdout) to the files,
+     or read the data from the files
+
+      suppose you have created file1 and file2, you did ls -l command to list these files right,
+      if you want to store the output of the command you follows below
+      1) ls -l >> logFile.log (it stores the output)
+      2) ls -l 1>> logFile.log (It will stores success output only)
+      3) ls -l 2>> logFile.log ( It will stores failure output only)
+      4) ls -l &>> logFiles.log (It will stores both success ouput and failure output)
+      5) Takes stdin from a file instead of user input: sort < data.txt
+
+
       
 
 
