@@ -367,6 +367,28 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
             A        ====== maps domain, sub domain to ipv4 address
             AAAA     ====== maps domain(sub domain) to ipv6 address
             CNAME    ====== points domain or subdomain to another domain name
+
+
+23>>> please explain errors in web?
+
+      100 == 1XX == Informational codes
+      200 == 2XX == Success status codes
+      300 == 3XX == Redirectional
+      400 == 4XX == Client side error
+      500 == 5XX == Server side error
+
+
+      backend.daws82s.onine --> 404 --> NOTFOUND --> Client side error
+
+      403 --> Forbidden --> You dont have access to that
+      401 --> Unauthorized --> you should login
+      405 --> HTTP POST, If you use GET --> Method not allowed
+      400 --> bad request --> check the payload data once again
+      
+      500 --> Internal Server Error --> Server side error
+      502 --> Bad Gateway --> Frontend not able to connect backend
+      503 --> Service temporarily unavailable
+            
     
 
 
