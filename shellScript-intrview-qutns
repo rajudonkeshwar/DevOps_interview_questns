@@ -1,3 +1,26 @@
 #!/bin/bash explain about it in huma understandable format?
 ans:  Shebang --> It should be the first line of shell script. 
       It is the interpreter to execute the commands  and syntax inside shell script
+
+ What is Bash?
+ans: It's a command-line interpreter (shell) used in Linux and macOS systems to:
+     Run commands
+     Automate tasks using scripts
+     Interact with the operating system.
+            Bash is a program that lets you talk to your computer by typing text commands instead of clicking things.
+     Think of Bash as the "translator" between you and the computer's operating system.
+
+
+Can you tell me about special variables in shell scripting?
+ans:  $1, $2, $3 ( these are used as aruguments for functions, when you send data to the function it will strore those like first value in $1,
+      second value in $2)
+      All variables passed: $@
+      number of variables: $#
+      script name: $0
+      present working directory: $PWD
+      home directory of current user: $HOME222222222222222222222222222222222222222222222222222222222222
+      which user is running this script: $USER
+      process id of current script: $$
+      process id of last command in background: $!
+
+
