@@ -109,6 +109,15 @@ ANS:       read -p "Enter your name: " name
            echo "Hello, $name!"
       This is the command i have been used, by using this command you can enter data through prompt in command line, parallally we 
       can set a variable to hold this data, that how i did it
+
+
+Can you tell me the disadvantages of shell script and why should we go for ansible?
+ANS: => poor error handling ( shell script do not handle errors gracefully, if something fails the whole script might stop or worse )
+            we need to handle errors manually by using code
+     => Only works for particular distibution ( if you write it for rhel it will works only for rhel 
+     => Not Idempotent (An idempotent operation is one that, when executed multiple times, has the same effect as executing it once.)
+     => Not scalable to many servers ( Means it works paralelly in one server only )
+     => security issue ( if you write script as root )
       
 
 
