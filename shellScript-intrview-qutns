@@ -86,9 +86,29 @@ Ans: Basically applications will generate logs continuously, if the log files in
      => Place themin destination directory
      => If user provides number of days, we take them otherwise we take 14-days by defaul
 
-      Recently I did this task as challenge 
+     Error Handling:
+      => User may forgot to give source directory or destination directory
+         I handles this situation using this command **! -d "$SOURCE_DIR"**, i keeps it in if block if directory is present
+         then go a head if not throw error message in this way i handled it.
+
+      => There might be any chance of losting of data in source directory, so we need to check whether the data was present are not
+         for that i used the command called ** -n <file-name> **, i kept it in if block it checks whether the data is present or not
+         in sourece file
+
+      => Then i created a zipFile varible and i make it to indicate the destination directory, then i zipped the data in to the destination
+         file using this command that is
+                  ZIP_FILE="$DEST_DIR/app-logs-$TIMESTAMP.zip"
+                  find $SOURCE_DIR -name "*.log" -mtime +$DAYS | zip -@ "$ZIP_FILE"
+
+      => I filtered the data before 14 days from the usage by using (-mtime +14) option in command.
+          This is how i handled this task, while doing this task i got some errors but they are minimal yaa sir thats all sir
 
 
+Can you tell me about read -p command in shellScript?
+ANS:       read -p "Enter your name: " name
+           echo "Hello, $name!"
+      This is the command i have been used, by using this command you can enter data through prompt in command line, parallally we 
+      can set a variable to hold this data, that how i did it
       
 
 
