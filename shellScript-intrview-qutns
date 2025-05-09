@@ -76,6 +76,19 @@ ans: Basically redirectors are used stores output of the commands called it as s
       5) Takes stdin from a file instead of user input: sort < data.txt
 
 
+Can You tell me the challenges you faced recently?
+Ans: Basically applications will generate logs continuously, if the log files increased the memory get full, eventually
+     servers properly not respond, to avoid this situation we should daily schedule few jobs, then run it in particular time
+     every day using cron tab and archive the logs and move it to seperate folder.
+     If you want to store any historical data or logs then we should archive it.
+     => Pick up from source directory
+     => Zip the files that we have taken
+     => Place themin destination directory
+     => If user provides number of days, we take them otherwise we take 14-days by defaul
+
+      Recently I did this task as challenge 
+
+
       
 
 
