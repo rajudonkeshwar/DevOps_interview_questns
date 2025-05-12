@@ -77,7 +77,7 @@ ans: Basically redirectors are used stores output of the commands called it as s
 
 
 Can You tell me the challenges you faced recently?
-Ans: Basically applications will generate logs continuously, if the log files increased the memory get full, eventually
+Ans: Basically applications will generate logs continuously, if the log files increases the memory gets full, eventually
      servers properly not respond, to avoid this situation we should daily schedule few jobs, then run it in particular time
      every day using cron tab and archive the logs and move it to seperate folder.
      If you want to store any historical data or logs then we should archive it.
