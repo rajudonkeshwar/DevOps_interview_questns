@@ -470,3 +470,26 @@ What is the difference between git init and git clone?
 What is git status?
 What is a commit in Git?
 What is the purpose of the git clean command?
+
+
+
+
+:pushpin: DevOps Interview Questions (Experience: 2 Years)
+1. Self Introduction
+2. Explain Detailed CI-CD Pipeline
+3. Which Branching strategy you have used in your company.
+4. How to build and deploy an application using docker.
+5. What is difference between feature branch and Release branch.
+6. Who will merge the code in your team.
+7. What is docker file, Docker Image and Docker containers
+8. Difference between Docker add and docker copy
+9. How many pods are present in one node and how many containers are in one pod .
+10. What is the efficient way pod have one container or multiple container.
+11. how to measure the metrics in kubernetes.
+12. What is port of DNS, SSH and HTTPS.
+13. if you have new EC2 and RDS how can connect RDS with EC2.
+14. Explain S3 storage classes
+15. any idea on AWS S3 bucket backup
+16. how to create AWS Lambda how it's works.
+17. How to store Terraform statefile. how can protect it multiple users are not used . how to secure it.
+18. I stored state file in remote and currently running state file is different. Is it possible to update?
