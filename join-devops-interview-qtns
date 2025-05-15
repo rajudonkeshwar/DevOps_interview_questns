@@ -453,3 +453,20 @@ Designation : DevOps Engineer
 22. How do you communicate with a Jenkins server and a Kubernetes cluster?
 23. How do you generate Kubernetes cluster credentials?
 24. Do you only update Docker images in Kubernetes, or do you also update replicas, storage levels, and CPU allocation?
+
+
+
+What is Git?
+What is a repository in Git?
+What is the difference between Git and GitHub?
+What is origin in Git?
+What is the purpose of the .gitignore file?
+What is a version control system (VCS)?
+What is the git push command?
+What is the git pull command?
+What does git clone do?
+What are the advantages of using Git?
+What is the difference between git init and git clone?
+What is git status?
+What is a commit in Git?
+What is the purpose of the git clean command?
