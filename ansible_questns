@@ -15,7 +15,7 @@ Since Ansible is agentless, there’s no need for a third-party tool to connect 
 
 
 3))))  Explain what a “playbook” is?
-A playbook is a YAML-based file that sends commands to remote computers for configuration via scripts.
+A playbook is a YAML-based file which stores the commands to do the configuration in remote systems
 Devops engineers can configure entire environments by passing a script to the required systems rather
 than using individual commands to configure computers from the command line remotely.
 
