@@ -69,6 +69,73 @@ Ans:
 
 
 
+✅ 1. Amazon EBS (Elastic Block Store)
+🔹 What is EBS?
+Amazon EBS is block-level storage used with EC2 instances.
+It provides durable, high-performance storage volumes that persist independently from EC2 instance life cycles.
+Think of it as a virtual hard drive attached to your EC2 instance.
+🔹 Use Cases:
+Hosting databases, file systems, container storage.
+Running enterprise applications like SAP, Oracle DB, etc.
+🔹 Limitations:
+Tied to an Availability Zone (AZ) — cannot be accessed from multiple AZs directly.
+Must attach/detach manually between EC2s.
+🔹 Interview Tip:
+If asked to explain EBS, say:
+"EBS is a block-level storage designed for EC2 instances. It's ideal for low-latency workloads 
+ like databases. It allows snapshotting, resizing, and supports multiple volume types for performance tuning."
+
+
+✅ 2. Amazon EFS (Elastic File System)
+🔹 What is EFS?
+EFS is a fully managed NFS (Network File System) for EC2 and container workloads.
+It’s shared, scalable, and POSIX-compliant — suitable for Linux-based applications that need a distributed file system.
+🔹 Key Features:
+Shared Access: Can be mounted on multiple EC2 instances across AZs simultaneously.
+Scalable: Automatically scales storage as you add/remove files — up to petabyte scale.
+🔹 Use Cases:
+Web servers, shared home directories, CI/CD pipelines, CMS platforms, container storage in EKS/ECS.
+🔹 Interview Tip:
+"EFS is a scalable, shared file system suitable for Linux-based EC2 instances and containers. 
+ It’s great for scenarios where multiple compute resources need concurrent access to the same data."
+
+
+4. You need to share large files (like media assets or reports) securely with external users. How would you do that using AWS services?
+✅ Ideal Answer:
+I’d upload the files to Amazon S3 and generate pre-signed URLs that provide temporary, 
+time-limited access to those objects. This ensures the file is publicly accessible only through 
+the signed URL and not exposed to unauthorized users.
+
+
+5. Your team needs to mount a file system that is accessible by containers running in Amazon ECS or EKS. Which storage solution fits this use case?
+✅ Ideal Answer:
+Amazon EFS is the best fit here. It integrates well with Amazon ECS (via EFS Volume configuration) and EKS (via CSI drivers), 
+allowing containers to share a persistent file system. It supports multi-AZ and scales automatically, 
+which suits dynamic container workloads.
+
+
+6. How would you perform a backup of an EC2 instance?
+✅ Ideal Answer:
+I would take a snapshot of the EBS volume attached to the instance. Snapshots are incremental and stored in S3, 
+allowing for efficient, version-controlled backups. These snapshots can also be used to create new EBS volumes or 
+restore the instance in another region/AZ.
+
+
+
+7. Your EC2 instance has crashed, and you need to recover the data stored on it. What steps do you take?
+✅ Ideal Answer:
+Since EBS volumes are independent of EC2 instances, I’d:
+Detach the EBS volume from the failed instance (if not automatically detached).
+Attach the volume to a new EC2 instance in the same AZ.
+Mount the volume and access the data.
+If a snapshot exists, I can also create a new EBS volume from that snapshot and attach it to any instance.
+
+
+
+
+
+
+
 
      
 
