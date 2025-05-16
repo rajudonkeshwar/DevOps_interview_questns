@@ -1,1 +1,36 @@
+1))) About CloudFront Distribution
+Ans: 
+ 1. Signed URLs or Signed Cookies (Restrict by User Identity & Time)
+    🔹 Two options:
+    Signed URLs – Restrict access to specific files.
+    Signed Cookies – Grant access to multiple files or an entire path.
+    🔐 How it works:
+    Create a CloudFront key pair under your AWS account.
+    Use that key pair to sign URLs or cookies.
+    Distribute the signed URL/cookie to users who are allowed access.
+    CloudFront validates the signature and only serves content if valid.
+    Use Cases:
+    Pay-per-view content
+    Temporary access to private files.
 
+2.  Restrict Access by Geographic Location (Geo Restriction)
+    Goal: Allow or block users based on their geographic location (country).
+    Go to CloudFront → your distribution → Restrictions tab → Geo restriction.
+    Choose “Allowlist” or “Blocklist” specific countries.
+
+3. Restrict S3 Access Using Origin Access Control (OAC) or Origin Access Identity (OAI)
+  🔹 Purpose:
+  Prevent direct access to your S3 bucket content. Only CloudFront should be able to fetch and serve files.
+  🔹 OAC (Origin Access Control) - Recommended
+  A newer and more flexible way than OAI to securely allow CloudFront to access S3.
+  🛠️ Steps to Implement OAC:
+  Create a CloudFront distribution.
+  Choose S3 as the origin.
+  Enable Origin Access Control in the origin settings.
+  Set the S3 bucket policy to allow access only from CloudFront via the OAC.
+  
+
+
+
+
+   
