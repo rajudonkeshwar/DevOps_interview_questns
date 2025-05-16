@@ -493,3 +493,28 @@ What is the purpose of the git clean command?
 16. how to create AWS Lambda how it's works.
 17. How to store Terraform statefile. how can protect it multiple users are not used . how to secure it.
 18. I stored state file in remote and currently running state file is different. Is it possible to update?
+
+
+
+
+1. What types of 𝐭𝐚𝐬𝐤𝐬 were you working on?
+2. Do you have 𝐞𝐱𝐩𝐞𝐫𝐢𝐞𝐧𝐜𝐞 in creating a 𝐩𝐢𝐩𝐞𝐥𝐢𝐧𝐞?
+3. What does the term 𝐂𝐈 mean and what does the work 𝐂𝐃 mean
+4. What all 𝐬𝐞𝐫𝐯𝐢𝐜𝐞𝐬 have you worked with 𝐀𝐖𝐒
+5. Difference between 𝐈𝐀𝐌 𝐫𝐨𝐥𝐞 and 𝐈𝐀𝐌 𝐮𝐬𝐞𝐫.
+6. What does 𝐈𝐀𝐌 𝐫𝐨𝐥𝐞 do
+7. What is principal in 𝐈𝐀𝐌 𝐫𝐨𝐥𝐞?
+8. What kind of tasks were you performing for your 𝐄𝐂𝟐 instances.
+9. What is 𝐬𝐞𝐜𝐮𝐫𝐢𝐭𝐲 𝐠𝐫𝐨𝐮𝐩
+10. Difference between 𝐬𝐞𝐜𝐮𝐫𝐢𝐭𝐲 𝐠𝐫𝐨𝐮𝐩 and 𝐧𝐞𝐭𝐰𝐨𝐫𝐤 𝐚𝐜𝐥
+11. What is an access policy for 𝐬𝟑
+12. What is a 𝐠𝐥𝐚𝐜𝐢𝐞𝐫 tier in 𝐬𝟑?
+13. Cost wise it is less then why we don't keep all the files in 𝐆𝐥𝐚𝐜𝐢𝐞𝐫
+14. What if I have 1000 of file and cannot go through each and every file, we need to archive older files in my 𝐬𝟑 𝐛𝐮𝐜𝐤𝐞𝐭, when we move them to a different tier.
+ After 6 months I don't need my file in 𝐬𝟑 𝐛𝐮𝐜𝐤𝐞𝐭, so after 6 months move to glacier and after one year it should get deleted automatically
+15. What is autoscaling group
+16. Have you worked on 𝐥𝐨𝐚𝐝 𝐛𝐚𝐥𝐚𝐧𝐜𝐞𝐫𝐬. What are the types?
+17. What is 𝐠𝐚𝐭𝐞𝐰𝐚𝐲 𝐥𝐨𝐚𝐝 𝐛𝐚𝐥𝐚𝐧𝐜𝐞𝐫𝐬
+18. Difference between 𝐀𝐋𝐁 and 𝐍𝐋𝐁
+19. Let's say you have 2 different 𝐕𝐏𝐂𝐬 and you have to establish communication between resource in those 2. What will you do
+20. How you configure 𝐕𝐏𝐂 𝐏𝐞𝐞𝐫𝐢𝐧𝐠
