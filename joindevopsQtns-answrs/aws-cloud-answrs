@@ -1,1 +1,41 @@
-hlo
+Do You have experience in creating pipeLine?
+Ans: Yes, I have hands-on experience creating and maintaining CI/CD pipelines using Jenkins.
+      In one of my previous projects, I built a Jenkins pipeline from scratch to automate the deployment process of a Java-based microservices application.
+      Here’s how I approached it:
+      Source Code Integration:
+      The pipeline was triggered automatically on every push to the develop or main branches using a GitHub webhook.
+      Pipeline Configuration:
+      I used a Declarative Jenkinsfile stored in the repository to define the stages clearly.
+      The pipeline had stages for checkout, build, unit test, code quality check, Docker image build, and deployment.
+      Build and Test:
+      I used Maven to compile and run unit tests.
+      Integrated SonarQube for code quality analysis.
+      Dockerization
+      After a successful build, the pipeline would create a Docker image and push it to Amazon ECR using AWS CLI configured in the Jenkins agent.
+      Deployment:
+      For staging, the pipeline deployed the image to a Kubernetes cluster on EKS using kubectl and Helm charts.
+      For production, we had a manual approval step using the input directive to ensure safe deployments.
+      Notifications and Logs:
+      The pipeline sent Slack notifications on success or failure.
+      I also integrated email alerts for critical failures and used Jenkins Blue Ocean for better visualization.
+
+
+
+What is meant by CICD ?
+CI stands for Continuous Integration, and CD stands for either Continuous Delivery or Continuous Deployment, depending on the context.
+Continuous Integration (CI) is the practice of regularly merging code changes into a shared repository—usually several times a day. 
+Each change triggers an automated build and test process. The goal is to catch bugs early, ensure that new code doesn’t break existing 
+functionality, and maintain code quality.
+In my experience, I’ve implemented CI using Jenkins and GitHub Actions, where every push to a branch would trigger:
+Code checkout
+Dependency installation
+Unit tests
+Linting
+Static code analysis (like SonarQube)
+Continuous Delivery (CD) is about automatically delivering that tested and validated code to a staging or pre-production environment. 
+The deployment is ready to go live at any time, and usually includes a manual approval step.
+Continuous Deployment, on the other hand, takes it one step further—it automatically deploys every successful change straight 
+to production, without manual intervention.
+In projects I've worked on, I’ve implemented both CD strategies. For critical applications, we used Continuous Delivery 
+with manual approval before production. For smaller services, we used full Continuous Deployment to speed up releases.
+CI/CD as a whole has helped my teams release faster, reduce errors, and maintain a stable delivery process.
