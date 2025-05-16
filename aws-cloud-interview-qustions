@@ -46,6 +46,30 @@ Ans:
       ✅ Query Strings
       Cache different versions of a URL based on query string parameters.
       Example: ?color=red vs ?color=blue
+
+
+5. 🛡️ What is AWS WAF?
+   AWS WAF (Web Application Firewall) is a security service that helps protect your web applications from:
+   Common web exploits (SQL injection, XSS)
+   Bot traffic and DDoS attacks (A Distributed Denial-of-Service (DDoS) attack is a cyberattack that uses multiple 
+   compromised computers (a botnet) to overwhelm a target website, server, or network with traffic, 
+   making it unavailable to legitimate users)
+   Bad IPs or countries
+   Custom threats defined by request patterns
+   It filters and monitors HTTP/HTTPS traffic to your applications based on rules you define.
+
+     🧠 How It Works (Request Flow)
+     A user sends a request to your application (e.g., via CloudFront or ALB).
+     AWS WAF intercepts the request before it reaches your app.
+     WAF evaluates the request against your defined rules in the Web ACL.
+     Based on matching rules, it takes an action:
+     ✅ Allow
+     ❌ Block
+     🔍 Count (for testing rules without enforcement)
+
+
+
+
      
 
 
