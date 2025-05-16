@@ -28,7 +28,25 @@ Ans:
   Choose S3 as the origin.
   Enable Origin Access Control in the origin settings.
   Set the S3 bucket policy to allow access only from CloudFront via the OAC.
-  
+
+
+4. What Is a Cache Policy in CloudFront?
+   A Cache Policy in Amazon CloudFront defines how CloudFront caches content at edge locations based on specific request attributes, such as:
+   Query strings (e.g., ?user=123)
+   Headers (e.g., Authorization, Accept-Encoding)
+   Cookies (e.g., session IDs)
+   Request body (for POST requests, rarely used)
+
+   1. TTL Settings (Time To Live)
+      Determines how long content stays in CloudFront's cache.
+
+   2. Cache Key Settings
+      The cache key is the unique ID used to store and retrieve objects from the cache. You define what parts of the viewer request are included in this key.
+      You can include:
+      ✅ Query Strings
+      Cache different versions of a URL based on query string parameters.
+      Example: ?color=red vs ?color=blue
+     
 
 
 
