@@ -39,3 +39,21 @@ to production, without manual intervention.
 In projects I've worked on, I’ve implemented both CD strategies. For critical applications, we used Continuous Delivery 
 with manual approval before production. For smaller services, we used full Continuous Deployment to speed up releases.
 CI/CD as a whole has helped my teams release faster, reduce errors, and maintain a stable delivery process.
+
+
+
+
+What is the difference between IAM Role and IAM User?
+An IAM User represents a real person or application that needs to interact with AWS services. 
+It has long-term credentials like a username, password, and access keys. IAM users are used for direct access to AWS, 
+such as via the AWS Management Console, CLI, or SDKs.
+For example, if a developer needs access to manage EC2 instances or deploy resources, 
+I would create an IAM user for them with specific permissions.
+An IAM Role, on the other hand, is an identity with a set of permissions that can be assumed 
+temporarily by trusted entities—like EC2 instances, Lambda functions, other AWS accounts, 
+or even IAM users. Roles don’t have long-term credentials; instead, they use temporary security 
+tokens provided by AWS STS (Security Token Service).
+In practice, I’ve used IAM Roles to:
+Allow EC2 instances to access S3 buckets without storing access keys
+Grant Lambda functions permissions to write logs to CloudWatch
+Set up cross-account access between AWS accounts
