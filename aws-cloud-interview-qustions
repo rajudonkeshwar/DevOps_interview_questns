@@ -131,6 +131,77 @@ Mount the volume and access the data.
 If a snapshot exists, I can also create a new EBS volume from that snapshot and attach it to any instance.
 
 
+8).
+| Aspect      | Identity-based Policy                                        | Resource-based Policy                                                                      |
+| ----------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| Attached to | IAM Users, Groups, Roles                                     | AWS Resources (like S3 Buckets, Lambda, etc.)                                              |
+| Controls    | What *actions* the identity can perform on *which resources* | Who can access the *resource* and what actions they can perform                            |
+| Example     | A policy that allows a user to access `my-bucket`            | A bucket policy that allows a specific IAM role from another 
+                                                                               account to access `my-bucket`
+
+
+🔸 Example Use Case: Accessing an S3 Bucket
+Let’s assume:
+You have an S3 bucket called my-company-logs.
+You want to allow:
+Your own IAM users to read and write logs.
+A user/role from another AWS account (cross-account access) to write logs.
+
+✅ Identity-based Policy Alone (For Same Account)
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject"],
+      "Resource": "arn:aws:s3:::my-company-logs/*"
+    }
+  ]
+}
+
+
+❌ Limitation: Cross-Account Access Not Possible with Only Identity-based Policies
+Suppose another AWS account (Account B) needs to write logs to your S3 bucket (owned by Account A). 
+The identity-based policy on Account B’s IAM role is not enough.
+
+Even if Account B's role has a policy like:
+{
+  "Effect": "Allow",
+  "Action": "s3:PutObject",
+  "Resource": "arn:aws:s3:::my-company-logs/*"
+}
+It won’t work unless your S3 bucket explicitly allows access via a resource-based policy.
+
+
+✅ Why Use Resource-based Policy? (S3 Bucket Policy)
+To allow cross-account access, you must attach a resource-based policy (bucket policy) like this:
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::123456789012:role/CrossAccountLogWriter"
+      },
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::my-company-logs/*"
+    }
+  ]
+}
+This says:
+“The IAM role from Account B is allowed to write to my bucket.”
+
+
+
+
+
+
+
+
+
+
+
 
 
 
