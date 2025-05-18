@@ -195,6 +195,41 @@ This says:
 
 
 
+🔑 Identity Policy vs Assume Role Policy – What's the Difference?
+✅ Identity Policy (attached to IAM user or group)
+Directly defines what actions a user can perform on which resources.
+
+Example: An IAM user has a policy allowing direct access to S3 buckets.
+🎭 Assume Role Policy (trust + permission separation)
+Lets a user assume a role, and then gain the permissions attached to that role, not directly to their IAM identity.
+Used to temporarily gain access to resources not directly assigned to their IAM identity.
+
+🎯 Why Use Assume Role Instead of Identity Policy?
+
+✅ 1. Cross-Account Access
+IAM policies can’t span multiple AWS accounts.
+Use case: A user in Account A needs to access resources in Account B.
+Solution: Create a role in Account B, grant it permissions to access resources, and allow Account A to assume the role.
+🔁 Identity policies can’t grant cross-account access directly. Roles solve that.
+
+
+✅ 2. Temporary Privileges
+Roles can be assumed for a limited time (15 minutes to 12 hours).
+Better for security than long-term IAM user credentials.
+Great for automation or users who need just-in-time access.
+🔐 Least privilege and time-bound access reduce risk.
+
+
+✅ 3. Privilege Separation and Delegation
+Separate identity from permission.
+Example: Developers are IAM users with no permissions by default. When they need access, they assume a DevRole to get temporary permissions.
+Helps enforce principle of least privilege.
+👮‍♂️ Access can be controlled dynamically instead of permanently attaching policies to users.
+
+
+
+
+
 
 
 
