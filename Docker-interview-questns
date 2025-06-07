@@ -19,4 +19,16 @@ Ans: The docker life cycle is nothing but, writing a docker file, building docke
     your docker files to docker images
     After that you can use docker run command to execute your container, Finally you push the image to docker registry
 
+5) What are the different docker compments?
+Ans: Basically we have three docker components
+    1) Clint
+    2) DockerHost
+    3) Registry
+    Initially when you install docker parallelly you have installed docker clint, docker host, this docker clint will give a interface
+    to run docker commands such as docker build, docker run, docker exec, but the docker host(deamon) is responsible for executing those
+    commands that you have entered.
+    Lets say there is a docker clint in your system, as a user you want to execute a docker build command to create an image, what happens
+    is this request is received by the docker deamon, and it will executes it and will create an image as a result.
+    Then we will push this image to the docker registry, these are the different type of components
+
 
