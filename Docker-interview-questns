@@ -32,3 +32,34 @@ Ans: Basically we have three docker components
     Then we will push this image to the docker registry, these are the different type of components
 
 
+6) Detailed explanation about networking?
+Ans: When you run containers in Docker, they need some way to communicate — either with each other, with the host machine, or 
+    with the outside world. That’s where Docker networking comes in. Docker basically gives you a few different types of networks 
+    depending on what kind of communication your app needs.
+
+  🚢 1. Bridge Network (most common)
+  This is the default one Docker uses if you don’t specify anything. Imagine you have a few containers running on the same machine, 
+  and you want them to talk to each other — that’s where the bridge network comes in.
+  Docker creates a virtual network bridge (called docker0) on the host. Each container gets its own IP in that network, and they can 
+  ping or talk to each other using those IPs or even container names. You can also expose ports to the outside using -p.
+  Use case? Let’s say you have a backend and database container on one server — the bridge network lets them talk easily.
+
+
+  🏠 2. Host Network
+  Here, the container doesn’t get its own network namespace. Instead, it shares the host’s network directly. So it can use the host’s 
+  IP and ports.
+  It’s faster because there’s no network translation, but it comes with fewer layers of isolation. For example, 
+  if you run an app on port 80 in a container, it’ll occupy port 80 on your host directly.
+  Use case? High-performance apps like monitoring agents or network tools.
+
+
+  🌐 4. Overlay Network
+  This one’s for multi-host setups — like when you’re using Docker Swarm or Kubernetes. It lets containers on different machines 
+  talk to each other as if they’re on the same local network.
+  Under the hood, it uses VXLAN (a kind of tunneling). You need a key-value store to manage it (Swarm handles this for you).
+  Use case? When you deploy microservices across multiple machines.
+
+
+  
+
+
