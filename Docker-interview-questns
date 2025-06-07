@@ -1,4 +1,9 @@
 1) What is Docker File?
-  Docker file is a file it has docker instructions to create our own images, this file declarative in nature means what we writes we will get it
+  Docker file is a file it has docker instructions to create our own images, this file declarative in nature means
+  what we writes we will get it
+
+2) What is the Docker?
+  Docker is the containerization platform and it is used to manage the lifecycle of containers,
+  I use docker basically, write some docker files, build the docker images, runs some docker containers, push them to ECR
 
 
