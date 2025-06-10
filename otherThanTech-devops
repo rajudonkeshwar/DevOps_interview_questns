@@ -4,6 +4,9 @@ Ans: I am working in amazon where i support multiple development teams some of t
      pipelines, deploying their application on to the eks cluster through CICD pipeline, creating resources for them in aws using terraform
      managing the configurations of their virtual machines usig ansible.
 
+
+
+
 2) Tell me day to day activities of you as a devops engineer?
 Ans:   Lets say there is a amazon called organization, with in the organization usually there will be multiple projects
     like payment, transcactions, xyz.., and for each this there will be a dedicated development team, they will manage
