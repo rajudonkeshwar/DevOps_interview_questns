@@ -272,10 +272,10 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
 
 16>>> What is an Inode?
 
-      inode stores the file type(file or folder), permissions, ownership, file size, timestamp, 
+      inode stores the metadata like file type(file or folder), permissions, ownership, file size, timestamp, 
       disk location(memory location)
 
-      An inode (Index Node) is a data structure used by Linux and UNIX file systems to store metadata 
+      An inode (Index Node) is a data structure used by Linux and UNIX to store metadata 
       about a file or directory. Every file and directory in a Linux file system is assigned a unique inode number.
       Inodes do not store the file name or data; they store only metadata and pointers to the actual data blocks.
       The inode points to data blocks where the file content is stored.
@@ -348,11 +348,11 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
         Shows disk hierarchy (e.g., which partitions belong to which disks).
 
 
-
+.
 21>>>  Explain about nslookup command?1
 
         It is a command line used to query DNS servers, for domain name and ip-address mapping
-        whether domain name is mapped properly or not.
+        whether the domain name is mapped properly or not.
 
         Nslookup (stands for “Name Server Lookup”) is a useful command for getting information from the DNS server. 
         It is a network administration tool for querying the Domain Name System (DNS) 
