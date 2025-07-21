@@ -229,6 +229,126 @@ These facts are stored as variables and can be used in subsequent tasks within t
 
 
 
+Command syntax via remote connection:
+Nginx s/w install:
+Syntax: ansible all -i <IP address>, -e ansible_user=<username> -e ansible_password=<password> -b -m dnf -a "name=nginx state=installed"
+Service restart:
+Syntax: ansible all -i <IPAddress>, -e ansible_user=<username> -e ansible_password=<password> -b -m service -a "name=nginx state=started"
+Ansible Modules: (for installations)
+Ansible.builtin.debug:  print the message
+Ansible.builtin.package: used for software installation in any linux server
+Ansible.builtin.dnf: used for software installations only in RHEL
+Ansible.builtin.apt: used for software installations in UBUNTU Linux flavors
+Ansible.builtin.yum: used for CentOS
+Ansible.builtin.ping: pinging for testing connection between two servers
+Q: What is Ad hoc commands in Ansible?
+Ans: On emergency request or any unpredictable situations, we can perform software configuration in servers using ad Hoc commands instead of playbooks.
+Syn: ansible all -i <IP address>, -e ansible_user=<username> -e ansible_password=<password> -m ping
+Q: How can we utilize the declared variable in a playbook?
+Ans: using double braces i.e., {{ <variable name> }}
+Note: Variable declared under "vars" can be used globally inside a playbook
+Q: How many ways can be passed variables in a playbook?
+Ans: Multiple ways can be passed . They are
+	• Command line or argument
+	• Task level / local variables
+	• Variables from another YAML file
+	• Variables from prompt
+	• Play level / Global variables
+	• Variables from Inventory
+	• Roles
+Q: What is ansible facts? What is the use of it?
+Ans: ansible_facts is the data fetch from node server which includes entire server data. We can use those data for identify the state of the server, filter data for our requirement.
+Q: What are the predefined functions to convert list into map or vice-versa?
+Ans:
+Items2dict  --> conversion of list into dictionary(map)
+Dict2items  --> conversion of dictionary(map) to list items
+Q: What is the ansible command to validate IP address?
+Ans: ansible.utils.ipaddr
+Q: How can we perform configuration of the server if we don't have ansible modules?
+Ans: We can either use shell( less secure i.e., similar to shell redirections, pipes etc)  or command modules(more secure i.e., will execute via remote due to lack of access)
+Q:How can we redirect the output in Ansible?
+Ans: ansible.builtin.shell
+	ansible.builtin.command using register keyword
+Q:How can we create files/directory using Ansible?
+Ans:  ansible.builtin.file module. We can do CRUD on either file or directory using this module
+Q: Can we run any playbook without inventory.ini?
+Ans: If ansible.cfg is present in the current directory where you were executing playbooks, then no need to mention "inventory.ini" specifically in the command prompt.
+Q: How can we execute libraries in more than one server?
+Ans:  ansible.builtin.pip  (executables: "pip3.9")  --> Used to install/configure dependencies/libraries of the tasks (for Python)
+	ansible.builtin.template --> Install/Configure for the PLAYBOOK tasks
+Q: What is the module that used for CRUD operations on a specific user?
+Ans: ansible.builtin.user: manage user accounts and user attributes.(for Windows:  ansible.windows.win_user)
+Q: How can we download the specific content during runtime required for the PLAY tasks?
+Ans: ansible.builtin.get_url  --> Download backend code
+Q: What is the module that we used for extract the application package?
+Ans: ansible.builtin.unarchive --> unzip the backend code
+Q: How can we execute shell commands in Ansible?
+Ans: ansible.builti.command  --> using this commands(shell) can be executable
+Q: How can we copy dependencies required for application server configuration?
+Ans: ansible.builtin.copy  --> We can copy the file from local/source to destination/specified directory
+Q: How can we achieve particular service needs to restart/start/enable ?
+Ans: ansible.builtin.service --> We can restart/enable the services required for the application to be up
+Q: What are tags in ansible? Why we can use the same?
+Ans: We can control few tasks using "tags". By "tags", we can execute the mentioned tasks only during execution (instead of running tasks everytime execution)
+tags:
+- integration
+- packages
+- deployments
+- webservers
+Syntax: ansible-playbook <playbook.yaml> --tags "tag name>
+Q: What is Ansible Roles? Why we can use?
+Ans: A standard structure of writing playbooks that contains tasks, variables, dependencies, files, templates, libraries, handlers and other ansible artifacts and make these are reusable in different use cases.
+Roles ---> tasks(main.yaml)  --> Specified instructions for the defined action/task to implement
+	---> files (bar.txt, foo.sh etc)--> This file consists of the application image related service or script files with copy of resources
+	---> handlers (main.yaml)  --> This is notifier script file (notify) will perform action when there is change event
+	---> templates (ntp.conf.j2) --> These are the script files consists of dependencies of the defined tasks under a particular role. Through this, we can change variable values during run time
+	---> vars(main.yaml)  --> This file consists variables which are defined , required for the action tasks
+	---> meta(main.yaml)  --> This is script file consists of role dependencies, custom modules
+	---> defaults (main.yaml)  --> default lower priority variables for the specified role
+	---> library --> This is the file consists of required libraries cryptography, PyMysql for configuring MYSQL DB
+	---> module_utils --> Roles can also include custom module utils
+	---> lookup_plugins --> plugins for the software configuration
+Q: How to skip the tags in Ansible?
+Ans: Use "--skip-tags" to exclude tasks with specified tags
+ansible-playbook <playbook name> --skip-tags "<tag name>
+More Details:
+	• --tags all - run all tasks, tagged and untagged except if never (default behavior).
+	• --tags tag1,tag2 - run only tasks with either the tag tag1 or the tag tag2 (also those tagged always).
+	• --skip-tags tag3,tag4 - run all tasks except those with either the tag tag3 or the tag tag4 or never.
+	• --tags tagged - run only tasks with at least one tag (never overrides).
+	• --tags untagged - run only tasks with no tags (always overrides).
+Note: Skipping always takes precedence over explicit tags, if you specify tags in both "--tags/--skip-tags" section i.e.,
+-- tags tag1,tag3,tag4 --skip-tags tag3     > only execute tag1 & tag4 related tasks and skip tag3  in this case
+Q: How can we store the password in Ansible or What is the best practice for handling sensitive info in Ansible?
+Ans: Using "ansible-vault " , we can store sensitive info like usernames, root password, ip address etc
+	Syntax: Create  -->  ansible-vault create <vault-filename.yaml>
+		    View    -->  ansible-vault view <vault-filename.yaml>
+		    Edit      -->  ansible-vault edit <vault-filename.yaml>
+	Note: We need to enter password (it will ask in command prompt)  while creating, listing, editing vault files
+	
+Q: How do we execute playbook if we have vault?
+Ans: ansible-playbook -i inventory.ini <playbookname.yaml> --ask-vault-pass
+Note: Call respective vault file and prompting vault password for accessing sensitive info
+Alternate method: Maintain vault file separately in server( instead Github)
+		ansible-playbook -i inventory.ini <playbook.yaml> --vault-password-file <vault file path>
+Alternate method: (To avoid password enetering during prompt)
+	ask_vault_pass = True Should be in ansible.cfg file (This method is applicable if the password file in the GITHUB )
+	vault_password_file = <path> (This method is applicable if we maintain password file in the server)
+Advanced version of Ansible vault is AWS secret Manager or Parameter Store
+Decoupling Code and configuration i.e., playbooks in code where as sensitive info maintaining as a configuration in AWS(since AWS is PAAS)
+Step 1: Creating AWS security system parameter using "secure string" in AWS
+Step 2: Calling/fetching those configured parameter in our playbook whereever sensitive info required
+	login_password: "{{ lookup( 'amazon.aws.aws_ssm', '/expense/mysql/mysql_root_password', decrypt=True) }}"
+Q: What way we can achieve server provisioning across hybrid cloud environments and deploying applications as part of workflows?
+Ans: Ansible tower is web-based UI and Rest API developed by RedHat for managing and controlling Ansible Automation. It acts as an enterprise-level framework on top of the open-source Ansible engine and provides additional features that make easier to scale, secure and manage your automation workflows.
+Use Cases:
+	1) Automating server provisioning across hybrid cloud environments
+	2) Deploying applications with approval workflows and human intervention
+	3) Managing user access to sensitive infrastructure actions
+	4) Scheduling patch management across thousands of servers.
+
+
+
 
 
       
