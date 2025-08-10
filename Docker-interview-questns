@@ -4,19 +4,22 @@
 
 2) What is the Docker?
   Docker is the containerization platform and it is used to manage the lifecycle of containers,
-  I use docker basically, write some docker files, build the docker images, runs some docker containers, push them to ECR
+  I use docker basically, write some docker files, build the docker images, runs some docker containers, 
+  push them to ECR
 
 3) How containers are different from virtual machines?
-Ans: Continers are very lightweight in nature, because they dont have complete OS, It is basically combination of your application
-      its dependencies, some libraries which are requird to run your application
-     Where as Virtual Machines has complete guest OS, we all know operating systems are very heavy, and it has very OSImage.
+Ans: Continers are very lightweight in nature, because they dont have complete OS, 
+     It is basically combination of your application, its dependencies, some libraries 
+     which are requird to run your application
+     Where as Virtual Machines has complete guest OS, we all know operating systems are very heavy,
+     and it has very OSImage.
 
 4) What is docker Lifecycle?
 Ans: The docker life cycle is nothing but, writing a docker file, building docker image, pushing them to ECR
-    In my case what i usually do is i start with writing a dockerfile, lets say development team was approched me, i will initially
-    start with writing a docker file, in the docker file i will write set -of -instructions, that are required to run the application
-    Once i feel the docker file is complete, i will create image out of it by running docker build command, which will essentially convert
-    your docker files to docker images
+    In my case what i usually do is i start with writing a dockerfile, lets say development team was approched me, 
+    i will initially start with writing a docker file, in the docker file i will write set -of -instructions, 
+    that are required to run the application Once i feel the docker file is complete, i will create image out of it 
+    by running docker build command, which will essentially convert your docker files to docker images
     After that you can use docker run command to execute your container, Finally you push the image to docker registry
 
 5) What are the different docker compments?
@@ -38,7 +41,7 @@ Ans: When you run containers in Docker, they need some way to communicate — ei
     depending on what kind of communication your app needs.
 
   🚢 1. Bridge Network (most common)
-  This is the default one Docker uses if you don’t specify anything. Imagine you have a few containers running on the same machine, 
+  This is the defaultone Docker uses if you don’t specify anything. Imagine you have a few containers running on the same machine, 
   and you want them to talk to each other — that’s where the bridge network comes in.
   Docker creates a virtual network bridge (called docker0) on the host. Each container gets its own IP in that network, and they can 
   ping or talk to each other using those IPs or even container names. You can also expose ports to the outside using -p.
