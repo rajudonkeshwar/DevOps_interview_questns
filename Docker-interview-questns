@@ -49,7 +49,8 @@ Ans: When you run containers in Docker, they need some way to communicate — ei
 
 
   🏠 2. Host Network
-  Here, the container doesn’t get its own network namespace. Instead, it shares the host’s network directly. So it can use the host’s 
+  Here, the container doesn’t get its own network namespace. Instead, it shares the host’s network directly. 
+  So it can use the host’s 
   IP and ports.
   It’s faster because there’s no network translation, but it comes with fewer layers of isolation. For example, 
   if you run an app on port 80 in a container, it’ll occupy port 80 on your host directly.
