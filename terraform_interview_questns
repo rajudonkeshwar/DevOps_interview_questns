@@ -152,3 +152,18 @@ Would you like a Terraform example to implement this setup? 🚀
 
 7)))  https://chatgpt.com/share/67bbee27-87a0-8008-bdcf-ebd46f43a687
 
+
+8)))  How do you store sensitive data in terraform?
+      Interview Answer (Natural Way):
+
+"In Terraform, I never hardcode sensitive data like passwords or keys directly in .tf files. Instead, 
+I usually keep them in a secure place like AWS Secrets Manager, SSM Parameter Store, or HashiCorp Vault, 
+and then fetch them dynamically inside Terraform using data sources.
+For variables, I mark them as sensitive = true so they don’t show up in logs or plan output. 
+But I also know that sensitive data still gets stored in the Terraform state file, 
+so I always make sure the state is stored remotely in a secure backend like an S3 bucket with encryption enabled and DynamoDB for state locking.
+In CI/CD pipelines, I pass secrets as environment variables from the pipeline’s secret store 
+(like Jenkins credentials or GitHub Actions secrets) instead of committing them in Git.
+So overall, the best practice I follow is: manage secrets outside of Terraform, fetch them securely at runtime, 
+and ensure the state file is protected with encryption and limited access."
+
