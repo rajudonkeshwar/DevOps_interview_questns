@@ -161,7 +161,8 @@ I usually keep them in a secure place like AWS Secrets Manager, SSM Parameter St
 and then fetch them dynamically inside Terraform using data sources.
 For variables, I mark them as sensitive = true so they don’t show up in logs or plan output. 
 But I also know that sensitive data still gets stored in the Terraform state file, 
-so I always make sure the state is stored remotely in a secure backend like an S3 bucket with encryption enabled and DynamoDB for state locking.
+so I always make sure the state is stored remotely in a secure backend like an S3 bucket 
+with encryption enabled and DynamoDB for state locking.
 In CI/CD pipelines, I pass secrets as environment variables from the pipeline’s secret store 
 (like Jenkins credentials or GitHub Actions secrets) instead of committing them in Git.
 So overall, the best practice I follow is: manage secrets outside of Terraform, fetch them securely at runtime, 
