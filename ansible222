@@ -1,1 +1,11 @@
+1))) Where do we find logs for nginx?
 
+ans: 
+
+- name: Get last 10 lines of Nginx error log
+  ansible.builtin.command: tail -n 10 /var/log/nginx/error.log
+  register: nginx_error_log_tail
+
+- name: Display last 10 lines of Nginx error log
+  ansible.builtin.debug:
+    var: nginx_error_log_tail.stdout_lines
