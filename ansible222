@@ -9,3 +9,11 @@ ans:
 - name: Display last 10 lines of Nginx error log
   ansible.builtin.debug:
     var: nginx_error_log_tail.stdout_lines
+
+
+
+2)) What is the use of dnf updateinfo list security
+
+ans: “The command dnf updateinfo list security is used to list all security advisories related to installed packages on a Linux system. 
+    It’s mainly used for vulnerability management, ensuring only security patches are applied, 
+    which is critical in production environments for maintaining system security and compliance.”
