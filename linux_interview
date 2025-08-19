@@ -375,7 +375,7 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       100 == 1XX == Informational codes
       200 == 2XX == Success status codes
       300 == 3XX == Redirectional
-      400 == 4XX == Client side error
+      400 == 4XX == Client side error( 420 )
       500 == 5XX == Server side error
 
 
