@@ -1,1 +1,106 @@
 
+1. Can you explain how you troubleshoot a Linux server that becomes slow or unresponsive?
+Answer:
+Sure. When I notice a Linux server is slow, the first thing I check is resource utilization. I usually run commands like top or htop to see CPU, 
+memory usage, and if any process is consuming unusually high resources.
+Next, I check disk space using df -h and inode usage using df -i. Sometimes, applications hang if the disk is full.
+I also look at iostat or vmstat to identify I/O bottlenecks. If it’s network-related, I check ifconfig, netstat -tulnp, or ss to see open connections.
+Finally, I check logs under /var/log/ (like messages or syslog) to see if any errors are reported. Based on that, 
+I decide whether to kill a process, restart a service, or scale resources.
+
+
+2. How do you check which process is using a particular port?
+Answer:
+I use the netstat -tulnp | grep <port> command. This shows me which PID is bound to that port.
+For example, if I want to see who is using port 8080, I’ll run:
+netstat -tulnp | grep 8080
+Alternatively, in newer Linux versions, I prefer using ss -tulnp | grep 8080 because netstat is deprecated. Then, 
+I match the PID with the process using ps -ef | grep <PID>.
+
+
+3. If a service fails to start, how do you debug it?
+Answer:
+I usually follow these steps:
+First, I check the status using systemctl status <service>. It gives me immediate hints.
+If it failed, I look into its logs under /var/log/ (for example, /var/log/httpd/ for Apache).
+If it’s systemd-based, I check logs using journalctl -xe.
+Sometimes, it fails due to permission issues, wrong configuration, or port conflicts. For example, if Apache fails, it may be because port 80 is already in use.
+By checking logs and configurations, I can fix the root cause.
+
+
+4. What is the difference between a hard link and a soft link?
+Answer:
+A hard link is like another name for the same file. Both original and hard link point to the same inode. 
+Even if I delete the original file, the hard link will still work because the data is still there until all links are deleted.
+A soft link (symbolic link) is more like a shortcut. It points to the file path, not the inode. 
+If I delete the original file, the soft link becomes broken because it points to a non-existing path.
+So in real-time, I use soft links for convenience (like linking config files), and hard links rarely unless I want redundancy.
+
+
+5. How do you schedule a job in Linux?
+Answer:
+We usually use cron jobs for scheduling.
+For example, if I want to run a script every day at 2 AM, I’ll edit the crontab with crontab -e and add:
+0 2 * * * /path/to/script.sh
+If it’s a one-time job, I use the at command. Example:
+at 5pm
+then type the command I want to run.
+In production, I also redirect cron logs to a file like:
+0 2 * * * /path/to/script.sh >> /var/log/script.log 2>&1
+so I can debug if something fails.
+
+
+6. What are runlevels or systemd targets in Linux?
+Answer:
+In older Linux systems (SysVinit), we had runlevels like 0 (halt), 3 (multi-user, text mode), 5 (multi-user, GUI), 6 (reboot).
+In newer Linux systems with systemd, we use targets. For example:
+multi-user.target (like runlevel 3, no GUI)
+graphical.target (like runlevel 5, with GUI)
+I can check the default target using:
+systemctl get-default
+and change it with:
+systemctl set-default multi-user.target
+
+
+
+7. How do you check disk usage per directory?
+Answer:
+I use the du -sh * command inside a directory to see usage of each subdirectory.
+For example, if /var is full, I go inside /var and run:
+du -sh *
+This quickly tells me which folder is consuming more space.
+In production, I also use ncdu, which gives an interactive view of disk usage.
+
+
+8. How do you secure a Linux server?
+Answer:
+Some of the common steps I follow are:
+Disable root SSH login and use key-based authentication.
+Use firewalls like iptables or firewalld to restrict ports.
+Keep packages updated using yum update or apt update && upgrade.
+Configure auditing and log monitoring.
+Set correct file permissions (chmod, chown).
+Monitor processes and open ports regularly.
+In real-time projects, we also integrate security tools like fail2ban to block repeated failed logins.
+
+
+9. How do you find the top 10 largest files in a Linux server?
+Answer:
+I run:
+find / -type f -exec du -Sh {} + | sort -rh | head -n 10
+This will list the largest 10 files.
+Or, I can use:
+du -ah / | sort -rh | head -n 10
+
+
+10. What’s your experience with log management in Linux?
+Answer:
+Mostly, logs are stored in /var/log/. For example:
+syslog or messages → system logs
+secure or auth.log → authentication logs
+Application-specific logs like /var/log/httpd/ or /var/log/nginx/.
+I usually use tail -f <logfile> to monitor live logs. For filtering, I use grep, for example:
+grep "ERROR" /var/log/app.log
+
+
+In real-time, if logs grow large, we configure logrotate so that old logs are compressed and new ones are rotated.
