@@ -203,7 +203,8 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
 10>>> what is soft link?
       A soft link, also known as a symbolic link (symlink), is a special type of file in Linux 
       that acts as a pointer to another file or directory. 
-      It does not contain the actual data of the target file but instead stores the path to it.
+      It does not contain the actual data of the target file but instead stores the path of it, and its metadata
+      If the original file is deleted, the soft link stops working (broken link).
 
       Key Characteristics of Soft Links
       ✅ Soft links can point to files or directories.
