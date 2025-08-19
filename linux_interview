@@ -219,7 +219,7 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
 
 
 11>>> what is hard link (detailed explanation)
-      A hard link is a direct reference to the data blocks of an existing file on disk. 
+      A hard link is a direct reference to the existing file on disk. 
       Unlike a soft link (symbolic link), a hard link acts as another name for the same file. 
       If the original file is deleted, the hard link still retains the data because both share the same inode number.
 
