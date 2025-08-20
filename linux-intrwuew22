@@ -6,7 +6,7 @@ memory usage, and if any process is consuming unusually high resources.
 Next, I check disk space using df -h and inode usage using df -i. Sometimes, applications hang if the disk is full.
 I also look at iostat or vmstat to identify I/O bottlenecks. If it’s network-related, I check ifconfig, netstat -tulnp, or ss to see open connections.
 Finally, I check logs under /var/log/ (like messages or syslog) to see if any errors are reported. Based on that, 
-I decide whether to kill a process, restart a service, or scale resources.
+I decide whether to kill a process using KILL<PID>, KILL -9 <PID> or restart a service, or scale resources.
 
 
 2. How do you check which process is using a particular port?
