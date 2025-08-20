@@ -51,7 +51,7 @@ so I can debug if something fails.
 
 at every minute use
 * * * * *
-minute, hour,month(day), month, day(week)
+minute, hour, day(month), month, day(week)
 
 at every hour use 
 0 * * * *
