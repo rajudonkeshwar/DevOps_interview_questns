@@ -1,1 +1,101 @@
 
+🔹 Git Interview Questions & Answers (3+ Years DevOps Experience)
+1. What is Git and why do we use it in DevOps?
+Answer:
+"Git is a distributed version control system that helps teams track changes in source code. 
+In DevOps, it’s the backbone of our CI/CD pipelines — developers push code to Git repositories, 
+and that triggers automated builds, tests, and deployments. 
+It also enables collaboration, rollback to previous versions, and branching strategies for parallel development."
+
+
+
+2. Can you explain the branching strategy you used in your projects?
+Answer:
+"In my projects, we mostly followed GitFlow. Developers create feature branches from develop, 
+then raise pull requests for code review. Once merged, code is tested in staging, and finally, 
+we merge into main or master for production. For hotfixes, we create a branch directly from main, 
+fix the issue, and merge back into both main and develop.
+In some microservices projects, we used trunk-based development for faster releases, 
+where developers commit small changes frequently to the main branch with feature flags."
+
+
+
+
+
+3. How do you resolve merge conflicts in Git?
+Answer:
+"When there’s a merge conflict, I first do a git pull to bring the latest changes. 
+If conflicts exist, Git marks them in the file. I manually edit the file to choose or combine the right code, 
+then stage it using git add, and complete the merge with git commit. For bigger conflicts, 
+I discuss with the developer who wrote the conflicting code to avoid overwriting important logic. 
+I also make sure CI/CD pipelines pass after resolving the conflict."
+
+
+
+
+
+4. What’s the difference between git fetch, git pull, and git clone?
+
+Answer:
+git clone → Creates a local copy of a remote repo.
+git fetch → Brings changes from remote but doesn’t merge them.
+git pull → Fetches + merges changes into your local branch.
+"In practice, I use git fetch when I want to review changes before merging, and git pull when I want to directly update my local branch."
+
+
+
+
+
+5. Have you used Git tags? Why are they important?
+Answer:
+"Yes, I use Git tags for marking release versions, like v1.2.0. Tags are important because they give us a snapshot 
+of the code at the time of release. This helps in rollbacks — for example, if a deployment fails in production, 
+I can check out the previous release tag and redeploy."
+
+
+
+6. How do you handle rollback of code using Git?
+Answer:
+"There are a few ways depending on the situation:
+If I need to undo the last commit but keep changes locally → git reset --soft HEAD~1.
+If I want to completely discard → git reset --hard HEAD~1.
+For production rollbacks, we usually checkout a stable tag or branch (like release-1.1) and redeploy.
+This ensures we can quickly restore services without breaking workflows."
+
+
+7. What is the difference between git rebase and git merge? Which one do you prefer?
+
+Answer:
+
+git merge → Combines histories and creates a merge commit. Keeps history intact.
+git rebase → Reapplies commits on top of another branch, creating a cleaner linear history.
+"I prefer rebase for feature branches to keep history clean, but for shared branches like develop or main, 
+I prefer merge because it’s safer and preserves the true history of collaboration."
+
+
+
+
+
+8. How do you integrate Git with CI/CD pipelines?
+Answer:
+"We integrate Git with Jenkins using webhooks. When developers push code to GitHub or GitLab, 
+it triggers Jenkins pipelines. The pipeline then runs unit tests, static code analysis (SonarQube), 
+builds Docker images, and deploys to Kubernetes. We also enforce branch protection rules, 
+so only reviewed and tested code gets merged to main."
+
+
+
+
+9. What’s the difference between Git and GitHub/GitLab/Bitbucket?
+Answer:
+"Git is the version control tool itself. GitHub, GitLab, and Bitbucket are hosting platforms for Git repositories 
+that provide collaboration features like pull requests, code reviews, issue tracking, and CI/CD integration."
+
+
+
+10. Have you worked with Git hooks?
+
+Answer:
+"Yes, I’ve used pre-commit hooks for running code formatters (like black for Python) and linting 
+before committing code. I’ve also seen pre-push hooks used to run unit tests locally before pushing. 
+This helps catch issues early before code even reaches the central repo."
