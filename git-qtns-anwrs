@@ -11,7 +11,7 @@ It also enables collaboration, rollback to previous versions, and branching stra
 
 2. Can you explain the branching strategy you used in your projects?
 Answer:
-"In my projects, we mostly followed GitFlow. Developers create feature branches from develop, 
+"In my projects, we mostly followed feature branching model. Developers create feature branches from develop, 
 then raise pull requests for code review. Once merged, code is tested in staging, and finally, 
 we merge into main or master for production. For hotfixes, we create a branch directly from main, 
 fix the issue, and merge back into both main and develop.
