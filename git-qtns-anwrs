@@ -129,3 +129,5 @@ git push -u origin main
 git pull --rebase
 git push
 git merge <branch-name>
+git checkout <br-name>
+git branch -D <branch-name> " if you want to delete the branch with out merging to main branch "
