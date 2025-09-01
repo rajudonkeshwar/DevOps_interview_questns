@@ -46,6 +46,7 @@ Developers who are responsible for this conflict sit together and they will take
 Answer:
 git clone → Creates a local copy of a remote repo.
 git fetch → Brings changes from remote but doesn’t merge them.
+You want to check remote changes safely without affecting your working copy. Often used before pull requests or before merging.
 git pull → Fetches + merges changes into your local branch.
 "In practice, I use git fetch when I want to review changes before merging, and git pull when I want to directly update my local branch."
 
@@ -58,6 +59,10 @@ Answer:
 "Yes, I use Git tags for marking release versions, like v1.2.0. Tags are important because they give us a snapshot 
 of the code at the time of release. This helps in rollbacks — for example, if a deployment fails in production, 
 I can check out the previous release tag and redeploy."
+
+Git tags are like labels or bookmarks that point to a specific commit in the Git history.
+They are often used to mark release versions (v1.0, v2.5.1, etc.) so that we can easily refer back to them.
+Unlike branches, tags don’t move — they are fixed to a commit forever.
 
 
 
@@ -106,3 +111,20 @@ Answer:
 "Yes, I’ve used pre-commit hooks for running code formatters (like black for Python) and linting 
 before committing code. I’ve also seen pre-push hooks used to run unit tests locally before pushing. 
 This helps catch issues early before code even reaches the central repo."
+
+
+git init
+git config --global user.name <name>
+git config --global user.email <email>
+
+
+...or create a new repository on the command line
+echo "# terraform-cicd" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/rajudonkeshwar/terraform-cicd.git
+git push -u origin main
+git pull --rebase
+git push
