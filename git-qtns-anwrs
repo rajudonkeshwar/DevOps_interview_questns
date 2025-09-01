@@ -131,3 +131,5 @@ git push
 git merge <branch-name>
 git checkout <br-name>
 git branch -D <branch-name> " if you want to delete the branch with out merging to main branch "
+if you want to push the new branch to the central repo
+git push <repo-link> branch-name
