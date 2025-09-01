@@ -380,9 +380,11 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
 
 
       backend.daws82s.onine --> 404 --> NOTFOUND --> Client side error
-
-      403 --> Forbidden --> You dont have access to that
-      401 --> Unauthorized --> you should login
+            the server could not find the requested webpage or resource on the internet. It occurs when a user's browser attempts to access a URL 
+            that doesn't exist, either because it was mistyped, the page was moved or deleted, or the link is broken.
+      403 --> Forbidden --> This means that the requested resource exists, but the client (you, or your browser) 
+            does not have the necessary permissions or authorization to access it.
+      401 --> Unauthorized --> you should login with correct user-name and password
       405 --> HTTP POST, If you use GET --> Method not allowed
       400 --> bad request --> check the payload data once again
       
