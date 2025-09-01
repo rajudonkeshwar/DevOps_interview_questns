@@ -30,6 +30,8 @@ then stage it using git add, and complete the merge with git commit. For bigger 
 I discuss with the developer who wrote the conflicting code to avoid overwriting important logic. 
 I also make sure CI/CD pipelines pass after resolving the conflict."
 
+i use git merge command 
+
 when git absorbs different content in the same line number of main branch git can not take the decision 
 which one to keep which one not to keep so it will show the conflict, it can not take decision on its own
 Developers who are responsible for this conflict sit together and they will take proper decision
