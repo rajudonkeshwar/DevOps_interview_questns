@@ -386,7 +386,7 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
             does not have the necessary permissions or authorization to access it.
       401 --> Unauthorized --> you should login with correct user-name and password
       405 --> HTTP POST, If you use GET --> Method not allowed
-      400 --> bad request --> check the payload data once again
+      400 --> bad request --> check the payload data once , if rquest does not follow some rules related server than this error will occur
       
       500 --> Internal Server Error --> Server side error
       502 --> Bad Gateway --> Frontend not able to connect backend
