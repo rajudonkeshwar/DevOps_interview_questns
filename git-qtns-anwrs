@@ -128,3 +128,4 @@ git remote add origin https://github.com/rajudonkeshwar/terraform-cicd.git
 git push -u origin main
 git pull --rebase
 git push
+git merge <branch-name>
