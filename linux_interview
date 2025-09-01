@@ -388,9 +388,44 @@ BASH>> It is one of the most commanly used shell, and comes with better scriptin
       405 --> HTTP POST, If you use GET --> Method not allowed
       400 --> bad request --> check the payload data once , if rquest does not follow some rules related server than this error will occur
       
-      500 --> Internal Server Error --> Server side error
+      500 --> Internal Server Error --> Server side error, A 500 error, specifically known as an "HTTP 500 Internal Server Error," 
+              indicates a problem on the server's end that prevents it from fulfilling a client's request (e.g., a web browser requesting a webpage). 
+              This error is generic, meaning it does not specify the exact cause of the issue but rather signals that 
+              an unexpected condition or configuration problem occurred on the server.
+
       502 --> Bad Gateway --> Frontend not able to connect backend
       503 --> Service temporarily unavailable
+
+
+What is IP?
+ans: IP is the abbreviation of Internet Protocol. Internet Protocol is a network protocol which provides communication 
+     of the computers or any other network devices in the network. Internet Protocol (IP) is the most known rule set in computer networking. 
+     With these rule sets, it provides network communication.
+
+
+What is IPv4?
+ans: Before IPv4 vs IPv6 comparison, let’s learn what is IPv4. IPv4 is the abbreviation of Internet Protocol version 4. 
+It is the first IP version that we use in computer networking.  This protocol was introduced at 1982 by DARPA. 
+After one year at 1982, it is developed for SATNET and after that at 1983 for ARPANET.
+IPv4 has 32 bits ip address. This ip address is showed with a decimal notation. 
+In an IPv4 address, there are four octets (8 bits) divided by a dot (.). 
+Each octet shows a decimal number from 0 to 255. And totally, four octet and for number divided with dots represents an ip address.
+IPv4 address consist of network bits and host bits. The network bits show the network of 
+this ip address and the host parts shows the hosts bits that are used to produce usable host ip addresses in this network.
+Below, you can find an example for IPv4 address:
+192.168.100.5
+
+
+What is IPv6?
+ans: IPv6 is the new version of Internet Protocol. It has introduced at 1995 by IETF (Internet Engineering Task Force). 
+Basically, IPv6 has more features and has a larger address space if we compare IPv4 vs IPv6.
+As we have talked about above, IPv4 addresses use Decimal notation. In other words, to represent an IPv4 address, 
+we use the numbers between 0-9. Unlike IPv4, IPv6 uses Hexadecimal notation. This means that, to express an IPv6 address, we can use the number from 0 to F.
+To provide a larger address space, in this new internet protocol version 128 bits ipv6 addresses are used. 
+In an IPv6 address there are 8 groups. Each group is separated by a colon (:).
+Below, you can find an example for an IPv6 address:
+2001:AAB1:C231:0000:0000:123:334:1
+There are different IPv6 address types.
             
     
 
