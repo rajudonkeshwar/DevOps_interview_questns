@@ -11,12 +11,11 @@ It also enables collaboration, rollback to previous versions, and branching stra
 
 2. Can you explain the branching strategy you used in your projects?
 Answer:
-"In my projects, we mostly followed feature branching model. Developers create feature branches from development, 
-then raise pull requests for code review. Once merged, code is tested in staging, and finally, 
-we merge into main or master for production. For hotfixes, we create a branch directly from main, 
-fix the issue, and merge back into both main and develop.
-In some microservices projects, we used trunk-based development for faster releases, 
-where developers commit small changes frequently to the main branch with feature flags."
+"In my projects, we mostly followed feature branching model. Developers will create feature branches from main branch
+  we do development in feature branches will deploy in to dev environment if it is success we will rise PR, we will merge
+  to main branch we will deploy to QA, UAT, PRE-PROD, PROD"
+  while doing deployment if we get defect we will again create feature branch we will fix defects and push this code to the main
+  branch and we will deploy to all the environments
 
 
 
@@ -24,11 +23,17 @@ where developers commit small changes frequently to the main branch with feature
 
 3. How do you resolve merge conflicts in Git?
 Answer:
+
 "When there’s a merge conflict, I first do a git pull to bring the latest changes. 
 If conflicts exist, Git marks them in the file. I manually edit the file to choose or combine the right code, 
 then stage it using git add, and complete the merge with git commit. For bigger conflicts, 
 I discuss with the developer who wrote the conflicting code to avoid overwriting important logic. 
 I also make sure CI/CD pipelines pass after resolving the conflict."
+
+when git absorbs different content in the same line number of main branch git can not take the decision 
+which one to keep which one not to keep so it will show the conflict, it can not take decision on its own
+Developers who are responsible for this conflict sit together and they will take proper decision
+
 
 
 
