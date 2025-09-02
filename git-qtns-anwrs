@@ -187,4 +187,5 @@ git reset --soft cid ( N-1 ) ( to move from local to staging )
 git reset --mixed cid (n-1) ( To move from local to workspace )
 
 git commit --amend -m "label1" -m "label2" -m "label3"
+git checkout refs/tags/anusha( if we have barnch and tag with same name we can use this command )
 
