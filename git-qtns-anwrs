@@ -180,4 +180,5 @@ git push origin tag-name < if you want to push the tag name to git-hub >
 git branch -r
 git checkout manorama --
 git commit --amend -m " AC FEATURE "
+git revert <commit-id>
 
