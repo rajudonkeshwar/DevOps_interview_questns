@@ -178,4 +178,5 @@ git push <repo-link> branch-name
 git push origin branch-namegit
 git push origin tag-name < if you want to push the tag name to git-hub >
 git branch -r
+git checkout manorama --
 
