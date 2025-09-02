@@ -181,4 +181,5 @@ git branch -r
 git checkout manorama --
 git commit --amend -m " AC FEATURE "
 git revert <commit-id>
+git commit -am "committed modified file "
 
