@@ -182,4 +182,7 @@ git checkout manorama --
 git commit --amend -m " AC FEATURE "
 git revert <commit-id>
 git commit -am "committed modified file "
+git reset HEAD <fname> ( to move from staging to workspace )
+git reset --soft cid ( N-1 ) ( to move from local to staging )
+git reset --mixed cid (n-1) ( To move from local to workspace )
 
