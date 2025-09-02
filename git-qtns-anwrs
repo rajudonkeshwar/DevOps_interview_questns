@@ -7,8 +7,6 @@ In DevOps, it’s the backbone of our CI/CD pipelines — developers push code t
 and that triggers automated builds, tests, and deployments. 
 It also enables collaboration, rollback to previous versions, and branching strategies for parallel development."
 
-
-
 2. Can you explain the branching strategy you used in your projects?
 Answer:
 "In my projects, we mostly followed feature branching model. Developers will create feature branches from main branch
@@ -25,9 +23,6 @@ we have two branches
 we will create the feature branch from main branch, will do the development then we will run the cicd, we will make sure that application is
 successfully deployed in develpoment environment, once it is successfully deployed in dev environment our developers will rise a pull request to main branch
 once PR is merged we will proceed to QA, UAT, PREPOD, PROD environmets, once it is successful we will go to the production ENV from main/master branch
-
-
-
 
 
 3. How do you resolve merge conflicts in Git?
@@ -47,9 +42,6 @@ Developers who are responsible for this conflict sit together and they will take
 
 
 
-
-
-
 4. What’s the difference between git fetch, git pull, and git clone?
 
 Answer:
@@ -58,8 +50,6 @@ git fetch → Brings changes from remote but doesn’t merge them.
 You want to check remote changes safely without affecting your working copy. Often used before pull requests or before merging.
 git pull → Fetches + merges changes into your local branch.
 "In practice, I use git fetch when I want to review changes before merging, and git pull when I want to directly update my local branch."
-
-
 
 
 
@@ -79,6 +69,49 @@ Unlike branches, tags don’t move — they are fixed to a commit forever.
 Answer:
 "There are a few ways depending on the situation:
 If I need to undo the last commit but keep changes locally → git reset --soft HEAD~1.
+
+. git reset --soft
+👉 Moves HEAD to a previous commit, but keeps all changes staged.
+The commit is removed from history.
+Your code remains exactly as it was before reset.
+Example:
+
+Commit history before reset:
+A - B - C (HEAD)
+Run:
+git reset --soft HEAD~1
+Now:
+A - B (HEAD)
+Commit C is removed.
+But changes from C are still staged → you can recommit (maybe with a different message or after adding missing files)
+When to use:
+You committed too early and want to change the commit message.
+You forgot to add a file and want to fix the commit.
+You want to squash multiple commits into one clean commit.
+
+
+🔹 2. git reset --hard
+👉 Moves HEAD to a previous commit and discards all changes.
+The commit is removed from history.
+Changes from that commit are also deleted from staging and working directory.
+Your code looks exactly like the older commit.
+Example:
+Commit history before reset:
+A - B - C (HEAD)
+Run:
+git reset --hard HEAD~1
+Now:
+A - B (HEAD)
+Commit C is removed.
+Changes from C are completely gone (like you never wrote them).
+⚠️ Hard reset is destructive — unless you use git reflog to recover.
+When to use:
+You made a completely wrong commit and want to erase it.
+You want to discard local changes and start fresh.
+Example: committed secrets, debug files, or broken code.
+
+
+Changes are kept in staging → ready to recommit.
 If I want to completely discard → git reset --hard HEAD~1.
 For production rollbacks, we usually checkout a stable tag or branch (like release-1.1) and redeploy.
 This ensures we can quickly restore services without breaking workflows."
