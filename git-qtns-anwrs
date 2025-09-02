@@ -186,3 +186,5 @@ git reset HEAD <fname> ( to move from staging to workspace )
 git reset --soft cid ( N-1 ) ( to move from local to staging )
 git reset --mixed cid (n-1) ( To move from local to workspace )
 
+git commit --amend -m "label1" -m "label2" -m "label3"
+
