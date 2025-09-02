@@ -18,6 +18,15 @@ Answer:
   branch and we will deploy to all the environments
 
 
+we have two branches 
+ one is main branch
+ second is feature branch
+
+we will create the feature branch from main branch, will do the development then we will run the cicd, we will make sure that application is
+successfully deployed in develpoment environment, once it is successfully deployed in dev environment our developers will rise a pull request to main branch
+once PR is merged we will proceed to QA, UAT, PREPOD, PROD environmets, once it is successful we will go to the production ENV from main/master branch
+
+
 
 
 
