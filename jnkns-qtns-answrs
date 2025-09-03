@@ -82,7 +82,50 @@ Answer:
 Kubernetes plugin for deployments, Slack plugin for notifications, and Docker plugin for image builds. 
 In one project, we used the Blue Ocean plugin for better visualization of pipelines."
 
-10. How do you make Jenkins highly available?
 
+
+10. How do you make Jenkins highly available?
 Answer:
-"Since Jenkins is a single point of failure, in production we run Jenkins in Docker/Kubernetes with persistent volumes for configuration and jobs. We also take regular backups of Jenkins home directory. Some teams even set up Jenkins in a master-slave architecture or use external load balancers to improve availability."
+"Since Jenkins is a single point of failure, in production we run Jenkins in Docker/Kubernetes 
+with persistent volumes for configuration and jobs. We also take regular backups of Jenkins home directory. 
+Some teams even set up Jenkins in a master-slave architecture or use external load balancers to improve availability."
+
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/org/myapp.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+
+        stage('Docker Build & Push') {
+            steps {
+                sh """
+                  docker build -t myapp:${BUILD_NUMBER} .
+                  docker tag myapp:${BUILD_NUMBER} myrepo/myapp:${BUILD_NUMBER}
+                  docker push myrepo/myapp:${BUILD_NUMBER}
+                """
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh """
+                  kubectl set image deployment/myapp myapp=myrepo/myapp:${BUILD_NUMBER} -n dev
+                """
+            }
+        }
+    }
+}
+
