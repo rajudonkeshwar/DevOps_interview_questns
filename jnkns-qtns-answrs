@@ -1,0 +1,88 @@
+1. What is Jenkins and how have you used it in your projects?
+Answer (Interview Style):
+"Jenkins is an open-source automation server that we use mainly for CI/CD. In my projects, 
+I’ve set up Jenkins pipelines that start right after code is pushed to GitHub. 
+The pipeline runs unit tests, performs static code analysis with SonarQube, 
+builds Docker images, pushes them to ECR, and then deploys to Kubernetes using Helm. 
+I also manage shared libraries in Jenkins so that multiple teams can reuse common pipeline steps."
+
+
+
+
+2. How do you create a Jenkins pipeline?
+Answer:
+"I usually go with a declarative pipeline using a Jenkinsfile stored in the repo. 
+That way, the pipeline is version-controlled along with the code. 
+I define stages like Build, Test, SonarQube Scan, Docker Build, Deploy to Staging, and Deploy to Prod.
+For example, in one of my projects, whenever a new tag is pushed, Jenkins triggers a pipeline that builds a release 
+Docker image and deploys it to production automatically."
+
+
+
+3. How do you integrate Jenkins with GitHub or GitLab?
+Answer:
+"We integrate Jenkins with GitHub using webhooks. Whenever developers push code to a branch, 
+the webhook notifies Jenkins and triggers the pipeline. On the Jenkins side, 
+we configure the Git plugin with repository URL and credentials, so Jenkins can pull the latest code. 
+For GitLab, we can use the GitLab plugin or just set up similar webhook triggers."
+
+
+
+
+4. How do you handle secrets in Jenkins pipelines?
+Answer:
+"I avoid hardcoding credentials in Jenkinsfiles. Instead, I store secrets like AWS access keys, Docker Hub credentials, 
+or Kubernetes kubeconfig in Jenkins Credentials Manager. In the pipeline, I access them securely using withCredentials blocks. 
+In one project, we also integrated Jenkins with HashiCorp Vault so secrets were fetched dynamically instead of storing them in Jenkins itself."
+
+
+
+5. Have you worked with Jenkins agents or distributed builds?
+Answer:
+"Yes, in my last project, we used Jenkins master with multiple agents. The agents handled different workloads — for example, 
+one agent had Docker installed for building images, another had Kubernetes CLI tools for deployment. 
+We used labels to assign specific jobs to the right agent. This made builds faster and distributed across nodes instead of overloading one server."
+
+
+
+
+6. What happens if a Jenkins job fails? How do you troubleshoot?
+Answer:
+"First, I check the Jenkins console output for logs to identify the error. If it’s a build failure, 
+I verify the build tool logs like Maven or npm. If it’s related to deployment, I check Kubernetes or AWS logs. 
+Sometimes, the issue comes from missing credentials or wrong branch configuration. 
+I also make sure the pipeline sends Slack or email notifications so developers are aware immediately. 
+Recently, I fixed a failure where the pipeline was breaking because the Docker build stage ran out of disk 
+space on the agent — I added a cleanup stage to remove unused images."
+
+
+
+
+7. Have you used Jenkins with Docker and Kubernetes?
+Answer:
+"Yes, in most of my projects. Jenkins builds Docker images and pushes them to registries like DockerHub or AWS ECR. 
+Then, using kubectl or Helm in the pipeline, Jenkins deploys the image to our EKS cluster. 
+We also used separate pipelines for rolling updates and rollbacks in Kubernetes, so production deployments were safer."
+
+
+
+8. How do you ensure Jenkins pipelines are reusable and maintainable?
+
+Answer:
+"I use Jenkins shared libraries for common pipeline logic. For example, instead of repeating SonarQube scan 
+steps in every project, I moved that into a shared library function. This made pipelines easier to maintain across multiple teams. 
+I also keep pipeline scripts clean by splitting stages logically and adding post actions for cleanup and notifications."
+
+
+
+9. What plugins have you used in Jenkins?
+
+Answer:
+"I’ve used several — Git plugin for SCM, SonarQube plugin for code quality, 
+Kubernetes plugin for deployments, Slack plugin for notifications, and Docker plugin for image builds. 
+In one project, we used the Blue Ocean plugin for better visualization of pipelines."
+
+10. How do you make Jenkins highly available?
+
+Answer:
+"Since Jenkins is a single point of failure, in production we run Jenkins in Docker/Kubernetes with persistent volumes for configuration and jobs. We also take regular backups of Jenkins home directory. Some teams even set up Jenkins in a master-slave architecture or use external load balancers to improve availability."
