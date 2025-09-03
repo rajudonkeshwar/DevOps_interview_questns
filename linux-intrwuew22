@@ -98,6 +98,15 @@ In production, I also use ncdu, which gives an interactive view of disk usage.
 Answer:
 Some of the common steps I follow are:
 Disable root SSH login and use key-based authentication.
+
+first i will create public key and private key using below command
+ssh-keygen -t rsa -b 4096
+
+i will copy the public key to the .ssh/ authorized_keys folder
+
+then i use (ssh -i < private-key > user@publicip)
+
+
 Use firewalls like iptables or firewalld to restrict ports.
 iptables works by defining rules in chains that inspect network packets and decide whether to allow, reject, or drop them.
 Rules are organized into tables (like filter, nat, mangle).
