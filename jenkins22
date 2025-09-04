@@ -87,6 +87,28 @@ ans: “Executors in Jenkins decide how many jobs a node can run in parallel. Fo
       it can run 2 builds at the same time; if all executors are busy, new jobs wait in the queue. 
       I usually set the number of executors based on the system’s CPU and memory so we get good parallelism without overloading the server.”
 
+10) Difference between master and agent in jenkins?
+ans: “In Jenkins, the master (or controller) is the brain of the system. It’s responsible for handling the web interface, 
+      scheduling jobs, managing build pipelines, and keeping track of job configurations.
+
+      The agents (or nodes) are the worker machines where the actual jobs run. The master assigns tasks to agents, 
+      and the agents use their executors to execute builds. This way, Jenkins can distribute workloads across multiple machines.
+
+      In real projects, I’ve used agents when we needed to run jobs on different environments — for example, 
+      one agent for Linux builds, another for Windows, or even containerized agents in Kubernetes. 
+      This helps with scalability and better resource utilization.”
+
+11) How can you secure your jenkins in your project?
+ans: “To secure Jenkins, I usually start with enabling proper authentication and authorization. 
+      I integrate Jenkins with LDAP or Active Directory, or sometimes use Jenkins’ own user database, 
+      and then apply role-based access control so users only get the permissions they need.
+      Next, I secure the communication by enabling HTTPS with SSL certificates. I also make sure Jenkins runs on a restricted port, 
+      and the underlying server’s firewall only allows trusted access.
+      Another important part is plugin and system updates — I regularly update Jenkins and its plugins to patch security vulnerabilities. 
+      I also restrict script approvals, secure credentials using the Jenkins credentials store, and avoid exposing sensitive data in pipelines.
+      In real projects, I also integrate Jenkins with tools like Vault or AWS Secrets Manager for managing secrets, 
+      and I always keep backups of the Jenkins home directory in case of any compromise.”
+      
 
 
 
