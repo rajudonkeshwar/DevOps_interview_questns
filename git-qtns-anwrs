@@ -189,3 +189,20 @@ git reset --mixed cid (n-1) ( To move from local to workspace )
 git commit --amend -m "label1" -m "label2" -m "label3"
 git checkout refs/tags/anusha( if we have barnch and tag with same name we can use this command )
 
+11) why we call git as a version control system?
+
+ans: We call Git a Version Control System (VCS) because it manages and tracks changes made to files over time. 
+Whenever we make updates to our code, Git records a snapshot of those changes. This gives us the ability to:
+Maintain history – We can go back and see what changes were made, when, and by whom.
+Revert if needed – If something breaks, we can roll back to a stable version.
+Work collaboratively – Multiple developers can work on the same project at the same time without overwriting each other’s work.
+Branch and merge – We can create branches for new features or bug fixes, and later merge them into the main branch.
+In short, Git is called a version control system because it helps us keep track of different versions of code and makes 
+teamwork efficient and safe.
+
+Git is called a Distributed Version Control System (DVCS) because every developer’s machine has 
+a complete copy of the entire repository, including its full history. 
+Unlike centralized systems, where you depend on a single server to fetch history or commit changes, 
+Git allows you to work completely offline — you can commit, branch, view logs, and even revert to old versions 
+without needing network connectivity.
+
