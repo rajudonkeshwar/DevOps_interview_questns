@@ -18,6 +18,58 @@ they support multiple stages, parallel builds, approvals, and can easily integra
 So, in simple terms: I use Freestyle for small, one-off jobs, but for real-world CI/CD setups, 
 I prefer Pipelines because they are maintainable, scalable, and version-controlled.”
 
+3) What are the types of pipelines in Jenkins?
+“In Jenkins we have two main types of pipelines: Declarative and Scripted. 
+Declarative is the most common — it’s simple, structured, and easy to maintain with stages and steps. 
+Scripted pipelines are written fully in Groovy, which gives more flexibility but requires more coding. 
+In practice, I usually prefer declarative for CI/CD, and use scripted only when I need advanced custom logic.”
+
+4) what is jenkins file?
+ans: “A Jenkinsfile is basically a text file that contains the definition of a Jenkins pipeline. 
+      Instead of configuring jobs manually in the Jenkins UI, we write the pipeline as code inside this file. 
+      It usually there in the project’s source code repository, so the CI/CD process is version-controlled along with the application.
+
+      In the Jenkinsfile we can define different stages like build, test, code quality scan, Docker image build, and deployment. 
+      This makes the pipeline reusable, easy to maintain, and transparent for the whole team. In my projects, 
+      we typically commit the Jenkinsfile to Git, so whenever a developer pushes changes, Jenkins automatically picks up the 
+      Jenkinsfile and executes the pipeline.”
+
+5) In your project where jenkins is installed?
+ans: “Jenkins can be installed on different platforms depending on the setup. It can run on a local machine, 
+      on a dedicated server, or inside a container. In many projects, we install Jenkins on a Linux server, 
+      either on-prem or in the cloud like AWS EC2. It can also be run as a Docker container, which makes it easier to manage and scale.
+
+      In my experience, I’ve mostly worked with Jenkins installed on Linux servers and sometimes as a Dockerized 
+      Jenkins in cloud environments, because it gives more flexibility and integration with other DevOps tools.”
+
+
+6) What prerequisite should i need to install jenkins? and how do i update jenkins version?
+ANS: “To install Jenkins, t  he main prerequisite is Java, since Jenkins is a Java-based application. 
+So we need a supported JDK installed and properly configured with JAVA_HOME. Apart from that, 
+we need a stable network connection, proper user permissions, and depending on the OS, 
+tools like wget or curl to download the Jenkins package. If we’re installing on Linux, 
+we also make sure the system packages are up to date and ports like 8080 are open.
+
+For updating Jenkins, there are two ways. If it’s installed from a package manager like apt or yum, 
+I just update it with the package manager commands. For example, on Ubuntu we run apt-get update && apt-get upgrade jenkins. 
+If it’s installed via a WAR file, I download the latest Jenkins WAR from the official site, replace the old one, and restart Jenkins. 
+I also make sure to take a backup before upgrading, especially of the Jenkins home directory, to avoid data loss.
+In my experience, I’ve mostly worked on Linux servers, 
+so I’ve used both package manager upgrades and WAR file replacements depending on how Jenkins was set up in the project.”
+
+
+7) How do you configure a job in Jenkins?
+ans: “To configure a job in Jenkins, I usually start by creating a new item and choosing the type, like Freestyle or Pipeline. 
+For a Freestyle job, I configure the source code repository details, set the build triggers like Git webhooks or scheduled builds, 
+then define the build steps — for example running Maven, npm, or shell scripts — and finally configure post-build actions 
+such as archiving artifacts or sending notifications.
+
+For Pipeline jobs, instead of manually configuring steps, I point Jenkins to the Jenkinsfile in the repository. 
+That way, the entire CI/CD process is defined as code, including build, test, and deployment stages. 
+This approach is more maintainable and version-controlled.
+
+In my projects, I mostly configure jobs through Pipelines with Jenkinsfile, but for simple one-off tasks I still use Freestyle.”
+
 
 
 
