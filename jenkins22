@@ -4,5 +4,21 @@ integration of the code from source, installing dependencies, running unit test 
 in to dev or prod environment, instead of doing it manually, we can automate through CI-CD process using jenkins pipeline.
 
 
+2) What is the difference between freestyle project and pipeline?
+“In Jenkins we mainly have two approaches: Freestyle projects and Pipelines.
+Freestyle is the traditional way, where we configure everything through the Jenkins UI. 
+It’s simple and quick for small jobs, like pulling code from Git, running a build command, 
+or archiving artifacts. But it has limitations — it’s not easy to handle complex workflows, 
+parallel execution, or version control of the job itself.
+
+On the other hand, Pipeline projects are more advanced and follow the concept of Pipeline as Code. 
+Here, we define the entire CI/CD flow in a Jenkinsfile, which is stored in source control 
+along with the application code. Pipelines are highly flexible, 
+they support multiple stages, parallel builds, approvals, and can easily integrate with tools like Docker, Kubernetes, and AWS.
+So, in simple terms: I use Freestyle for small, one-off jobs, but for real-world CI/CD setups, 
+I prefer Pipelines because they are maintainable, scalable, and version-controlled.”
+
+
+
 
 
