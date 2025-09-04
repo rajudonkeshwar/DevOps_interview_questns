@@ -1,0 +1,6 @@
+1) What is a Jenkins pipeline?
+ans: A pipeline is combination of steps writes it in a script, where we take care software development process through steps which includes
+integration of the code from source, installing dependencies, running unit test cases, building and scaning the image, finally deploying it
+in to dev or prod environment, instead of doing it manually, we can automate through CI-CD process using jenkins pipeline
+
+
