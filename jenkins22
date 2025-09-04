@@ -71,6 +71,23 @@ This approach is more maintainable and version-controlled.
 In my projects, I mostly configure jobs through Pipelines with Jenkinsfile, but for simple one-off tasks I still use Freestyle.”
 
 
+8) what is the difference between pollSCM and GitHub hook trigger?
+Ans: With Poll SCM, Jenkins itself keeps checking the Git repository at regular intervals — 
+     for example every 5 minutes — to see if there are any changes. If it finds new commits, it triggers a build. 
+     The drawback is that Jenkins keeps polling even if there are no changes, so it puts unnecessary load on Jenkins and the Git server.
+
+     With a GitHub hook trigger, it works the other way around. Instead of Jenkins polling, 
+     GitHub sends a webhook notification to Jenkins as soon as there’s a push event. Jenkins then immediately triggers the build. 
+     This is more efficient and real-time compared to Poll SCM.
+
+     In practice, I prefer using GitHub webhooks, because it reduces load and makes the pipeline respond instantly to code changes.”
+
+9) What are the executors in jenkins?
+ans: “Executors in Jenkins decide how many jobs a node can run in parallel. For example, if a node has 2 executors, 
+      it can run 2 builds at the same time; if all executors are busy, new jobs wait in the queue. 
+      I usually set the number of executors based on the system’s CPU and memory so we get good parallelism without overloading the server.”
+
+
 
 
 
