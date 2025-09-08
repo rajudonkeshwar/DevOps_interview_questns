@@ -34,6 +34,11 @@ Answer:
 "I avoid hardcoding credentials in Jenkinsfiles. Instead, I store secrets like AWS access keys, Docker Hub credentials, 
 or Kubernetes kubeconfig in Jenkins Credentials Manager. In the pipeline, I access them securely using withCredentials blocks. 
 In one project, we also integrated Jenkins with HashiCorp Vault so secrets were fetched dynamically instead of storing them in Jenkins itself."
+“In production, Vault is almost always deployed on a separate server or as a cluster because it’s a central secrets management 
+system for the entire organization, not just for Jenkins. Running it separately ensures isolation, better security, and high availability. 
+For example, in one of my projects, we deployed a 3-node Vault cluster with Raft storage, and Jenkins integrated with 
+it using AppRole authentication to fetch credentials dynamically. This setup allowed multiple systems 
+like Jenkins, Kubernetes, and Ansible to share the same secure secret store.”
 
 
 
@@ -41,7 +46,8 @@ In one project, we also integrated Jenkins with HashiCorp Vault so secrets were 
 Answer:
 "Yes, in my last project, we used Jenkins master with multiple agents. The agents handled different workloads — for example, 
 one agent had Docker installed for building images, another had Kubernetes CLI tools for deployment. 
-We used labels to assign specific jobs to the right agent. This made builds faster and distributed across nodes instead of overloading one server."
+We used labels to assign specific jobs to the right agent. This made builds faster and 
+distributed across nodes instead of overloading one server."
 
 
 
@@ -69,7 +75,7 @@ We also used separate pipelines for rolling updates and rollbacks in Kubernetes,
 8. How do you ensure Jenkins pipelines are reusable and maintainable?
 
 Answer:
-"I use Jenkins shared libraries for common pipeline logic. For example, instead of repeating SonarQube scan 
+"I use Jenkins shared libraries for common pipeline logic. For example, instead of repeating build
 steps in every project, I moved that into a shared library function. This made pipelines easier to maintain across multiple teams. 
 I also keep pipeline scripts clean by splitting stages logically and adding post actions for cleanup and notifications."
 
