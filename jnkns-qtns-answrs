@@ -80,7 +80,7 @@ I also keep pipeline scripts clean by splitting stages logically and adding post
 Answer:
 "I’ve used several — Git plugin for SCM, SonarQube plugin for code quality, 
 Kubernetes plugin for deployments, Slack plugin for notifications, and Docker plugin for image builds. 
-In one project, we used the Blue Ocean plugin for better visualization of pipelines."
+In one project, we used the Blue Ocean plugin for better visualization of pipelines, AWS Credentials, AWS Steps"
 
 
 
