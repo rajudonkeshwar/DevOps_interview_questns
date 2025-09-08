@@ -142,6 +142,25 @@
     
     📏 Vertical Pod Autoscaler (VPA) works differently. Instead of adding more Pods, 
     it adjusts the CPU and memory requests/limits of existing Pods. So it gives a Pod more power if it needs it.
+
+
+8) Explain architecture of kubernetes?
+
+ans: 🏗 Kubernetes Architecture (in simple words)
+1. Control Plane (Master Node) 🧠
+This is the brain of Kubernetes. It makes decisions about what should run where.
+Main components:
+API Server 📡 → The entry point. All kubectl commands go here.
+etcd 🗂 → A key-value database that stores the cluster’s state (like which pods are running, configs, etc.).
+Scheduler 📅 → Decides on which worker node a new pod should run.
+Controller Manager 🤖 → Makes sure the desired state (from manifests) matches the actual state (keeps things running).
+
+2. Worker Nodes (Minions) 💪
+These are the machines (VMs or physical servers) where your application actually runs.
+Main components:
+Kubelet 📦 → Talks to the control plane, makes sure containers are running inside pods.
+Kube-proxy 🌐 → Handles networking, so services can talk to each other.
+Container runtime 🐳 → Runs the actual containers (Docker, containerd, CRI-O, etc.).
             
 
         
