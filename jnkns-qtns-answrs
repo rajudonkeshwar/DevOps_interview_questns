@@ -1,6 +1,6 @@
 1. What is Jenkins and how have you used it in your projects?
 Answer (Interview Style):
-"Jenkins is an open-source automation server that we use mainly for CI/CD. In my projects, 
+"Jenkins is an open-source automation tool that we use mainly for CI/CD. In my projects, 
 I’ve set up Jenkins pipelines that start right after code is pushed to GitHub. 
 The pipeline runs unit tests, performs static code analysis with SonarQube, 
 builds Docker images, pushes them to ECR, and then deploys to Kubernetes using Helm. 
