@@ -17,3 +17,42 @@ ans:
 ans: “The command dnf updateinfo list security is used to list all security advisories related to installed packages on a Linux system. 
     It’s mainly used for vulnerability management, ensuring only security patches are applied, 
     which is critical in production environments for maintaining system security and compliance.”
+
+
+3))) Question: What is the difference between an inventory file and a configuration file in Ansible?
+
+Answer:
+“In Ansible, the inventory file defines where automation should run, meaning it contains the list of hosts, 
+their groups, IP addresses, and variables. For example, if I have a group of web servers and a group of database servers, 
+I’ll declare them in the inventory so Ansible knows which machines to target.
+
+On the other hand, the configuration file (ansible.cfg) controls how Ansible runs. 
+It sets defaults like the location of the inventory file, the default remote user, privilege escalation methods, logging, and timeouts. 
+Essentially, it’s like a control panel that defines Ansible’s behavior.
+
+So in simple terms: the inventory file tells Ansible which servers to manage, and the configuration file tells 
+Ansible how to connect and execute tasks on them. Both work together — for example, 
+I might define my servers in inventory.ini and configure Ansible to use a specific SSH user and sudo settings in ansible.cfg.”
+
+
+4))) is it mandatory to mention inventroy file path in command if i already use its path on configuration file?
+ans: No, it’s not mandatory to mention the inventory file path in the command if you have already specified it in your ansible.cfg
+      📌 When you do need to specify inventory path (-i)
+
+      If you want to override the default inventory. Example:
+      ansible-playbook -i staging.ini site.yml
+      ansible-playbook -i production.ini site.yml
+
+      If you didn’t set the inventory path in ansible.cfg.“If I place an ansible.cfg file in my current working directory, 
+      Ansible will prioritize it over the user or system-level config. This is very useful for project-specific setups, 
+      because I can keep different configurations isolated per project without overriding the global /etc/ansible/ansible.cfg.”
+
+      “Yes, we can define a custom inventory file in ansible.cfg under the [defaults] section. This way, 
+       Ansible automatically picks the inventory without requiring us to pass -i each time. For example, 
+       in one project I may set the default inventory to a staging file, but if I want to run against production, 
+       I can still override it with the -i option. This makes the workflow flexible and avoids mistakes.”
+
+      
+
+
+
