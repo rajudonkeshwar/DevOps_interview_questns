@@ -231,10 +231,15 @@ A route table contains a set of rules called routes, that are used to determine,
 be directed, each subnet in a vpc must be associated with route table which controls the trffic with in the subnet.
 
 Security Groups – Stateful firewalls that control inbound and outbound traffic at the instance level.
+
 Network ACLs (Access Control Lists) – Stateless firewalls that control traffic at the subnet level.
+
 VPC Peering / Transit Gateway – Enables communication between multiple VPCs, either within the same account or across accounts.
+
 VPC Endpoints – Private connections between the VPC and AWS services (like S3, DynamoDB) without using the internet.
-DHCP Options, Elastic IPs, and VPN / Direct Connect – For DNS settings, static IPs, and hybrid connectivity with on-premises data centers.
+It is a networking connection between two virtual private clouds with in the same or different aws regions.
+ vpc peering allows you to connect to other vpc and share resources across them securily using private ip addresses.
+Vpc ensure that route tables are configured to allow traffic between the vpcs.
 
 ✅ Real-time example:
 In one project, I designed a VPC with public subnets for ALBs and bastion hosts, private subnets for 
