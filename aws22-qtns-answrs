@@ -126,7 +126,7 @@ Answer:
 Amazon Route 53 is AWS’s scalable and highly available DNS (Domain Name System) service. It’s named Route 53 because DNS works on port 53.
 It mainly provides three functions:
 Domain Registration – You can register and manage domain names directly in Route 53.
-DNS Routing – It translates human-readable domain names (like example.com) into IP addresses so users can connect to applications. 
+DNS Routing – It maps human-readable domain names (like example.com) with IP addresses so users can connect to applications. 
 It supports different routing policies such as Simple, Weighted, Latency-based, Failover, Geolocation, and Multi-value routing.
 Health Checks & Monitoring – It can check the health of endpoints and route traffic away from unhealthy resources, improving reliability.
 
@@ -138,3 +138,59 @@ I’ve also set up failover routing with Route 53 so that if the primary web ser
 traffic automatically shifts to a standby server in another region.
 So, Route 53 is not just a DNS service but also plays a key role in global traffic management, 
 high availability, and disaster recovery.
+
+
+8) How does route53 will do health checks and monitoring?
+
+     Answer:
+Route 53 performs health checks and monitoring by continuously sending requests to your application endpoints (like a web server, database, 
+or another AWS resource) from multiple AWS locations worldwide.
+
+Here’s how it works:
+Health Checks:
+You define a health check in Route 53 by specifying an endpoint (IP or domain), protocol (HTTP, HTTPS, or TCP), 
+and conditions (like response code or string match).
+Route 53 agents in different regions send requests at regular intervals (default every 30 seconds, can be 10 seconds for fast checks).
+If a majority of checkers detect failures, the endpoint is considered unhealthy.
+
+Integration with DNS Routing:
+Health checks are tied to DNS records. If a record’s target is unhealthy, 
+Route 53 will automatically stop returning that endpoint in DNS responses.
+This enables failover or multi-region high availability.
+
+Alarms & Monitoring:
+Health checks can be associated with CloudWatch Alarms. For example, if a health check fails, CloudWatch can trigger an SNS notification 
+to alert the team.
+This provides both automated failover and proactive monitoring.
+
+
+9) How do you secure an S3 bucket?
+
+ans: 
+Securing an S3 bucket is one of the most important responsibilities in AWS because by default, 
+S3 buckets are private, but misconfigurations can lead to data leaks. 
+I usually apply a defense-in-depth approach with the following measures:
+
+Block Public Access – At both the account and bucket level, I enable “Block Public Access” settings 
+to make sure no accidental public exposure happens.
+
+Bucket Policies and IAM Policies – I use least-privilege permissions, granting only the required users, 
+roles, or applications access to the bucket. For example, giving read-only access to an application role instead of full control.
+
+Encryption – I enable server-side encryption (SSE-S3 or SSE-KMS) so that all objects are encrypted at rest. 
+For highly sensitive data, I use SSE-KMS with AWS KMS keys for tighter control and auditing.
+
+Access Logging & Monitoring – I turn on S3 access logs or CloudTrail data events to track who is accessing the bucket. 
+I also set up CloudWatch alarms to detect suspicious activity.
+
+MFA Delete – For critical buckets, I enable MFA Delete to protect against accidental or malicious deletion of objects.
+
+VPC Endpoints – I restrict S3 access so that it only comes from specific VPC endpoints, keeping traffic private and within the AWS network.
+
+✅ Real-time example:
+In one project, we had an S3 bucket storing build artifacts. We secured it by applying a bucket policy 
+that only allowed access from our CI/CD IAM role, enabled encryption with KMS, and restricted 
+all access to our private VPC endpoint. This ensured the bucket was not accessible from the public internet.
+So in short:
+“To secure an S3 bucket, I block public access, apply least-privilege IAM and bucket policies, enable encryption, 
+set up monitoring, and where required, enforce MFA Delete and VPC endpoints.”
