@@ -56,3 +56,85 @@ IAM Role = Temporary identity assumed by trusted entities, with no long-term cre
 In real-time, I’ve used:
 IAM Users for team members who need direct access with MFA.
 IAM Roles for EC2, Lambda, and CI/CD pipelines to securely access resources without hardcoding credentials.
+
+
+5) What are the types of storage in AWS?
+
+ans: AWS offers different types of storage services, each designed for specific use cases:
+Amazon S3 (Simple Storage Service) – Object storage. It’s highly durable and scalable, mainly used for backups, 
+static content, logs, and data lakes.
+Amazon EBS (Elastic Block Store) – Block storage. It works like a virtual hard disk for EC2 instances. 
+Best for databases and applications requiring low-latency access.
+Amazon EFS (Elastic File System) – File storage. A shared file system that can be mounted across multiple EC2 instances, 
+useful for content management and web apps.
+
+6) What are the types of Load Balancers in AWS, can you explain me about them?
+ans:
+1. Application Load Balancer (ALB)
+Operates at Layer 7 (Application Layer).
+Best for web applications since it understands HTTP/HTTPS protocols.
+Supports advanced routing:
+Host-based routing (e.g., send traffic for api.example.com to one target group, app.example.com to another).
+Path-based routing (e.g., /images goes to one service, /videos to another).
+Supports SSL termination, WebSockets, HTTP/2, and integrates with ECS/EKS for containerized workloads.
+
+✅ Real-time use: I’ve used ALB in a microservices architecture, where traffic was routed to different services based on URL paths. 
+It helped simplify deployments and improve scalability.
+
+
+2. Network Load Balancer (NLB)
+Operates at Layer 4 (Transport Layer).
+Designed for high-performance workloads — handles millions of requests per second with ultra-low latency.
+Supports TCP, UDP, and TLS traffic.
+Provides a static IP or Elastic IP per Availability Zone, which is useful for whitelisting.
+Often used for latency-sensitive applications like gaming, financial systems, or real-time communications.
+
+✅ Real-time use: I’ve configured NLB for an internal payment processing system that required very low latency and high throughput.
+
+
+
+3. Classic Load Balancer (CLB) (Legacy)
+Supports both Layer 4 and Layer 7, but with limited features compared to ALB/NLB.
+AWS recommends using ALB or NLB instead for new applications.
+Still used in legacy environments where applications were designed around it.
+✅ Real-time use: I’ve come across CLB mainly in older projects where migrating to ALB/NLB wasn’t immediately feasible.
+
+
+
+4. Gateway Load Balancer (GWLB)
+Operates at Layer 3 (Network Layer).
+Used to deploy, scale, and manage third-party virtual appliances like firewalls, 
+intrusion detection/prevention systems (IDS/IPS), and packet inspection tools.
+It combines transparent network gateway and load balancing, making it easy to integrate security appliances in your traffic flow.
+
+✅ Real-time use: In one project, we used GWLB with a Palo Alto firewall appliance to inspect and filter inbound traffic 
+before it reached the VPC workloads.
+
+
+
+Summary (Quick Interview Line):
+ALB → Layer 7, intelligent routing for web/microservices.
+NLB → Layer 4, ultra-low latency, millions of requests/sec.
+CLB → Legacy, limited features.
+GWLB → Layer 3, integrates third-party security appliances.
+
+
+
+7) What is route53?
+
+Answer:
+Amazon Route 53 is AWS’s scalable and highly available DNS (Domain Name System) service. It’s named Route 53 because DNS works on port 53.
+It mainly provides three functions:
+Domain Registration – You can register and manage domain names directly in Route 53.
+DNS Routing – It translates human-readable domain names (like example.com) into IP addresses so users can connect to applications. 
+It supports different routing policies such as Simple, Weighted, Latency-based, Failover, Geolocation, and Multi-value routing.
+Health Checks & Monitoring – It can check the health of endpoints and route traffic away from unhealthy resources, improving reliability.
+
+✅ Real-time use:
+In one project, I used Route 53 to manage DNS for a web application hosted on EC2 and S3. 
+We configured Latency-based routing so users from the US were served from the US region 
+and users from Asia from the Singapore region, reducing latency.
+I’ve also set up failover routing with Route 53 so that if the primary web server goes down, 
+traffic automatically shifts to a standby server in another region.
+So, Route 53 is not just a DNS service but also plays a key role in global traffic management, 
+high availability, and disaster recovery.
