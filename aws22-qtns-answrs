@@ -252,3 +252,15 @@ So in short:
 “VPC is AWS’s private network where we control subnets, routing, and security. 
 Its key components are subnets, IGW, NAT, route tables, security groups, NACLs, and endpoints, 
 which together define how resources communicate securely inside and outside AWS.”
+
+
+11) what is pre signed url?
+ans:
+     A pre-signed URL in AWS is a temporary, time-limited URL that gives secure access to a private object 
+in an S3 bucket without needing direct AWS credentials.
+Normally, if an S3 bucket is private, only users with proper IAM permissions can access it. 
+But sometimes we need to share an object (like a report, image, or log file) with someone who doesn’t have AWS credentials. 
+In such cases, we generate a pre-signed URL.
+The URL is created using the object key, bucket name, expiration time, and our AWS credentials/signature.
+It allows operations like GET (download), PUT (upload), or DELETE depending on the permissions.
+Once the URL expires, access is automatically revoked.
