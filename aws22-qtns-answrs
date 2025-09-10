@@ -196,3 +196,34 @@ all access to our private VPC endpoint. This ensured the bucket was not accessib
 So in short:
 “To secure an S3 bucket, I block public access, apply least-privilege IAM and bucket policies, enable encryption, 
 set up monitoring, and where required, enforce MFA Delete and VPC endpoints.”
+
+
+10) What is VPC and what components does it have?
+ans:
+
+An Amazon VPC (Virtual Private Cloud) is a logically isolated network in AWS where we can launch and manage our resources securely. 
+It’s like having your own private data center inside AWS, with full control over IP addressing, subnets, routing, and security.
+
+A VPC is made up of several key components:
+Subnets – Logical divisions within a VPC.
+Public Subnets → resources like load balancers or bastion hosts that need internet access.
+Private Subnets → databases or application servers without direct internet access.
+Internet Gateway (IGW) – Allows communication between VPC resources and the internet.
+NAT Gateway / NAT Instance – Allows instances in private subnets to connect outbound to the internet 
+(e.g., for updates) without being exposed to inbound traffic.
+Route Tables – Define how traffic flows within the VPC, to subnets, internet gateway, NAT, or peered VPCs.
+Security Groups – Stateful firewalls that control inbound and outbound traffic at the instance level.
+Network ACLs (Access Control Lists) – Stateless firewalls that control traffic at the subnet level.
+VPC Peering / Transit Gateway – Enables communication between multiple VPCs, either within the same account or across accounts.
+VPC Endpoints – Private connections between the VPC and AWS services (like S3, DynamoDB) without using the internet.
+DHCP Options, Elastic IPs, and VPN / Direct Connect – For DNS settings, static IPs, and hybrid connectivity with on-premises data centers.
+
+✅ Real-time example:
+In one project, I designed a VPC with public subnets for ALBs and bastion hosts, private subnets for 
+EC2 application servers, and isolated subnets for RDS databases. We used NAT Gateway for outbound traffic, 
+Security Groups for instance-level rules, and VPC Endpoints for private S3 access. This setup ensured both security and high availability.
+
+So in short:
+“VPC is AWS’s private network where we control subnets, routing, and security. 
+Its key components are subnets, IGW, NAT, route tables, security groups, NACLs, and endpoints, 
+which together define how resources communicate securely inside and outside AWS.”
