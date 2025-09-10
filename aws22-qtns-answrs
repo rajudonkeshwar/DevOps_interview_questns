@@ -16,6 +16,9 @@ Ans: An AMI (Amazon Machine Image) is the base image or blueprint that defines w
     AMI = What goes inside the instance (OS + software)
     Launch Template = How the instance is launched (AMI + instance type + networking + security + scaling configs)
 
+3) What is CloudFront?
+CloudFront is AWS’s Content Delivery Network (CDN) that caches content at edge locations to reduce latency and speed up delivery.
+
 
 3) Tell me something about EBS and EFS?
     Ans: 
@@ -264,3 +267,47 @@ In such cases, we generate a pre-signed URL.
 The URL is created using the object key, bucket name, expiration time, and our AWS credentials/signature.
 It allows operations like GET (download), PUT (upload), or DELETE depending on the permissions.
 Once the URL expires, access is automatically revoked.
+
+12) types of ec2-instances?
+ans:
+1. General Purpose (T, M series)
+Examples: T3, T4g, M5, M6i
+Use case: Balanced compute, memory, and networking.
+Ideal for web servers, small databases, development/test environments, and microservices.
+✅ Real-time: I’ve used T3 instances for dev/test servers and M5 for application servers in production because 
+they provide a good balance at lower cost.
+
+2. Compute Optimized (C series)
+Examples: C5, C6g, C7i
+Use case: High-performance processors for compute-intensive workloads.
+Ideal for batch processing, gaming servers, scientific modeling, and high-performance web apps.
+✅ Real-time: We used C5 instances for a video encoding service that needed strong CPU performance.
+
+3. Memory Optimized (R, X, Z series)
+Examples: R5, R6g, X1e, z1d
+Use case: Applications needing high memory-to-CPU ratio.
+Ideal for large databases, in-memory caching (Redis, Memcached), and big data processing.
+✅ Real-time: I deployed R5 instances for an in-memory Redis cluster to handle caching for a high-traffic e-commerce site.
+
+4. Storage Optimized (I, D, H series)
+
+Examples: I3, I4i, D2, H1
+Use case: High IOPS, high-throughput workloads requiring fast local storage.
+Ideal for NoSQL databases (Cassandra, MongoDB), data warehousing, and analytics.
+✅ Real-time: We used I3 instances for Elasticsearch to handle log analytics at scale due to high I/O needs.
+
+5. Accelerated Computing (P, G, F series)
+
+Examples: P4, G5, F1
+Use case: Specialized hardware (GPU/FPGA) for advanced workloads.
+P series → Machine learning, deep learning.
+G series → Graphics rendering, video transcoding.
+F series → FPGA-based workloads, custom hardware acceleration.
+✅ Real-time: I worked with P3 instances for training machine learning models since they provide GPU acceleration.
+
+Summary (Quick Interview Line):
+General Purpose → Balanced workloads (web/app servers).
+Compute Optimized → CPU-heavy tasks (batch processing, gaming).
+Memory Optimized → Memory-heavy tasks (databases, caching).
+Storage Optimized → High IOPS/throughput (NoSQL, analytics).
+Accelerated Computing → Specialized workloads (ML, GPU, FPGA).
