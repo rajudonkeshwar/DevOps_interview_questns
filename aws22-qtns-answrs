@@ -1,1 +1,58 @@
+1) What is AMI?
+Ans: An AMI (Amazon Machine Image) is basically a template that contains the operating system, application server, and any software or configurations 
+     needed to launch an EC2 instance. You can think of it as the "blueprint" for your virtual machines in AWS.
+     When I launch an EC2 instance, I select an AMI, and that AMI determines what’s preinstalled on the instance—for example, 
+     whether it’s a Linux or Windows machine, or if it has additional software like Apache, Docker, or custom configurations.
 
+
+2) What is the difference between ami and launch template?
+Ans: An AMI (Amazon Machine Image) is the base image or blueprint that defines what’s inside an EC2 instance—things like the operating system, 
+     preinstalled software, and configurations. It answers the question: “What will my instance look like when it launches?”
+
+     On the other hand, a Launch Template is a broader configuration that defines how the instance should be launched. 
+     It includes not only the AMI ID but also instance type, key pair, security groups, networking settings, IAM roles, and other launch parameters.
+    
+    In short:
+    AMI = What goes inside the instance (OS + software)
+    Launch Template = How the instance is launched (AMI + instance type + networking + security + scaling configs)
+
+
+3) Tell me something about EBS and EFS?
+    Ans: 
+    Both EBS (Elastic Block Store) and EFS (Elastic File System) are AWS storage services, but they serve different purposes.
+    EBS is a block-level storage that attaches to a single EC2 instance (like a virtual hard drive). 
+    It’s great for databases, applications, or workloads that need low-latency storage. 
+    EBS volumes are tied to one Availability Zone, but we can take snapshots to back them up or move them.
+
+    EFS is a fully managed network file system that can be mounted by multiple EC2 instances 
+    across multiple Availability Zones at the same time. It provides shared storage, scales automatically as data grows, 
+    and is ideal for scenarios like content management, big data analytics, 
+    or when multiple servers need access to the same files (Web Applications with Shared Content).
+    In real-time
+    I’ve used EBS for application servers and databases, where each instance needs its own dedicated storage.
+    I’ve used EFS for web applications where multiple EC2 instances (behind a load balancer) needed to share the same static content.
+    So in short:
+    EBS = Single-instance block storage (like a hard disk)
+    EFS = Multi-instance shared file storage (like a network drive)
+
+
+
+4) What is the difference between IAM Role and IAM User ?
+
+Ans: An IAM User is a permanent identity created for an individual or application that needs long-term access to AWS. 
+It has associated credentials like username/password or access keys. For example, 
+I might create an IAM user for a developer who needs to log in to the AWS console or use CLI.
+
+An IAM Role, on the other hand, is a temporary identity with permissions that can be assumed by AWS services, 
+applications, or even users, granting them temporary security credentials to make aws api calls.
+IAM roles are not directly associated with specific users or group, they are intended to be assumable by anyone
+who needs them.
+Roles don’t have permanent credentials; instead, they provide temporary security tokens. 
+For example, an EC2 instance can assume a role to access S3 without embedding access keys.
+
+👉 In short:
+IAM User = Long-term identity with permanent credentials
+IAM Role = Temporary identity assumed by trusted entities, with no long-term credentials
+In real-time, I’ve used:
+IAM Users for team members who need direct access with MFA.
+IAM Roles for EC2, Lambda, and CI/CD pipelines to securely access resources without hardcoding credentials.
