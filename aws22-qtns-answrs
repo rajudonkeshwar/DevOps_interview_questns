@@ -205,13 +205,31 @@ An Amazon VPC (Virtual Private Cloud) is a logically isolated network in AWS whe
 It’s like having your own private data center inside AWS, with full control over IP addressing, subnets, routing, and security.
 
 A VPC is made up of several key components:
-Subnets – Logical divisions within a VPC.
-Public Subnets → resources like load balancers or bastion hosts that need internet access.
-Private Subnets → databases or application servers without direct internet access.
+Subnets – Logical divisions within a VPC, vpc can be divided in to multiple subnetworks, each associated with specific
+availability zone, range ip addresses.
+subnets are used to organize and segment your resources with in the vpc.
+
+Public Subnets → it is a subnet, it has a route to the internet through internet gateway, 
+Instances launched in a public subnet can communicate directly with the internet
+resources like load balancers or bastion hosts that need internet access can be launched in public subnet.
+
+Private Subnets → It is a subnet that does not have direct route to the internet, instances in private subnetcan communicate with
+other instances with in the vpc, but inbound traffic initiated from the internet is not allowed
+databases or application servers without direct internet access.
+
 Internet Gateway (IGW) – Allows communication between VPC resources and the internet.
-NAT Gateway / NAT Instance – Allows instances in private subnets to connect outbound to the internet 
+It is the gateway you can add it to your vpc to enable direct connection between your resources and internet
+resources that need to use the gateway for internet access must be in a public subnet, and have a public ip address
+
+NAT Gateway / NAT Instance – Allows instances in private subnets to the internet
+this is the gateway, which is used to initiate the internet connection to the resources which are in private subnet
+we can configure it through the route table by creating routes.
 (e.g., for updates) without being exposed to inbound traffic.
+
 Route Tables – Define how traffic flows within the VPC, to subnets, internet gateway, NAT, or peered VPCs.
+A route table contains a set of rules called routes, that are used to determine, where the network traffic should
+be directed, each subnet in a vpc must be associated with route table which controls the trffic with in the subnet.
+
 Security Groups – Stateful firewalls that control inbound and outbound traffic at the instance level.
 Network ACLs (Access Control Lists) – Stateless firewalls that control traffic at the subnet level.
 VPC Peering / Transit Gateway – Enables communication between multiple VPCs, either within the same account or across accounts.
