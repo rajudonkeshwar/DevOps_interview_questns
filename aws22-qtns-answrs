@@ -235,11 +235,13 @@ Security Groups – Stateful firewalls that control inbound and outbound traffic
 Network ACLs (Access Control Lists) – Stateless firewalls that control traffic at the subnet level.
 
 VPC Peering / Transit Gateway – Enables communication between multiple VPCs, either within the same account or across accounts.
-
-VPC Endpoints – Private connections between the VPC and AWS services (like S3, DynamoDB) without using the internet.
 It is a networking connection between two virtual private clouds with in the same or different aws regions.
  vpc peering allows you to connect to other vpc and share resources across them securily using private ip addresses.
 Vpc ensure that route tables are configured to allow traffic between the vpcs.
+
+
+VPC Endpoints – Private connections between the VPC and AWS services (like S3, DynamoDB) without using the internet.
+
 
 ✅ Real-time example:
 In one project, I designed a VPC with public subnets for ALBs and bastion hosts, private subnets for 
