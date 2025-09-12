@@ -1,5 +1,6 @@
 1) What is AMI?
-Ans: An AMI (Amazon Machine Image) is basically a template that contains the operating system, application server, and any software or configurations 
+Ans: An AMI (Amazon Machine Image) is basically a template that contains the operating system, application server, 
+     and any software or configurations 
      needed to launch an EC2 instance. You can think of it as the "blueprint" for your virtual machines in AWS.
      When I launch an EC2 instance, I select an AMI, and that AMI determines what’s preinstalled on the instance—for example, 
      whether it’s a Linux or Windows machine, or if it has additional software like Apache, Docker, or custom configurations.
