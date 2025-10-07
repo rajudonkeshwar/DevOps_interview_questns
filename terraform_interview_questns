@@ -195,3 +195,30 @@ ans:  terraform import is used to bring existing infrastructure resources (that 
       Run:
       terraform plan
 
+
+11) Tell me about terraform -target command?
+Ans: The -target flag tells Terraform to focus only on specific resources or modules when running plan, apply, or destroy.
+      It’s basically a selective execution tool — Terraform will only plan or apply the parts of your infrastructure 
+      you explicitly target, rather than the entire configuration.
+
+      terraform plan -target=RESOURCE_ADDRESS
+      terraform apply -target=RESOURCE_ADDRESS
+      terraform destroy -target=RESOURCE_ADDRESS
+
+      example: 
+      Lets we have:
+      resource "aws_vpc" "main" {
+        cidr_block = "10.0.0.0/16"
+      }
+
+      resource "aws_subnet" "public" {
+        vpc_id     = aws_vpc.main.id
+        cidr_block = "10.0.1.0/24"
+      }
+
+      if you want to create only the VPC first, you can run:
+      terraform apply -target=aws_vpc.main
+
+
+
+
