@@ -219,6 +219,11 @@ Ans: The -target flag tells Terraform to focus only on specific resources or mod
       if you want to create only the VPC first, you can run:
       terraform apply -target=aws_vpc.main
 
+12) 🧠 What is a Dynamic Block?
+
+Think of a dynamic block as a loop inside Terraform.
+It’s used when you need to repeat a nested block multiple times — but you don’t want to hardcode them.
+
 
 
 
