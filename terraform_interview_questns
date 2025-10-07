@@ -225,5 +225,63 @@ Think of a dynamic block as a loop inside Terraform.
 It’s used when you need to repeat a nested block multiple times — but you don’t want to hardcode them.
 
 
+🧩 Example Problem
+
+Let’s say you’re creating an AWS Security Group, and you want to allow multiple ports (like 80, 443, 22).
+
+Normally, you might do this:
+
+resource "aws_security_group" "example" {
+  name = "example-sg"
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
+✅ Works fine — but what if tomorrow you want to add more ports?
+You’d have to manually copy-paste more blocks.
+
+🪄 Using a Dynamic Block
+
+We can make Terraform do this automatically 👇
+
+variable "ports" {
+  default = [80, 443, 22]
+}
+
+resource "aws_security_group" "example" {
+  name = "example-sg"
+
+  dynamic "ingress" {
+    for_each = var.ports
+    content {
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+}
+
+
 
 
