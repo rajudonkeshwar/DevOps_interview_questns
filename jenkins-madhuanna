@@ -239,3 +239,37 @@ Reports build results back to the master.
 
 Jenkins Master is the central server responsible for scheduling jobs, managing configuration, and monitoring agents. 
 Agents are worker nodes that execute jobs assigned by the master, often running on separate machines to distribute workloads efficiently.
+
+
+8) How to secure Jenkins?
+Ans: 
+
+🔹 How to Secure Jenkins
+
+Enable Authentication
+Require users to log in before accessing Jenkins.
+Use Jenkins’ own user database, LDAP, Active Directory, or OAuth/GitHub authentication.
+Set Proper Authorization
+Control who can do what using Matrix-based security or Project-based Matrix Authorization.
+Avoid giving everyone admin privileges; assign roles like Admin, Developer, or Viewer.
+
+Use HTTPS
+Enable SSL/TLS to encrypt traffic between users and Jenkins.
+Can be done via reverse proxy (Nginx/Apache) or Jenkins native SSL support.
+Secure Jenkins Master and Agents
+Restrict network access to the Jenkins master and agents.
+
+Only allow trusted hosts and users.
+Use firewall rules or VPN.
+
+Secure Credentials
+Store passwords, tokens, and keys in Jenkins Credentials Plugin instead of hardcoding in jobs or Jenkinsfile.
+Use secret text, secret files, or SSH keys.
+Keep Jenkins and Plugins Updated
+Regularly update Jenkins core and installed plugins to patch known vulnerabilities.
+Avoid using unverified or deprecated plugins.
+
+
+To secure Jenkins, we enable authentication and authorization, use HTTPS url, restrict access to the master and agents, 
+store credentials securely, keep Jenkins and plugins updated, enable CSRF protection, and audit user actions. 
+This ensures only authorized users can access and execute jobs safely.
