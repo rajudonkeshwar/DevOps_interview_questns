@@ -74,6 +74,10 @@ Ans:
   connect your source code repository, define build steps and triggers, then save and run the job. For advanced automation, 
    we use a Jenkinsfile to define everything as code.
 
+  By creating a new job, choosing project type (freestyle/pipeline), and setting steps like source control, build steps, post-build actions.
+
+
+
 
    Login to Jenkins Dashboard
 → Open your Jenkins URL (e.g., http://localhost:8080)
@@ -111,3 +115,127 @@ Save and Build
 → Click Save
 → Hit “Build Now”
 → You can check console output for logs and results.
+
+
+8) What is jenkins executors?
+Ans:
+  A Jenkins executor is a worker process that runs one build at a time on a Jenkins node. 
+  The number of executors determines how many jobs can run in parallel. If all executors are busy, new builds wait in the queue.
+
+  A Jenkins executor is basically a slot or a worker thread on a Jenkins node (master or agent) that runs your jobs.
+  Think of it like this:
+  Each executor is a seat where Jenkins can run one build at a time.
+  If a node has 2 executors, that means it can run 2 jobs in parallel on that machine.
+
+
+9) How do we trigger jenkins job automatically?
+ans:
+  1. Poll SCM (Source Code Management)
+Jenkins regularly checks the source code repository (e.g., GitHub) for changes.
+If it detects any new commits, it automatically triggers the job.
+
+Configuration:
+Go to Job → Configure → Build Triggers → Poll SCM
+Add a schedule (CRON format), for example:
+H/5 * * * * 
+→ This checks every 5 minutes.
+💡 Note: This doesn’t trigger instantly; it polls periodically.
+
+2. Webhook (Preferred for GitHub/GitLab)
+This is the most efficient and real-time way.
+When you push code to GitHub, it sends a webhook to Jenkins to start the job immediately.
+Setup:
+In Jenkins:
+Enable “GitHub hook trigger for GITScm polling” under Build Triggers.
+In GitHub repo:
+Go to Settings → Webhooks → Add Webhook
+Add your Jenkins URL:
+http://<jenkins-server>:8080/github-webhook/
+
+Choose application/json and select “Just the push event.”
+💡 Use this for real-time CI/CD pipelines.
+
+3. Build Periodically (Cron Job Style)
+Used to trigger builds on a fixed schedule, even if no code changes happen.
+Example:
+H 2 * * *   → runs daily at 2 AM
+H/10 * * * * → runs every 10 minutes
+Set this under:
+Build Triggers → Build periodically
+
+4. Upstream/Downstream Triggers
+One Jenkins job automatically triggers another after completion.
+
+Example:
+Job A builds the code.
+When Job A finishes successfully, it triggers Job B for deployment.
+Set under:
+Post-build Actions → Build other projects
+
+5. Trigger from Pipeline Script
+You can define automatic triggers directly in your Jenkinsfile.
+Example:
+pipeline {
+    triggers {
+        cron('H/15 * * * *')  // Run every 15 minutes
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building..."
+            }
+        }
+    }
+}
+
+✅ Short Interview Answer:
+
+We can trigger Jenkins jobs automatically using several methods — most commonly by Git webhooks for real-time triggers, 
+Poll SCM for periodic checks, Build periodically using cron schedules, or Upstream/Downstream job dependencies. 
+In pipelines, triggers can also be defined in the Jenkinsfile.
+
+
+
+6) can you explain about upstream, down stream jobs in jenkins?
+Ans:
+  1. Upstream Job
+    An upstream job is the job that triggers another job after it completes.
+    Think of it as the source job.
+    Example
+    Job A builds the code → after it succeeds, it triggers Job B for testing.
+    Here, Job A is upstream of Job B.
+
+  2. Downstream Job
+    A downstream job is the job that gets triggered by another job.
+    Think of it as the dependent job.
+    Example:
+    Job B runs after Job A completes → Job B is downstream of Job A.
+
+  3. How to Configure Upstream/Downstream Jobs:
+  Using Post-Build Actions in Freestyle Job:
+  Go to ***Job A → Configure → triggers → Build after other projects are built ***
+  Enter the downstream job name (Job B)
+  Optionally choose “Trigger only if build is stable”
+
+7) Difference between master and agent?
+Ans:
+1. Jenkins Master
+The master is the central server that controls the Jenkins environment.
+Responsibilities of Master
+Manage Jenkins configuration and system settings.
+Schedule jobs and assign them to agents (or run on master itself).
+Monitor agents and track job execution status.
+Store build history, logs, and artifacts (though agents may also store temporary artifacts).
+Provide UI and API access to users.
+Note: You can run small jobs on master itself, but heavy builds are usually offloaded to agents.
+
+2. Jenkins Agent (or Slave)
+An agent is a worker node that performs the actual job execution.
+Responsibilities of Agent:
+Executes jobs assigned by the master.
+Can run multiple executors to handle parallel builds.
+Can be on a different machine (Linux, Windows, Docker container).
+Reports build results back to the master.
+
+Jenkins Master is the central server responsible for scheduling jobs, managing configuration, and monitoring agents. 
+Agents are worker nodes that execute jobs assigned by the master, often running on separate machines to distribute workloads efficiently.
