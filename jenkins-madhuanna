@@ -46,4 +46,68 @@ Allows Groovy-based scripting for more flexibility and automation.
   Each branch can have its own Jenkinsfile, allowing separate build/test configurations.
   Commonly used in Git-based CI/CD where multiple teams work on different branches.
 
+5) what is jenkins pipeline?
+ANS: A Jenkinsfile is a text file that defines the CI/CD pipeline as code. 
+      It contains all the build, test, and deployment stages and is stored in the source code repository, 
+      allowing version control and automation of the entire workflow.
 
+
+6) Where is Jenkins installed?
+Ans: Jenkins is usually installed on a Linux server or as a Docker container. 
+      Its main home directory is /var/lib/jenkins, where all configurations, jobs, and plugins are stored.
+      The JENKINS_HOME directory stores:
+
+      Job configurations
+      Plugins
+      Jobs
+      Build logs
+      Pipeline scripts
+      User and system settings
+
+
+7) How do you configure a job in Jenkins?
+Ans:
+  A Jenkins job (or project) defines a set of tasks (like build, test, deploy) that Jenkins should execute. 
+  You can configure it either through the UI (for Freestyle jobs) or through a Jenkinsfile (for Pipeline jobs).
+
+  To configure a Jenkins job, go to the Jenkins dashboard, click “New Item,” choose the job type (Freestyle or Pipeline), 
+  connect your source code repository, define build steps and triggers, then save and run the job. For advanced automation, 
+   we use a Jenkinsfile to define everything as code.
+
+
+   Login to Jenkins Dashboard
+→ Open your Jenkins URL (e.g., http://localhost:8080)
+→ Enter your credentials.
+
+Create a New Job
+→ Click on “New Item”
+→ Enter a Job Name
+→ Select “Freestyle project” (or “Pipeline” if you want code-based setup)
+→ Click OK
+
+Configure Source Code Management (SCM)
+→ Under the Source Code Management section, select Git
+→ Enter your repository URL and credentials.
+
+Add Build Triggers (Optional)
+→ You can choose how the job should start:
+
+Build periodically (like a cron job)
+Poll SCM (automatically build on code changes)
+Build after another project
+
+Add Build Steps
+→ Under Build, click “Add build step”
+→ Choose what you want Jenkins to do (e.g., “Execute shell”, “Invoke Gradle/Maven”, etc.)
+→ Example: mvn clean package
+
+Add Post-Build Actions
+→ Configure what should happen after the build, like:
+
+Publish artifacts
+Send email notifications
+Deploy to server
+Save and Build
+→ Click Save
+→ Hit “Build Now”
+→ You can check console output for logs and results.
