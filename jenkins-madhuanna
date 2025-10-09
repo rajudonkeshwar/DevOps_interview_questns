@@ -273,3 +273,6 @@ Avoid using unverified or deprecated plugins.
 To secure Jenkins, we enable authentication and authorization, use HTTPS url, restrict access to the master and agents, 
 store credentials securely, keep Jenkins and plugins updated, enable CSRF protection, and audit user actions. 
 This ensures only authorized users can access and execute jobs safely.
+
+Use Matrix-based security
+Use Role-Based Access Control plugin
