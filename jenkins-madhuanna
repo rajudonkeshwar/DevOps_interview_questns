@@ -1,0 +1,49 @@
+1) What is a Jenkins pipeline?
+Ans: It is pack of plugins and intigarions of tools such as git, maven, sonar, docker, k8s  
+that supports integrating and implementing continuous delivery pipelines using code.
+
+2) What is the difference between freestyle project and pipeline?
+Ans: Freestyle: UI-based and limited customization. Pipeline: Scripted and supports complex workflows as code.
+
+1. Freestyle Project
+A Freestyle Project in Jenkins is a simple, GUI-based job where you configure everything using forms and dropdowns.
+🔹 Key Points:
+Created using UI — no code needed.
+You define steps like: source code checkout, build commands, test execution, and deployment manually in the Jenkins dashboard.
+Easy to set up for simple CI/CD workflows.
+Not easily portable or reusable — if you want to replicate it, you need to manually recreate or copy the job.
+Harder to maintain for large or complex projects.
+
+💡 Example:
+A Freestyle project might pull code from GitHub, run a Maven build, and then deploy an artifact to a server — all configured through the Jenkins web interface.
+
+2. Pipeline Project
+A Pipeline Project uses code (Jenkinsfile) to define the entire CI/CD workflow in a script.
+🔹 Key Points:
+Pipeline as Code — everything (build, test, deploy) is written in a Jenkinsfile.
+Stored inside the source code repository, making it version-controlled.
+Supports complex workflows like parallel builds, approvals, error handling, and environment variables.
+Easier to reuse and maintain, especially for large teams or multiple environments.
+Allows Groovy-based scripting for more flexibility and automation.
+
+
+4) What are the types of pipelines in Jenkins?
+  ans: 
+  1. Declarative Pipeline
+  This is the most commonly used type.
+  Uses a simplified and structured syntax (introduced later to make pipelines easier to write).
+  Defined inside a pipeline { } block in a Jenkinsfile.
+  Easier to read and maintain; best suited for most CI/CD use cases.
+
+  2. Scripted Pipeline
+  Uses Groovy scripting syntax (older and more flexible).
+  Everything is written in a script { } block.
+  Gives more control and logic (like loops, conditions, custom functions), but is more complex.
+  Often used when you need advanced logic or dynamic behavior in your pipeline.
+
+  3. Multibranch Pipeline
+  Automatically creates and manages pipelines for each branch in your source control repository (e.g., GitHub).
+  Each branch can have its own Jenkinsfile, allowing separate build/test configurations.
+  Commonly used in Git-based CI/CD where multiple teams work on different branches.
+
+
