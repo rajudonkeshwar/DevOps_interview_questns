@@ -276,3 +276,9 @@ This ensures only authorized users can access and execute jobs safely.
 
 Use Matrix-based security
 Use Role-Based Access Control plugin
+
+
+9) Explain about throttle builds?
+Ans: Enforces a minimum time between builds based on the desired maximum rate.
+Note: this does not enforce an "average" rate, it only looks at the time since last build.
+
