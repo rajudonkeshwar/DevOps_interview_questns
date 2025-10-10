@@ -337,11 +337,11 @@ On the infrastructure side, I monitor CPU, memory, and disk usage using tools
 like Node Exporter or Datadog, since Jenkins performance heavily depends on the underlying server.
 
 
-What is a parameterized build?
+11) What is a parameterized build?
 ans:
-  “A parameterized build in Jenkins is a build that accepts input parameters from the user before it runs. 
-   These parameters allow you to make the same job flexible and reusable by changing its behavior based 
-    on the provided values.
+    “In real projects, we use parameterized builds to make Jenkins jobs flexible and reusable. 
+    Instead of maintaining multiple jobs for each environment, we create a single job that takes parameters — 
+    such as the target environment, branch, or version — and deploys accordingly.”
   
     For example, you might pass parameters like a branch name, environment name, or version 
     number — and Jenkins uses those values during the build process.”
@@ -355,3 +355,69 @@ ans:
     Then your build script or pipeline can use it:
     sh "deploy.sh --env=${params.ENVIRONMENT}"
     So when triggering the job manually or via another pipeline, you can choose which environment to deploy to.
+
+
+12) What are shared libraries in Jenkins?
+
+Ans: “In Jenkins, a Shared Library is a way to create reusable pipeline code that can be used across multiple Jenkins jobs or projects.
+Instead of writing the same pipeline logic in every Jenkinsfile — like build, test, deploy stages — 
+we can define that logic once in a shared library and import it into any pipeline.
+
+This helps maintain consistency, reduces code duplication, and makes pipeline maintenance much easier 
+across large teams or multiple microservices.”
+
+A shared library is usually stored in a Git repository and has this structure:
+(root)
+ ├── vars/
+ │    └── buildAndDeploy.groovy
+ ├── src/
+ │    └── org/company/utils/Helper.groovy
+ └── resources/
+      └── templates/
+
+
+@Library('my-shared-library') _
+pipeline {
+  agent any
+  stages {
+    stage('Build & Deploy') {
+      steps {
+        buildAndDeploy(env: 'dev')
+      }
+    }
+  }
+}
+
+Go to Manage Jenkins → System → Global Pipeline Libraries
+Click Add then give name and repository url
+
+
+13) What to do if Jenkins build fails suddenly?
+Ans: 
+“If a Jenkins build fails suddenly, the first step is to analyze the cause of the failure systematically — 
+whether it’s a code issue, environment issue, or Jenkins configuration problem.
+
+I start by checking the console output to identify at which stage the failure occurred — for 
+example, during checkout, build, test, or deployment.
+
+Then I verify things like:
+Any recent code commits that might have broken the build
+Jenkins agent/node status — sometimes builds fail because the agent is offline or out of disk space
+Environment variables, credentials, or dependencies that might have changed
+Plugin or tool updates that could have affected the job
+Once I find the root cause, I fix the underlying issue — for example, by reverting a bad commit, 
+reconfiguring the agent, or clearing workspace issues — and then re-trigger the build.
+
+To prevent similar failures in the future, I also add alerting and notifications, 
+improve error handling in pipelines, and, if needed, include retry mechanisms or rollback steps in the Jenkinsfile.”
+
+
+14) How to run a pipeline on multiple environments?
+Ans: “To run a pipeline on multiple environments in Jenkins, we typically use parameterized 
+pipelines or multi-stage pipelines where each stage targets a specific environment — like Dev, QA, Staging, and Production.
+We define an environment parameter (for example, ENV = dev / qa / prod) and then use 
+that parameter inside the pipeline to decide which servers, configurations, or credentials to use.
+This allows us to use one single Jenkinsfile to deploy the same application 
+across multiple environments with controlled logic and approvals.
+In real-time, I’ve used this approach to promote builds automatically from Dev → QA → Prod, 
+using either manual approval steps or automated triggers after successful validation.”
