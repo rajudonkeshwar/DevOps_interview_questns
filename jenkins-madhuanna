@@ -14,6 +14,8 @@ Easy to set up for simple CI/CD workflows.
 Not easily portable or reusable — if you want to replicate it, you need to manually recreate or copy the job.
 Harder to maintain for large or complex projects.
 
+
+
 💡 Example:
 A Freestyle project might pull code from GitHub, run a Maven build, and then deploy an artifact to a server — all configured through the Jenkins web interface.
 
@@ -329,6 +331,27 @@ Prometheus scrapes metrics from the Jenkins /prometheus endpoint, and Grafana vi
 like build success rates, queue times, and resource usage. 
 I also configure alerts in Alertmanager or Grafana to notify me of high queue times, 
 frequent build failures, or node disconnections.
-Additionally, Jenkins logs are shipped to an ELK stack (Elasticsearch, Logstash, Kibana) for centralized log analysis and troubleshooting.
-On the infrastructure side, I monitor CPU, memory, and disk usage using tools like Node Exporter or Datadog, since Jenkins performance heavily depends on the underlying server.
-This combination gives a full picture — system health, job reliability, and real-time alerts — helping maintain high CI/CD uptime and fast feedback cycles.”
+Additionally, Jenkins logs are shipped to an ELK stack (Elasticsearch, Logstash, Kibana) for 
+centralized log analysis and troubleshooting.
+On the infrastructure side, I monitor CPU, memory, and disk usage using tools 
+like Node Exporter or Datadog, since Jenkins performance heavily depends on the underlying server.
+
+
+What is a parameterized build?
+ans:
+  “A parameterized build in Jenkins is a build that accepts input parameters from the user before it runs. 
+   These parameters allow you to make the same job flexible and reusable by changing its behavior based 
+    on the provided values.
+  
+    For example, you might pass parameters like a branch name, environment name, or version 
+    number — and Jenkins uses those values during the build process.”
+    This combination gives a full picture — system health, job reliability, and real-time 
+    alerts — helping maintain high CI/CD uptime and fast feedback cycles.”
+
+    Let’s say you have a deployment job.
+    Instead of creating separate jobs for dev, staging, and production, you can create one parameterized 
+    job with a parameter like:
+    ENVIRONMENT = dev / staging / production
+    Then your build script or pipeline can use it:
+    sh "deploy.sh --env=${params.ENVIRONMENT}"
+    So when triggering the job manually or via another pipeline, you can choose which environment to deploy to.
