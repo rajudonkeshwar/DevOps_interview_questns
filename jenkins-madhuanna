@@ -282,3 +282,53 @@ Use Role-Based Access Control plugin
 Ans: Enforces a minimum time between builds based on the desired maximum rate.
 Note: this does not enforce an "average" rate, it only looks at the time since last build.
 
+
+10) How do you monitor Jenkins?
+Ans: 
+  a. Jenkins “Manage Jenkins” Dashboard
+
+Go to: Manage Jenkins → System Log / Load Statistics / Manage Nodes
+
+You can check:
+Queue length and build executor utilization
+Node (agent) connectivity and load
+System logs and thread dumps
+
+b. Monitoring Plugin
+Plugin: Monitoring Plugin
+Provides graphs for:
+Memory usage (heap, non-heap)
+CPU load
+Thread count
+HTTP sessions
+Garbage collection
+
+c. Metrics Plugin
+Plugin: Metrics Plugin
+Exposes JVM, system, and Jenkins metrics via REST endpoints (e.g., /metrics/)
+Can be scraped by tools like Prometheus
+
+📊 2. External Monitoring & Visualization
+a. Prometheus + Grafana
+This is the most common modern setup.
+Install Prometheus Plugin on Jenkins.
+Prometheus scrapes Jenkins metrics at /prometheus.
+Configure Grafana dashboards using community templates to visualize:
+Job success/failure rates
+Build queue time
+Node performance
+Jenkins master health
+
+“I monitor Jenkins at multiple levels — application health, job performance, and infrastructure — using 
+a combination of built-in tools and external monitoring systems.
+At the Jenkins level, I use the built-in dashboards under ‘Manage Jenkins’ to check node status, 
+queue length, and executor utilization. 
+I also enable the Monitoring and Metrics plugins to collect detailed JVM and system-level statistics.
+For advanced observability, I integrate Jenkins with Prometheus and Grafana. 
+Prometheus scrapes metrics from the Jenkins /prometheus endpoint, and Grafana visualizes trends 
+like build success rates, queue times, and resource usage. 
+I also configure alerts in Alertmanager or Grafana to notify me of high queue times, 
+frequent build failures, or node disconnections.
+Additionally, Jenkins logs are shipped to an ELK stack (Elasticsearch, Logstash, Kibana) for centralized log analysis and troubleshooting.
+On the infrastructure side, I monitor CPU, memory, and disk usage using tools like Node Exporter or Datadog, since Jenkins performance heavily depends on the underlying server.
+This combination gives a full picture — system health, job reliability, and real-time alerts — helping maintain high CI/CD uptime and fast feedback cycles.”
