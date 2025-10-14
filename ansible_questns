@@ -144,6 +144,35 @@ These facts are stored as variables and can be used in subsequent tasks within t
                         taken by ansible.builtin.setup module from remote server
 
 
+		---
+- name: Gather system facts
+  hosts: all
+  tasks:
+    - name: Collect facts
+      ansible.builtin.setup:
+
+    - name: Display OS information
+      debug:
+        msg: "Host {{ inventory_hostname }} is running {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+
+ansible all -m setup
+
+{
+    "ansible_facts": {
+        "ansible_hostname": "webserver01",
+        "ansible_all_ipv4_addresses": ["192.168.1.10"],
+        "ansible_distribution": "Ubuntu",
+        "ansible_distribution_version": "22.04",
+        "ansible_memtotal_mb": 4096,
+        "ansible_processor_vcpus": 2
+    },
+    "changed": false
+}
+
+
+
+
 10))) What are the components of Ansible?
       Answer:
       Inventory – Defines hosts and groups of servers.
@@ -152,6 +181,7 @@ These facts are stored as variables and can be used in subsequent tasks within t
       Roles – Reusable playbooks with tasks, handlers, and templates.
       Facts – System information collected from managed nodes.
       Handlers – Special tasks triggered by changes.
+	  Registers - registers are used to capture and store the result of a task in a variable
 
 
 11))) What is Ansible Vault?
@@ -160,7 +190,9 @@ These facts are stored as variables and can be used in subsequent tasks within t
   This ensures that secret data is not exposed in playbooks, Git repositories, or while sharing files with a team.
   
   1. Creating a New Encrypted File
-         **ansible-vault encrypt secrets.yml**
+         **ansible-vault create secrets.yml**
+		 **ansible-vault view secrets.yml**
+		 **ansible-vault edit secrets.yml**
      You’ll be asked to enter a password.
      The file will open in an editor (e.g., Vim or Nano).
      Add sensitive data inside and save it.
@@ -183,6 +215,10 @@ These facts are stored as variables and can be used in subsequent tasks within t
 
     You can do configuration in configuration file by addind as **ask_vault_pass = True**
         so that it will ask for password when you are entering the command
+
+	But it is not good practice to give passwords of encryption manually, in automated environments you can store
+	passwords anywhere in the server and use below command
+	ansible-playbook -i inventory.ini mysql.yaml --vault-password-file /home/ec2-user/mysql_vault_pass
 
 
 
@@ -243,10 +279,22 @@ Syntax: ansible all -i <IPAddress>, -e ansible_user=<username> -e ansible_passwo
 Ansible Modules: (for installations)
 Ansible.builtin.debug:  print the message
 Ansible.builtin.package: used for software installation in any linux server
-Ansible.builtin.dnf: used for software installations only in RHEL
-Ansible.builtin.apt: used for software installations in UBUNTU Linux flavors
-Ansible.builtin.yum: used for CentOS
 Ansible.builtin.ping: pinging for testing connection between two servers
+ansible.builtin.file: It is used to create file or directory
+ansible.builtin.get_url: Used to download the code form URL
+
+ansible.builtin.get_url:
+	url:<link>
+	dest: /tmp/frontend.zip
+
+ansible.builtin.unarchive:( It is used to unzip the code ) 
+	src: /tmp/frontend.zip
+	dest: /usr/share/nginx/html
+	remote_src: yes
+
+ansible.builtin.copy:
+ansible.builtin.user:
+
 Q: What is Ad hoc commands in Ansible?
 Ans: On emergency request or any unpredictable situations, we can perform software configuration in servers using ad Hoc commands instead of playbooks.
 Syn: ansible all -i <IP address>, -e ansible_user=<username> -e ansible_password=<password> -m ping
@@ -254,19 +302,110 @@ Syn: ansible all -i <IP address>, -e ansible_user=<username> -e ansible_password
 Q: How can we utilize the declared variable in a playbook?
 Ans: using double braces i.e., {{ <variable name> }}
 Note: Variable declared under "vars" can be used globally inside a playbook
+ - name: variables
+  hosts: local
+  connection: local
+  vars: # PLAY level variables
+    COURSE: "DevOps with AWS"
+    DURATION: 120HRS
+    TRAINER: Sivakumar
+  tasks:
+  - name: print the variable
+    ansible.builtin.debug:
+      msg: "Course is {{ COURSE }}, Duration is {{ DURATION }}, Trainer is {{ TRAINER }}"
+
 
 Q: How many ways can be passed variables in a playbook?
 Ans: Multiple ways can be passed . They are
-	• Command line or argument
+	• Command line or argument ( ansible-playbook site.yml -e "package_name=nginx service_name=nginx" )
+
 	• Task level / local variables
+		---
+		- name: Install web server
+		  hosts: webservers
+		  vars:
+		    package_name: nginx
+		  tasks:
+		    - name: Install package
+		      apt:
+		        name: "{{ package_name }}"
+		        state: present
+
 	• Variables from another YAML file
+			
+				📁 vars.yml
+			
+			package_name: httpd
+			service_name: httpd
+			
+			
+			📄 playbook.yml
+			
+			---
+			- name: Install web server
+			  hosts: webservers
+			  vars_files:
+			    - vars.yml
+			  tasks:
+			    - name: Install package
+			      yum:
+			        name: "{{ package_name }}"
+			        state: present
+
+
 	• Variables from prompt
+
+				---
+				- name: Deploy Application
+				  hosts: all
+				  vars_prompt:
+				    - name: app_version
+				      prompt: "Enter the application version to deploy"
+				  tasks:
+				    - debug:
+				        msg: "Deploying version {{ app_version }}"
+
+
 	• Play level / Global variables
+
 	• Variables from Inventory
-	• Roles
+
+			📁 inventory.ini
+			
+			[webservers]
+			web1 ansible_host=192.168.1.10 app_port=8080
+			web2 ansible_host=192.168.1.11 app_port=9090
+			
+			
+			📄 In your playbook:
+			
+			- name: Print app port
+			  hosts: webservers
+			  tasks:
+			    - debug:
+			        msg: "App running on port {{ app_port }}"
+
+	• Roles:
+			When using roles, you can define variables in two special places:
+			roles/rolename/defaults/main.yml → lowest precedence (default values)
+			roles/rolename/vars/main.yml → higher precedence (hardcoded for role)
+
+			✅ Example:
+			
+			📁 roles/webserver/defaults/main.yml
+			package_name: nginx
+			
+			📁 roles/webserver/tasks/main.yml
+			- name: Install web package
+			  apt:
+			    name: "{{ package_name }}"
+			    state: present
+
+
 
 Q: What is ansible facts? What is the use of it?
-Ans: ansible_facts is the data fetch from node server which includes entire server data. We can use those data for identify the state of the server, filter data for our requirement.
+Ans: ansible_facts is the data fetch from node server which includes entire server data.
+We can use those data for identify the state of the server, filter data for our requirement.
 
 Q: What are the predefined functions to convert list into map or vice-versa?
 Ans:
@@ -276,8 +415,30 @@ Dict2items  --> conversion of dictionary(map) to list items
 Q: What is the ansible command to validate IP address?
 Ans: ansible.utils.ipaddr
 
+	- name: Validate IP
+	  hosts: localhost
+	  gather_facts: false
+	  vars:
+	    my_ip: "192.168.1.10"
+	  tasks:
+	    - name: Check if IP is valid
+	      debug:
+	        msg: "{{ my_ip | ansible.utils.ipaddr }}"
+
+		🟢 Output:
+
+		ok: [localhost] => {
+			"msg": "192.168.1.10"
+		}
+		
+		
+		✅ Returns the IP if valid
+		❌ Throws an error if invalid
+
+
 Q: How can we perform configuration of the server if we don't have ansible modules?
-Ans: We can either use shell( less secure i.e., similar to shell redirections, pipes etc)  or command modules(more secure i.e., will execute via remote due to lack of access)
+Ans: We can either use shell( less secure i.e., similar to shell redirections, pipes etc)  
+	or command modules(more secure i.e., will execute via remote due to lack of access)
 
 Q:How can we redirect the output in Ansible?
 Ans: ansible.builtin.shell
@@ -312,13 +473,30 @@ Q: How can we achieve particular service needs to restart/start/enable ?
 Ans: ansible.builtin.service --> We can restart/enable the services required for the application to be up
 
 Q: What are tags in ansible? Why we can use the same?
-Ans: We can control few tasks using "tags". By "tags", we can execute the mentioned tasks only during execution (instead of running tasks everytime execution)
-tags:
-- integration
-- packages
-- deployments
-- webservers
-Syntax: ansible-playbook <playbook.yaml> --tags "tag name>
+Ans: We can control few tasks using "tags". By "tags", we can execute the mentioned tasks 
+	only during execution (instead of running tasks everytime execution)
+				---
+			- name: Web Server Setup
+			  hosts: webservers
+			  become: yes
+			  tasks:
+			    - name: Install nginx
+			      apt:
+			        name: nginx
+			        state: present
+			      tags: 
+			        - install
+			
+			    - name: Configure nginx
+			      template:
+			        src: nginx.conf.j2
+			        dest: /etc/nginx/nginx.conf
+			      tags: 
+			        - config
+
+		ansible-playbook site.yml --tags "install"
+		🔹 Only the “Install nginx” task runs.
+		Syntax: ansible-playbook <playbook.yaml> --tags "tag name>
 
 Q: What is Ansible Roles? Why we can use?
 Ans: A standard structure of writing playbooks that contains tasks, variables, dependencies, files, templates, libraries, handlers and other ansible artifacts and make these are reusable in different use cases.
@@ -334,16 +512,40 @@ Roles ---> tasks(main.yaml)  --> Specified instructions for the defined action/t
 	---> lookup_plugins --> plugins for the software configuration
 
 Q: How to skip the tags in Ansible?
-Ans: Use "--skip-tags" to exclude tasks with specified tags
-ansible-playbook <playbook name> --skip-tags "<tag name>
-More Details:
-	• --tags all - run all tasks, tagged and untagged except if never (default behavior).
-	• --tags tag1,tag2 - run only tasks with either the tag tag1 or the tag tag2 (also those tagged always).
-	• --skip-tags tag3,tag4 - run all tasks except those with either the tag tag3 or the tag tag4 or never.
-	• --tags tagged - run only tasks with at least one tag (never overrides).
-	• --tags untagged - run only tasks with no tags (always overrides).
-Note: Skipping always takes precedence over explicit tags, if you specify tags in both "--tags/--skip-tags" section i.e.,
--- tags tag1,tag3,tag4 --skip-tags tag3     > only execute tag1 & tag4 related tasks and skip tag3  in this case
+Ans: 
+	When you run an Ansible playbook, by default, all tasks execute (unless restricted by conditions).
+	But sometimes, you want to avoid running certain tasks — for example, configuration or restart steps.
+
+	ansible-playbook <playbook-name>.yml --skip-tags "<tag1>,<tag2>"
+			
+				---
+			- name: Web Server Setup
+			  hosts: webservers
+			  become: yes
+			
+			  tasks:
+			    - name: Install nginx
+			      apt:
+			        name: nginx
+			        state: present
+			      tags:
+			        - install
+			
+			    - name: Configure nginx
+			      template:
+			        src: nginx.conf.j2
+			        dest: /etc/nginx/nginx.conf
+			      tags:
+			        - config
+			
+			    - name: Restart nginx
+			      service:
+			        name: nginx
+			        state: restarted
+			      tags:
+			        - restart
+	ansible-playbook web.yml --skip-tags "config"
+	Here config named tag task is skipped
 
 Q: How can we store the password in Ansible or What is the best practice for handling sensitive info in Ansible?
 Ans: Using "ansible-vault " , we can store sensitive info like usernames, root password, ip address etc
