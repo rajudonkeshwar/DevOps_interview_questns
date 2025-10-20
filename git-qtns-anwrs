@@ -206,3 +206,16 @@ Unlike centralized systems, where you depend on a single server to fetch history
 Git allows you to work completely offline — you can commit, branch, view logs, and even revert to old versions 
 without needing network connectivity.
 
+12) What is Git stash and when do we use it?
+Ans: Git stash is a command used to temporarily save uncommitted changes (both staged and unstaged) in your working directory, 
+     so you can work on something else — like switching branches or pulling updates — without committing those changes.
+
+    It basically stores your current modifications in a stack (called a stash) and reverts your working directory to a clean 
+    state (the last commit).
+    git stash
+    git checkout main
+    # fix bug, commit
+    git checkout featureA
+    git stash pop
+
+
