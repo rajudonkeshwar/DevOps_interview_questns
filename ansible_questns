@@ -443,7 +443,8 @@ Q:How can we create files/directory using Ansible?
 Ans:  ansible.builtin.file module. We can do CRUD on either file or directory using this module
 
 Q: Can we run any playbook without inventory.ini?
-Ans: If ansible.cfg is present in the current directory where you were executing playbooks, then no need to mention "inventory.ini" specifically in the command prompt.
+Ans: If ansible.cfg is present in the current directory where you were executing playbooks, then no need to mention 
+	 "inventory.ini" specifically in the command prompt.
 
 Q: How can we execute libraries in more than one server?
 Ans:  ansible.builtin.pip  (executables: "pip3.9")  --> Used to install/configure dependencies/libraries of the tasks (for Python)
@@ -494,7 +495,8 @@ Ans: We can control few tasks using "tags". By "tags", we can execute the mentio
 		Syntax: ansible-playbook <playbook.yaml> --tags "tag name>
 
 Q: What is Ansible Roles? Why we can use?
-Ans: A standard structure of writing playbooks that contains tasks, variables, dependencies, files, templates, libraries, handlers and other ansible artifacts and make these are reusable in different use cases.
+Ans: A standard structure of writing playbooks that contains tasks, variables, dependencies, files, templates, l
+		ibraries, handlers and other ansible artifacts and make these are reusable in different use cases.
 Roles ---> tasks(main.yaml)  --> Specified instructions for the defined action/task to implement
 	---> files (bar.txt, foo.sh etc)--> This file consists of the application image related service or script files with copy of resources
 	---> handlers (main.yaml)  --> This is notifier script file (notify) will perform action when there is change event
