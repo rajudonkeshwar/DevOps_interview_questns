@@ -218,4 +218,32 @@ Ans: Git stash is a command used to temporarily save uncommitted changes (both s
     git checkout featureA
     git stash pop
 
+13) Tell me something about git squash command?
+Ans: Using git squash command you combine all the commits in to single commit, recommended only to use when a single person is working
+      on a particular barnch, usually we use before rebase
+      command is git rebase -i HEAD-n
+
+      “git squash isn’t a single Git command but rather an operation — usually done with git rebase -i — 
+      that combines multiple commits into one. It’s mainly used to keep the commit history clean and meaningful 
+      before merging a feature branch into the main branch. For instance, if I’ve made several small commits fixing typos 
+      or adjusting code, I’ll squash them into one descriptive commit like ‘Implement user authentication module.’ 
+      This makes it easier for others to review and understand the project history.
+
+14) Tell me something about cherry-pick?
+Ans: “git cherry-pick allows me to take a specific commit from one branch and apply it to another branch without 
+      merging the entire branch. It’s especially useful when I want to transfer a bug fix or a small feature to production quickly. 
+      For example, if a fix was made on the development branch, I can cherry-pick that commit to the main branch to deploy it immediately.”
+
+      example:
+      Let’s say you have a commit on the feature branch with hash abc123, and you want to apply it to main:
+
+      # switch to the branch you want to apply the commit to
+      git checkout main
+      
+      # apply the specific commit
+      git cherry-pick abc123
+      
+      Git will apply the changes from that commit and create 
+      a new commit with the same changes on the current branch.
+
 
