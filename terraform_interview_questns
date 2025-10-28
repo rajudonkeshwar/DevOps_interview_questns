@@ -35,7 +35,9 @@
 3.. The explanation of load balancer and target group working?
 
     ans:
-      A Load Balancer distributes incoming traffic across multiple targets (such as EC2 instances, containers, or IP addresses) to ensure high availability and reliability of applications. It works in conjunction with Target Groups and Auto Scaling Groups in the following way:
+      A Load Balancer distributes incoming traffic across multiple targets (such as EC2 instances, containers, or IP addresses) 
+      to ensure high availability and reliability of applications. 
+      It works in conjunction with Target Groups and Auto Scaling Groups in the following way:
 
 1. Load Balancer (LB)
 Acts as an entry point for traffic.
@@ -88,7 +90,8 @@ Would you like a Terraform example to implement this setup? 🚀
 4)))  Definition of Listener and Route in Load Balancer?
 
       1. Listener
-      A Listener is a process that checks for incoming client requests on a specific port and protocol. It determines how the Load Balancer should handle the traffic by forwarding it to the appropriate target group.
+      A Listener is a process that checks for incoming client requests on a specific port and protocol. 
+      It determines how the Load Balancer should handle the traffic by forwarding it to the appropriate target group.
       
       🔹 Key Features:
       
@@ -102,7 +105,8 @@ Would you like a Terraform example to implement this setup? 🚀
 
 
       2. Route (Listener Rule)
-      A Route (Listener Rule) defines the logic for forwarding traffic to different target groups based on conditions such as URL path, hostname, or HTTP headers.
+      A Route (Listener Rule) defines the logic for forwarding traffic to different target groups based on conditions 
+      such as URL path, hostname, or HTTP headers.
       
       🔹 Key Features:
       
@@ -170,12 +174,14 @@ and ensure the state file is protected with encryption and limited access."
 
 
 9)) Tell me about terraform taint command?
-      Terraform tracks all managed resources in the state file. When you run terraform taint <resource>, Terraform marks that resource in the state as tainted.
+      Terraform tracks all managed resources in the state file. When you run terraform taint <resource>, 
+      Terraform marks that resource in the state as tainted.
       terraform taint <resource_name>
 
 10)) tell me about terraform import command ?
 ans:  terraform import is used to bring existing infrastructure resources (that were created outside Terraform) under Terraform’s management.
-      It doesn’t create or modify infrastructure — it just maps an existing real-world resource (like an AWS EC2 instance, Azure VM, GCP bucket, etc.) 
+      It doesn’t create or modify infrastructure — it just maps an existing real-world resource 
+      (like an AWS EC2 instance, Azure VM, GCP bucket, etc.) 
       to a Terraform resource block in your code.
 
       Suppose you already have an EC2 instance created manually in AWS:
