@@ -1,0 +1,60 @@
+1) Why by default ebs is attached to ec2 instance?
+  Ans: When you launch an EC2 instance, it’s basically a virtual machine — and just like a physical computer, it needs storage to hold:
+       the operating system (OS) (like Linux or Windows),
+       application files, and
+       data/logs.
+
+       💡 So the main reason:
+       Because every computer needs a disk to boot and store files, and EC2 uses EBS as that disk.
+       Without EBS (or another root storage), the EC2 instance couldn’t even start — there’d be nowhere to install or run the OS from.
+
+       Real-life examples:
+       Running a database (like MySQL or PostgreSQL) on an EC2 — EBS stores the database files.
+       Hosting a web server — OS, app code, and logs are stored on EBS.
+       Backup or snapshot storage — You can take EBS snapshots for disaster recovery.
+
+      Custom database setup
+      You need full control over the database engine, version, or configuration (e.g., self-hosted MongoDB, Cassandra, or a specific MySQL build).
+      Example: You install MongoDB on an EC2 instance → data is stored on an EBS volume.
+
+      Non-relational databases
+      RDS supports only relational databases (MySQL, PostgreSQL, etc.).
+      For NoSQL DBs (like Elasticsearch, Redis, Cassandra), you use EC2 + EBS.
+      
+      Performance tuning
+      You want direct control over the EBS volume type (e.g., io2 for very high IOPS)
+      Useful for very high-performance or experimental workloads.
+      
+      Temporary or test databases
+      Developers may spin up a quick EC2 + MySQL with EBS just for testing, without the overhead or cost of a managed RDS instance.
+
+      When you create an RDS instance (say, MySQL, PostgreSQL, etc.), AWS automatically allocates EBS volumes to store:
+      Your database data files
+      Transaction logs
+      Automated backups and snapshots
+
+
+2)  What is the snapshot for what purpose should we use, how do we take backup of ebs to other region?
+Ans: 
+    🧩 What is a snapshot in AWS?
+        A snapshot is basically a backup copy of your EBS volume taken at a specific point in time.
+        It captures all the data and settings of that volume so you can restore it later if needed.
+
+    ⚙️ How it works:
+      You have an EBS volume attached to an EC2 instance.
+      You run Create Snapshot (manually or automatically through AWS Backup or Lifecycle Manager).
+      AWS stores that snapshot in Amazon S3 (behind the scenes — you don’t manage it directly).
+      The snapshot is incremental, meaning only changed data is saved after the first one (saves space and cost).
+
+    🌍 About cross-region backup
+    Yes — you should use snapshots to back up your EBS volumes to other regions if you want disaster recovery or geo-redundancy.
+    
+    You can:
+    Create a snapshot in your current region.
+    Copy that snapshot to another AWS region (manually or via automation).
+    Restore a new EBS volume from that snapshot in the new region if needed.
+    
+    This helps if:
+    A region has an outage.
+    You want to migrate workloads to a different region.
+    You want compliance with backup policies (e.g., offsite backup).
