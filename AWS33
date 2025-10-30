@@ -58,3 +58,70 @@ Ans:
     A region has an outage.
     You want to migrate workloads to a different region.
     You want compliance with backup policies (e.g., offsite backup).
+
+3) What is the main purpose of s3?
+Ans: “Amazon S3 is mainly used for hosting static websites, storing backups, logs,  keeping large datasets, 
+      hosting media files, and serving as a data lake for analytics and machine learning. 
+      It’s reliable, scalable, and widely used across industries.”
+      S3 is commonly used for automatic backups of files, databases, or entire systems.
+
+      Yes, S3 is widely used to store logs because it provides durable, scalable, and low-cost storage.
+      Logs can be from different sources — servers, applications, databases, or AWS services themselves.
+      we can store .war, .jar files also
+
+      Application Logs
+      Server Logs / System Logs
+      AWS Service Logs
+
+4) What is a Load Balancer?
+Ans: A load balancer is like a traffic police officer standing in front of your servers.
+    When users send requests (for example, to your website), the load balancer distributes those requests evenly among multiple servers, 
+    so no single server is overloaded.
+
+      🧠 Key Points You Can Tell in Interview:
+      It improves availability and fault tolerance — if one server goes down, the load balancer automatically sends traffic to the healthy ones.
+      It improves scalability — you can add or remove servers behind the load balancer without users noticing.
+      It ensures better performance — because it prevents any one server from being overwhelmed.
+
+
+      ⚙️ 2️⃣ What are Target Groups?
+      
+      👉 Simple explanation:
+      A Target Group is basically a collection of servers (targets) that the load balancer sends traffic to.
+      Each target group contains one or more targets, which could be:
+      EC2 instances
+      Containers (like in ECS or EKS)
+      Lambda functions
+      The load balancer checks the health of targets in the group and only sends traffic to healthy ones.
+
+      Target groups define how requests are routed — for example, based on path or host-based routing (/api vs /app).
+      Health checks happen at the target group level.
+      You can have multiple target groups under one load balancer — this allows microservices or multiple apps 
+      to run behind a single load balancer.
+
+
+      🚀 3️⃣ What is an Auto Scaling Group (ASG)?
+      
+      👉 Simple explanation:
+      An Auto Scaling Group automatically adds or removes EC2 instances based on your application's load or demand.
+
+      🧠 Key Points You Can Say:
+      It helps maintain performance and cost efficiency.
+      You define minimum, maximum, and desired number of instances.
+      It works based on scaling policies and CloudWatch alarms — e.g., if CPU > 70% for 5 minutes, add 2 more instances.
+      It automatically replaces unhealthy instances (self-healing).
+
+      
+      4️⃣ How They Work Together (Load Balancer + Target Group + ASG)
+      Here’s the full picture 👇
+      Load Balancer (e.g., ALB) receives incoming traffic from users.
+      It routes requests to the appropriate Target Group.
+      The Target Group has EC2 instances that belong to an Auto Scaling Group.
+      The Auto Scaling Group dynamically scales the number of EC2 instances based on demand.
+      The Load Balancer automatically updates its target group with new instances as they are added or removed by the ASG.
+      
+      🗣 Short impressive explanation:
+      
+      “In AWS, the load balancer, target groups, and auto scaling groups work hand-in-hand — 
+        the load balancer distributes traffic, the target group defines where it should go, 
+        and the auto scaling group ensures that enough servers are always available to handle the load efficiently.”
