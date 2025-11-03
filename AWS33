@@ -6,7 +6,7 @@
 
        💡 So the main reason:
        Because every computer needs a disk to boot and store files, and EC2 uses EBS as that disk.
-       Without EBS (or another root storage), the EC2 instance couldn’t even start — there’d be nowhere to install or run the OS from.
+       Without EBS (or another root storage), the EC2 instance couldn’t even start — there’d be no where to install or run the OS from.
 
        Real-life examples:
        Running a database (like MySQL or PostgreSQL) on an EC2 — EBS stores the database files.
