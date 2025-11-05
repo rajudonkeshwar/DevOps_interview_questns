@@ -1,1 +1,23 @@
+1) How did you integrate prometheous in your project?
+Ans:
+    In our project, I set up Prometheus mainly for monitoring the application performance and infrastructure metrics.
+     First i install prometheous on our servers, then i configure prometheous.yml, this file tells prometheous which targets
+    to scrape.
+    prometheous is agent based
+    Consider two servers one is for prometheous, and another one is for node1
+    i should install node-exporter agent in node1
+    then i will configure time period in prometheous that once in every minute it should hit the node1 and it should pull the data
+    and stores it in TSD, TSD is time series database which is one of the component of prometheous.
 
+    There is something we call it as a node-exporter, if i want to fetch the data of the node from prometheous server
+    i should install node-exporter as agent in the node it self, and give its credentials in prometheous.yml
+    we can find targets information in prometheous.yaml
+
+    And we have prometheous.yml file where we have scrape_configs option in which we include remote server identity
+    such as ip address and labels
+
+    thats how prometheous moniteris services
+
+---------------------------
+
+    To get the metrics dynamically from the nodes in to the server
