@@ -4,20 +4,144 @@ Ans:
      First i install prometheous on our servers, then i configure prometheous.yml, this file tells prometheous which targets
     to scrape.
     prometheous is agent based
-    Consider two servers one is for prometheous, and another one is for node1
-    i should install node-exporter agent in node1
+
+    For examples Consider two servers one is for prometheous servor, and another one is for node servor
+    We have prometheous.yml file where we have scrape_configs object in which we include remote server identity
+    such as ip address and labels
+
+    There is something we call it as a node-exporter, if i want to fetch the data of the node from prometheous server
+    i should install node-exporter as the agent in the node it self, and give its credentials in prometheous.yml
+    we can find targets information in prometheous.yaml
+    
     then i will configure time period in prometheous that once in every minute it should hit the node1 and it should pull the data
     and stores it in TSD, TSD is time series database which is one of the component of prometheous.
 
-    There is something we call it as a node-exporter, if i want to fetch the data of the node from prometheous server
-    i should install node-exporter as agent in the node it self, and give its credentials in prometheous.yml
-    we can find targets information in prometheous.yaml
-
-    And we have prometheous.yml file where we have scrape_configs option in which we include remote server identity
-    such as ip address and labels
 
     thats how prometheous moniteris services
 
 ---------------------------
 
-    To get the metrics dynamically from the nodes in to the server
+    To get the metrics dynamically from the nodes in to the server i should mention some conditions that
+    i should add ec2_sd_configs: in joB-name section where we should mention aws region, label and port also
+    we should give label name in ec2_sd_configs so that prometheous will connects to that particular server
+
+    There is something called rules, when the prometheous scraps and stores it in TSD paralelly it evaluate the metrics it self
+    If you give any action in the rule the prometheous will perform the action creating alerts and triggers emails
+
+
+    global:
+  scrape_interval: 15s      # How often Prometheus scrapes metrics
+  evaluation_interval: 15s  # How often rules are evaluated
+
+# Alertmanager configuration (optional)
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ["localhost:9093"]
+
+# Load alert rules
+rule_files:
+  - "alert_rules.yml"
+
+# Scrape configurations
+scrape_configs:
+  # 1️⃣ Scrape Prometheus itself
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # 2️⃣ Scrape local application
+  - job_name: "my-application"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ["localhost:8000"]
+
+  # 3️⃣ Scrape Node Exporter
+  - job_name: "node-exporter"
+    static_configs:
+      - targets: ["localhost:9100"]
+
+  # 4️⃣ Scrape EC2 instances dynamically
+  - job_name: "ec2-instances"
+    ec2_sd_configs:
+      - region: "us-east-1"                # Change to your AWS region
+        access_key: "YOUR_AWS_ACCESS_KEY"  # (Optional, better use IAM role)
+        secret_key: "YOUR_AWS_SECRET_KEY"  # (Optional)
+        port: 9100                         # Port where Node Exporter or app runs
+    relabel_configs:
+      - source_labels: [__meta_ec2_instance_id]
+        target_label: instance
+      - source_labels: [__meta_ec2_private_ip]
+        target_label: private_ip
+
+
+-----------------------
+
+groups:
+  - name: general-alerts
+    rules:
+      # 1️⃣ Alert when an instance is down
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance {{ $labels.instance }} is down"
+          description: "Prometheus target {{ $labels.job }} on {{ $labels.instance }} is not responding for more than 1 minute."
+
+      # 2️⃣ Alert for high CPU usage
+      - alert: HighCPUUsage
+        expr: avg(rate(node_cpu_seconds_total{mode="system"}[5m])) * 100 > 80
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage on {{ $labels.instance }}"
+          description: "CPU usage is above 80% for more than 2 minutes."
+
+      # 3️⃣ Alert for low memory
+      - alert: LowMemory
+        expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 20
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low memory on {{ $labels.instance }}"
+          description: "Available memory is below 20% on {{ $labels.instance }} for 2 minutes."
+
+      # 4️⃣ Alert for high disk usage
+      - alert: HighDiskUsage
+        expr: (node_filesystem_size_bytes - node_filesystem_free_bytes) / node_filesystem_size_bytes * 100 > 85
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High disk usage on {{ $labels.instance }}"
+          description: "Disk usage is above 85% for more than 5 minutes on {{ $labels.instance }}."
+
+    💡 Explanation:
+
+groups → Groups of related rules.
+
+Each rule has:
+
+alert: Name of the alert
+
+expr: PromQL expression to check condition
+
+for: How long the condition must be true before firing
+
+labels: Metadata like severity (used in Alertmanager)
+
+annotations: Human-readable messages (shown in Grafana/Slack/etc.)
+
+🧠 Bonus Interview Tip:
+
+If the interviewer asks “How do you get alert notifications?”, you can say:
+
+“We connected Prometheus to Alertmanager, which sends alerts to our Slack channel and email. 
+We configured routes in alertmanager.yml to group and send alerts based on severity.”
+
+
+
