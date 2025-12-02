@@ -1,27 +1,27 @@
-How to safely drain a kubernetes nodes?
+1) How to safely drain a kubernetes nodes?
 Ans: Safely draining a Kubernetes node means evicting all non-daemonset pods from the node without causing downtime or violating disruption constraints. 
      Below is the correct, production-safe way to drain a node.
       How to Safely Drain a Kubernetes Node
-Goal: Move workloads off the node cleanly before maintenance or shutdown.
-
-1. Mark the node as unschedulable
-This prevents new pods from being scheduled on it.
-kubectl cordon <node-name>
-Effect: The node is still running existing pods but will accept no new ones.
-
-
-2. Drain the node
-This evicts pods gracefully using Kubernetes eviction logic, respecting PodDisruptionBudgets (PDBs).
-kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data
-Meaning of the flags:
---ignore-daemonsets
-DaemonSet pods cannot be evicted, so they're ignored.
-
---delete-emptydir-data
-Required if the node has pods using emptyDir volumes.
-
-Optional flags:
---force
-Needed only if pods not managed by a controller (e.g., orphaned pods) are present.
---grace-period=N
-Set a custom graceful shutdown time.
+     Goal: Move workloads off the node cleanly before maintenance or shutdown.
+     
+     1. Mark the node as unschedulable
+     This prevents new pods from being scheduled on it.
+     kubectl cordon <node-name>
+     Effect: The node is still running existing pods but will accept no new ones.
+     
+     
+     2. Drain the node
+     This evicts pods gracefully using Kubernetes eviction logic, respecting PodDisruptionBudgets (PDBs).
+     kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data
+     Meaning of the flags:
+     --ignore-daemonsets
+     DaemonSet pods cannot be evicted, so they're ignored.
+     
+     --delete-emptydir-data
+     Required if the node has pods using emptyDir volumes.
+     
+     Optional flags:
+     --force
+     Needed only if pods not managed by a controller (e.g., orphaned pods) are present.
+     --grace-period=N
+     Set a custom graceful shutdown time.
