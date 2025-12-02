@@ -25,3 +25,7 @@ Ans: Safely draining a Kubernetes node means evicting all non-daemonset pods fro
      Needed only if pods not managed by a controller (e.g., orphaned pods) are present.
      --grace-period=N
      Set a custom graceful shutdown time.
+
+     5. Bring the node back
+     When done:
+     kubectl uncordon <node-name>     
