@@ -1,1 +1,36 @@
+How do you use Terraform in your environment?
+Ans:
+  “We use Terraform mainly for provisioning and managing our cloud infrastructure. All our resources—like VPCs, subnets, security groups, EC2 instances, 
+  load balancers, and databases—are defined as code. This helps us keep everything consistent across environments.
+  We store our Terraform code in Git, so any change goes through code review. We use remote state (S3 + DynamoDB or Terraform Cloud) to keep state locked and shared. 
+  For deployments, we run Terraform through a CI/CD pipeline, which handles plan and apply steps.
+  Overall, Terraform helps us automate infrastructure creation, track changes, avoid manual errors, and easily reproduce environments.”
 
+
+How will you utilize Terraform modules and perform version upgrades in your environment?
+Ans:
+  “We use Terraform modules to keep our infrastructure code organized and reusable. For example, we have separate modules for networking, compute, databases, and security. 
+  Instead of writing the same code again and again, we just call the module with different inputs. This helps us maintain consistency across all environments.
+  For version upgrades, we follow a controlled process. First, we upgrade the module or provider version in a feature branch. 
+  Then we run terraform init -upgrade and check the plan to see what changes will happen. 
+  We test the upgrade in a lower environment like dev or staging to make sure nothing breaks. 
+  Once everything looks good, we merge the changes into the main branch and apply them through our CI/CD pipeline.
+  This approach helps us safely roll out module updates, provider upgrades, and Terraform version changes without impacting production.”
+
+
+
+What security, autoscaling, and scalability approaches are you using in your current setup?
+Ans:
+  “In our setup, we follow a few key approaches for security, autoscaling, and overall scalability.
+  For security, we use things like security groups, network ACLs, IAM roles, and encryption for data at rest and in transit. 
+  We keep everything private as much as possible, use least-privilege access, and follow regular patching and monitoring. 
+  We also use tools like CloudWatch/GuardDuty/SIEM (depending on company) for alerts.
+
+  For autoscaling, we use Auto Scaling Groups for our compute resources and scale based on CPU, memory, or custom metrics. 
+  For containerized workloads, we use ECS/EKS/Kubernetes autoscaling policies. This helps us automatically increase or decrease resources based on load.
+
+  For scalability, we design everything to be fully distributed and stateless where possible. 
+  We use load balancers at the front, managed services like RDS/ElastiCache/queues, and keep infrastructure modular so we can easily add more nodes when required. 
+  This helps us handle high traffic without performance issues.
+
+  Overall, our goal is to stay secure, reduce manual work, and ensure the system can scale smoothly as demand grows.”
