@@ -34,3 +34,17 @@ Ans:
   This helps us handle high traffic without performance issues.
 
   Overall, our goal is to stay secure, reduce manual work, and ensure the system can scale smoothly as demand grows.”
+
+
+
+
+Can you give some instances where you used Ansible?
+Ans:
+   “I’ve used Ansible in several practical situations:
+   Server configuration: I used Ansible playbooks to install packages, configure services, set up users, and manage system settings on Linux servers. 
+   This helped us keep all servers consistent.
+  Application deployment: I automated deployment steps like pulling code, updating config files, restarting services, and managing environment variables. This reduced manual errors.
+  Patching and updates: I used Ansible to apply security patches and OS updates across multiple servers at once without logging into each machine.
+  Provisioning after Terraform: After Terraform created the infrastructure, I used Ansible to configure the machines—for example, installing Docker, Nginx, or application dependencies.
+  CI/CD integration: Ansible was used in our pipeline to push configuration changes or deploy new builds automatically.
+  These use cases helped us save time, avoid manual work, and maintain consistent configurations across environments.”
