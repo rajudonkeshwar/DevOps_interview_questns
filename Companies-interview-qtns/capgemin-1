@@ -48,3 +48,18 @@ Ans:
   Provisioning after Terraform: After Terraform created the infrastructure, I used Ansible to configure the machines—for example, installing Docker, Nginx, or application dependencies.
   CI/CD integration: Ansible was used in our pipeline to push configuration changes or deploy new builds automatically.
   These use cases helped us save time, avoid manual work, and maintain consistent configurations across environments.”
+
+
+
+
+What are you doing for monitoring your resources?
+Ans:
+  “For monitoring, we use a combination of cloud-native tools and alerting systems. We mainly rely on CloudWatch/Prometheus/Grafana (based on your setup) 
+   to track metrics like CPU, memory, disk usage, network traffic, and application performance. We also monitor logs using CloudWatch Logs/ELK stack, 
+   which helps us quickly identify issues.
+
+  We set up alarms and automated notifications through email, Slack, or PagerDuty so the team is alerted immediately 
+  if something goes wrong—like high CPU, failed health checks, service downtime, or unusual traffic.
+
+  We also use dashboards to visualize real-time performance and run regular reviews to make sure everything is healthy. 
+  This helps us catch issues early and maintain system stability.”
