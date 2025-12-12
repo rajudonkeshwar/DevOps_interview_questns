@@ -63,3 +63,55 @@ Ans:
 
   We also use dashboards to visualize real-time performance and run regular reviews to make sure everything is healthy. 
   This helps us catch issues early and maintain system stability.”
+
+
+
+What will be your approach for creating a security group for an instance?
+Ans:
+  “My approach for creating a security group is straightforward.
+  First, I understand what the instance needs — what ports should be open and who should be allowed to access it. For example, if it’s a web server, 
+  I allow HTTP/HTTPS from the internet. If it’s a database, I only allow traffic from specific application servers, not publicly.
+  Next, I apply the principle of least privilege — only open the ports that are required and only to the necessary IPs or security groups.
+  I also make sure outbound rules are controlled, depending on the requirement. After creating the security group, 
+  I attach it to the instance and then test connectivity to confirm nothing extra is exposed.
+  This ensures the instance stays secure while still allowing the necessary traffic.”
+
+
+
+How do you handle failure in deployment
+Ans:
+  “If a deployment fails, I follow a structured approach to fix it quickly and avoid downtime.
+First, I check the pipeline logs or application logs to understand the exact error — whether it’s a code issue, config issue, image problem, or infrastructure issue.
+
+If the failure impacts the environment, I immediately roll back to the last stable build. Since we use Jenkins, Docker, and Kubernetes,
+rollback is usually quick using the previous image or previous deployment version.
+
+After restoring stability, I start root cause analysis by checking configs, environment variables, recent code changes, or dependency issues. 
+I also verify container logs and events if it is in Kubernetes.
+
+Once the issue is fixed, I test it in dev or staging and then trigger the deployment again. 
+This process ensures that production stays stable and deployment failures are handled smoothly.”
+
+
+
+In terms of development and infrastructure, mention core operations of DevOps?
+Ans:
+  “In DevOps, the core operations are mainly focused on bridging development and infrastructure to deliver software faster and more reliably.
+Some key operations include:
+
+CI/CD: Automating build, test, and deployment pipelines using tools like Jenkins.
+Configuration Management: Managing server configurations using Ansible, scripts, or similar tools.
+Infrastructure as Code: Provisioning cloud resources using Terraform or CloudFormation.
+Containerization & Orchestration: Using Docker and Kubernetes to run applications in a scalable and portable way.
+Monitoring & Logging: Using Prometheus, Grafana, and CloudWatch for performance and health monitoring.
+Version Control: Using Git to manage and track code changes.
+Automation: Automating repetitive tasks with shell or Python scripts.
+Collaboration: Ensuring smooth interaction between development and operations through shared processes and tools.
+
+
+
+“Sure. Three important DevOps KPIs I focus on are:
+Deployment Frequency – how often we’re able to push new changes to production. Higher frequency means our CI/CD process is efficient.
+Lead Time for Changes – the time it takes from committing code to deploying it. Shorter lead time shows we have a smooth and automated pipeline.
+Mean Time to Recovery (MTTR) – how quickly we can recover from a production failure. Lower MTTR means better stability and faster incident response.
+These KPIs help me understand how fast, reliable, and stable our delivery process is.”
