@@ -115,3 +115,17 @@ Deployment Frequency – how often we’re able to push new changes to productio
 Lead Time for Changes – the time it takes from committing code to deploying it. Shorter lead time shows we have a smooth and automated pipeline.
 Mean Time to Recovery (MTTR) – how quickly we can recover from a production failure. Lower MTTR means better stability and faster incident response.
 These KPIs help me understand how fast, reliable, and stable our delivery process is.”
+
+
+
+How do you define branching strategies in your organization?
+
+“In our organization, we follow a clear branching strategy to keep development organized and avoid conflicts.
+Most of the time, we use a GitFlow or trunk-based approach depending on the project.
+
+We keep a main branch for production-ready code.
+Then we have a develop or staging branch where all features are merged and tested.
+For every new requirement, developers create feature branches, and once the feature is completed, 
+they raise a pull request. We run automated checks like unit tests, code quality checks with SonarQube, and peer reviews before merging.
+
+For critical fixes, we use a hotfix branch so we can patch production quickly without disturbing ongoing development.
