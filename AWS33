@@ -125,3 +125,51 @@ Ans: A load balancer is like a traffic police officer standing in front of your 
       “In AWS, the load balancer, target groups, and auto scaling groups work hand-in-hand — 
         the load balancer distributes traffic, the target group defines where it should go, 
         and the auto scaling group ensures that enough servers are always available to handle the load efficiently.”
+
+
+
+5) ✅ Major Differences Between NACL and Security Groups
+  Ans:
+  1. Security Groups (SG)
+  Work at instance level (EC2, ENI, RDS, ALB, etc.)
+  Stateful → If you allow inbound, outbound is automatically allowed.
+  Only allow rules (no deny rules)
+  Easier to manage and commonly used.
+  
+  2. Network ACLs (NACLs)
+  Work at subnet level
+  Stateless → You must add both inbound AND outbound rules.
+  Support allow and deny rules
+  Used for an additional layer of security.
+  
+  ✅ When to Use Security Groups
+  Use SGs when you want to control access to specific resources like EC2, RDS, ALB, EKS nodes, etc.
+  Use cases for Security Groups:
+  Allow only your application servers to access the database
+  DB SG allows inbound only from App SG.
+
+  Expose web server to the internet  
+  Allow port 80/443 from anywhere.
+  Restrict SSH access
+  Allow port 22 only from your office IP or VPN.
+  Security Groups are used almost every day and are your primary layer of firewall.
+
+
+
+  ✅ When to Use NACLs
+  
+  Use NACLs when you need to control traffic at the subnet level or add an extra layer of network protection.
+  Use cases for NACLs:  
+  Block a specific IP address or range (Deny rule)
+  NACL allows deny rules, SG doesn’t.
+  Extra protection for public subnets
+  Allow ports 80/443
+  Block everything else.
+  Protect private subnets from unwanted inbound traffic
+  High-security environments where you want both SG + NACL for layered security.
+  
+  ✅ One-line Summary (perfect for interviews)  
+  Security Groups are stateful firewalls applied to instances.
+  NACLs are stateless firewalls applied to subnets.
+  SGs allow rules only, NACLs allow and deny.
+  Use SGs for daily resource protection, and NACLs for subnet-level filtering or blocking IPs.”
