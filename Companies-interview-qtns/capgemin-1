@@ -129,3 +129,51 @@ For every new requirement, developers create feature branches, and once the feat
 they raise a pull request. We run automated checks like unit tests, code quality checks with SonarQube, and peer reviews before merging.
 
 For critical fixes, we use a hotfix branch so we can patch production quickly without disturbing ongoing development.
+
+
+Explain the pipeline of your project and its purpose?
+Ans:
+  “In our project, we use a CI/CD pipeline to automate the entire process from code commit to deployment.
+The main purpose of the pipeline is to ensure fast, reliable, and error-free deployments.
+
+The pipeline starts when a developer commits code to Git. Jenkins automatically triggers the pipeline.
+First, we runs the build and unit tests to make sure the code is stable. Then we run code quality checks using SonarQube. 
+If the quality gate passes, the build artifacts or Docker images are created and stored in Nexus or a container registry.
+
+Next, we deploy the application to lower environments like dev or staging. Configuration and server setup are handled using Ansible and Kubernetes manifests.
+After deployment, we run basic validation or smoke tests.
+
+Once everything is verified, the pipeline promotes the build to production, either automatically or with manual approval.
+Throughout the pipeline, we also have logging, monitoring, and rollback mechanisms in place.
+
+Overall, this pipeline helps us reduce manual effort, catch issues early, and deliver features to production faster and more reliably.”
+
+
+
+On a daily basis, what type of automation do you work on?
+Ans:
+  “On a daily basis, I mostly work on automation that reduces manual effort and improves reliability.
+This includes automating CI/CD pipelines using Jenkins for build, test, and deployments.
+
+I automate infrastructure provisioning using Terraform and manage configurations using Ansible.
+I also write shell and Python scripts to automate repetitive operational tasks like log cleanup, health checks, backups, and user management.
+
+In addition, I work on container and Kubernetes automation—like Docker image builds, Kubernetes deployments, scaling, and rollout strategies.
+I also automate monitoring and alerting setups using Prometheus and Grafana.
+
+Overall, my daily automation work focuses on making deployments faster, infrastructure consistent, and systems more stable.”
+
+
+
+How would you create a new pipeline for a new customer?
+Ans:
+  “When creating a new pipeline for a new customer, I start by understanding their application and deployment requirements—like the tech stack, 
+environments needed, and release frequency.
+Then I design a standard CI/CD pipeline template. The pipeline usually includes stages for code checkout, build, unit tests, 
+code quality checks using SonarQube, and artifact or Docker image creation. Artifacts are stored in Nexus or a container registry.
+
+Next, I configure deployment stages for different environments like dev, staging, and production. 
+Deployments are automated using Ansible or Kubernetes, and for production we usually keep a manual approval step.
+
+I also integrate security, monitoring, and rollback mechanisms into the pipeline. Once the pipeline is ready, 
+I test it thoroughly in lower environments, document the process, and hand it over to the customer with proper access and guidelines.
