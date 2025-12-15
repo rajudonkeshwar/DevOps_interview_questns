@@ -196,3 +196,21 @@ In this environment, we deploy the complete application, connect it with databas
 We also check configuration, performance, and deployment behavior before moving to production.
 
 So basically, QA or Staging helps us confirm that everything works end-to-end and is production-ready.”
+
+
+
+
+What types of deployments do you follow in your project? give me this answer as we are giving in interview
+
+Ans:
+Interview Answer (as the interviewee):
+
+“In our project, we follow multiple deployment strategies based on application criticality and traffic requirements.
+Most commonly, we use Rolling Deployments, where new versions are released gradually without downtime.
+
+For critical applications, we use Blue-Green deployments. We keep two environments—blue (current) and green (new). Once the new version is tested, 
+we switch traffic, which gives us quick rollback if needed.
+
+In some cases, we also use Canary deployments, where we release the new version to a small set of users first, monitor it, and then roll it out fully.
+
+These deployment strategies help us minimize downtime, reduce risk, and ensure stable releases.”
