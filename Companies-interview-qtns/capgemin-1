@@ -177,3 +177,14 @@ Deployments are automated using Ansible or Kubernetes, and for production we usu
 
 I also integrate security, monitoring, and rollback mechanisms into the pipeline. Once the pipeline is ready, 
 I test it thoroughly in lower environments, document the process, and hand it over to the customer with proper access and guidelines.
+
+
+
+
+How many environments are you maintaining?
+Ans:
+  “Typically, we maintain around three to four environments.
+We usually have Dev for development and initial testing, QA or Staging for integration and validation, and Production for live traffic.
+In some projects, we also have a UAT environment depending on customer requirements.
+
+This setup helps us test changes properly at each stage and ensures stability before anything goes to production.”
