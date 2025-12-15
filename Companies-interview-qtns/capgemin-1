@@ -188,3 +188,11 @@ We usually have Dev for development and initial testing, QA or Staging for integ
 In some projects, we also have a UAT environment depending on customer requirements.
 
 This setup helps us test changes properly at each stage and ensures stability before anything goes to production.”
+
+“QA or Staging is the environment where we validate the application as close as possible to production.
+It means we use this environment to test integrated features together—not just individual changes.
+
+In this environment, we deploy the complete application, connect it with databases and external services, and run functional, integration, and smoke tests.
+We also check configuration, performance, and deployment behavior before moving to production.
+
+So basically, QA or Staging helps us confirm that everything works end-to-end and is production-ready.”
