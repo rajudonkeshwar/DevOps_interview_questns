@@ -214,3 +214,34 @@ we switch traffic, which gives us quick rollback if needed.
 In some cases, we also use Canary deployments, where we release the new version to a small set of users first, monitor it, and then roll it out fully.
 
 These deployment strategies help us minimize downtime, reduce risk, and ensure stable releases.”
+
+
+
+
+
+What are the plugins you have used in your project?
+
+Ans:
+“In our project, I mainly worked with Jenkins, and we used several plugins to support CI/CD activities.
+Some of the key plugins we used are:
+
+Git Plugin – for pulling source code from Git repositories.
+Pipeline Plugin – to create and manage Jenkins pipelines as code.
+Docker Plugin – for building and pushing Docker images.
+SonarQube Plugin – for running code quality and static analysis checks.
+Nexus Artifact Uploader Plugin – to upload build artifacts to Nexus.
+Kubernetes Plugin – for deploying applications to Kubernetes clusters.
+Credentials Plugin – to securely manage secrets and credentials.
+
+
+
+How many builds do you perform daily?
+
+Interview Answer (as the interviewee):
+
+“On average, we run around 20 to 30 builds per day.
+This includes feature builds triggered by code commits, automated builds for pull requests, and deployment builds across 
+dev, QA, and staging environments.
+
+The exact number can vary depending on the release cycle and team activity, 
+but since our pipelines are fully automated, handling multiple builds daily is not an issue.”
