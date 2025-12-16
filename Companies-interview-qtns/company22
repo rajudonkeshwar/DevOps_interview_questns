@@ -1,0 +1,15 @@
+Can you explain the core principles of Continuous Integration and Continuous Delivery (CI/CD)?
+
+Interview Answer (as the interviewee):
+
+“Yes. CI/CD is all about automating and improving the way we build, test, and deliver applications.
+
+Continuous Integration (CI) means developers frequently commit their code to a shared repository. 
+  Every commit automatically triggers a build and tests. This helps us detect issues early, reduce integration problems, and maintain code quality.
+
+Continuous Delivery (CD) means that once the code passes all tests and quality checks, 
+  it is automatically prepared for deployment. The application is always in a deployable state, 
+  and deployments to environments like dev, QA, or staging are automated. Production deployment can be done with a manual approval if required.
+
+The core principles of CI/CD are automation, fast feedback, consistency, and reliability.
+These principles help us release changes faster, with fewer errors, and with more confidence.”
